@@ -1,0 +1,98 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<div class="app-content content position-relative  ">
+
+  <!-- <form action="create_paper_3" method="post">
+    {% csrf_token %} -->
+  <div class="content-wrapper">
+    <div class="content-body ">
+      <!-- Revenue, Hit Rate & Deals -->
+      <div class="col-lg-12 col-md-12 col-sm-12  ">
+        <h4 class="head mb-2  ">Create New Paper <a class="btn btn-default   float-right btn-sm  mt--1 "
+            href="{% url 'paper_list' %}">Back to list</a> </h4>
+        <div class="card form">
+          <div class="card-content ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-12 mt-1  ">
+                  <h4 class="title-1">Paper Sections Details</h4>
+                </div>
+                <div class="col-lg-4 mt-1  form-group">
+                  <label>Paper Credit </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperIdError"
+                    style="color:red;"></span>
+                  <input type="text" class="form-control" placeholder="Enter paper credit" value="{{paperCredit}}" id='paperCredit'
+                    onkeypress="return onlyNumberKey(event)" onkeyup="creditValidate()" maxlength="3" />
+                </div>
+                <div class="col-lg-4 mt-1  form-group">
+                  <label>Total No. of Sections </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperIdError"
+                    style="color:red;"></span>
+                  <input type="text" id="no-of-section" class="form-control" placeholder="Enter total no. of sections"
+                    value="{{sectionCount}}" onkeypress="return onlyNumberKey(event)" maxlength="2" onclick='checkCredit()'
+                    onkeyup="renderSections()" readonly />
+                </div>
+
+              </div>
+
+              <div class="sections" id="sections">
+                <div class="row ">
+                  <div class="col-lg-4 mt-1  form-group">
+                    <label>Total Question </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="totalQuestionsError"
+                      style="color:red;"></span>
+                    <input type="text" class="form-control" placeholder="Enter total questions" id='totalQuestions'
+                      value="{{totalQuestion}}" onkeypress="return onlyNumberKey(event)" onkeyup="checkTotalNumberOfQuestions()"
+                      maxlength="6" />
+                  </div>
+                  <div class="col-lg-4 mt-1  form-group">
+                    <label>Total Marks</label>
+                    <input type="text" class="form-control" id='totalMarks' value="" readonly />
+                  </div>
+                </div>
+                <div class="table-responsive  ">
+                  <table class="table table data-table" id="table_to_highlight">
+                    <thead>
+                      <tr>
+                        <th>Section No.</th>
+                        <th>No. of Questions</th>
+                        <th>Marks Per Questions</th>
+                        <th>Time Limit</th>
+                        <th>Total Marks Per section</th>
+                      </tr>
+                    </thead>
+                    <tbody id='sectionalRows'>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-right  pt-0">
+        <div class="row">
+          <div class="col-lg-10 mt-1">
+            <!-- <form action="create_paper" method="get">
+              <button type="submit" class="btn btn-default pl-5 pr-5 mr-1">PREVIOUS</button>
+            </form> -->
+            <a class="btn btn-default pl-5 pr-5" href="{% url 'create_paper' %}">PREVOIUS</a>
+
+          </div>
+          <div class="col-lg-2 mt-1 text-left">
+            <button class="btn btn-primary pl-5 pr-5" id='paperSectionBtn' onclick="validateTotalMarksAndQuestion()" disabled>NEXT</button>
+            <!-- <button class="btn btn-primary pl-5 pr-5" onclick="validateTotalMarksAndQuestion()">NEXT</button> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>
+<script src="{% static 'adminModule\js\admin-js\customJS\examPaperJS\basicDetails.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\examPaperJS\paperSectionsDetails.js' %}"></script>

@@ -1,0 +1,132 @@
+{% load static %}
+<div class="app-content content position-relative">
+<div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2  ">Create Exam
+                    <a class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'examlist' %}">Back to
+                        list</a>
+                </h4>
+            </div>
+    <div class="content-wrapper">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="progress-wrap  mt-1">
+                <div class="line-progress-bar">
+                    <div class="line line2"></div>
+                    <ul class="checkout-bar">
+                        <li class="progressbar-dots completed"><span>Create Exam Paper</span></li>
+                        <li class="progressbar-dots completed"><span>Select Exam Papers</span></li>
+                        <li class="progressbar-dots active"><span>Schedule Exam Papers</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 pt-1 ">
+
+                <div class="content-header  inner">
+                    <div class="row">
+                        <div class="col-md-2">Unique Exam ID<span id='UexamId'></span></div>
+                        <div class="col-md-3">Unique Exam Name<span id='UexamName'></span></div>
+                        <div class="col-md-2">Total Papers <span id='totalPapers'></span></div>
+                        <div class="col-md-2">Exam Type <span id='exam_Type'></span></div>
+                        <div class="col-md-2">Course <span id='course_Name'></span></div>
+
+                    </div>
+
+                </div>
+
+                <div class="   form">
+                    <div class="card-content pl-0 ">
+                        <div class="card-body pb-0 pl-0 pr-0">
+                            <div class="row ">
+                                <div class="col-lg-12 pl-0 pr-0">
+                                    <div class="table-responsive  ">
+                                        <table id="" class="display table data-table schedule-exam">
+                                            <thead>
+                                                <tr>
+                                                    <th>Paper Name</th>
+                                                    <th>Subject</th>
+                                                    <th>Year</th>
+                                                    <th>Total Time </th>
+                                                    <th>Start Date </th>
+                                                    <th>Start Time </th>
+                                                    <th width="150" class="text-center">Proctor </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id='paperDataTbody'>
+                                              
+                                            </tbody>
+                                        </table>
+                                        <div id='noRowFound1' class="text-center" style="display:;font-size: medium;font-weight:600;">Loading selected papers ...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="text-right pt-1 mt-2" style="min-height: 550px;">
+                    <button class="btn btn-default pl-5 pr-5" onclick="gotoPage2()" id='prevButtonP2'>Back</button>
+                    
+                    <button class="btn btn-primary pl-5 pr-5 ml-1"  id='submitBtn'>Submit</button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="adminModule/images/success-icon-10.png">
+                <p>Exam has been created successfully.</p>
+                <div class="text-center"> <a href="{% url 'examlist' %}" class="btn btn-primary">OK</a> </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(function(){
+    $('[type="date"]').prop('max', function(){
+        return new Date().toJSON().split('T')[0];
+    });
+});
+</script>
+<!-- <script src="https://cyberknight.000webhostapp.com/arrange.js"></script>  -->
+{% comment %} <script>
+$(document).ready(function(){
+  var dtToday = new Date();
+
+  var month = dtToday.getMonth() + 1;
+  var day  = dtToday.getDate();
+  var year = dtToday.getFullYear();
+  if(month < 10){
+    month = '0' + month.toString();
+  }
+  if(day < 10){
+    day = '0' + day.toString();
+  }
+  var minDate = year +'-'+month+'-'+day;
+  $('.startDate').attr('min',minDate);
+})
+</script> {% endcomment %}

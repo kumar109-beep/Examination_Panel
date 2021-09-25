@@ -1,0 +1,319 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+{% comment %} #disabledBtn {
+  pointer-events: none;
+  cursor: default;
+} {% endcomment %}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+<div class="app-content content position-relative  ">
+   {% comment %} <form action="create_paper" method="post">
+   {% csrf_token %} {% endcomment %}
+      <div class="content-wrapper">
+         <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+               <h4 class="head mb-2  ">Edit Paper | PaperID : <strong>{{data.paperID}}</strong><a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'paper_list' %}" >Back to list</a> </h4>
+               <div class="card form">
+                  <div class="card-content ">
+                     <div class="card-body"  >
+                        <div class="row ">
+                           <div class="col-lg-12 mt-1  ">
+                              <h4 class="title-1">Basic Details</h4>
+                           </div>
+                           <div class="col-lg-4 mt-1  form-group">
+                              <label>Unique Paper ID  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperIdError" style="color:red;"></span>
+                                      <input type="text" class="form-control" placeholder="Enter unique paper id" name="uniquePaperId" id="uniquePaperId" value="{{data.paperID}}" onkeyup="validateUniquePaperID()" onclick="editPaperId()" onkeypress="return AvoidSpace(event)" readonly required />
+                                   </div>
+                                   <div class="col-lg-4 mt-1  form-group">
+                                      <label>Unique Paper Name </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperNameError" style="color:red;"></span>
+                                      <input type="text" class="form-control" placeholder="Enter unique papr name" name="uniquePaperName" id="uniquePaperName" value="{{data.paperName}}" onkeyup="validateUniquePapername()" onclick="editPaperName()" readonly required />
+                                   </div>
+                                   <div class="col-lg-4 mt-1   form-group">
+                                      <label>Associated Course</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="associatedCourseError" style="color:red;"></span>
+                                      <input type="text" class="form-control" placeholder="Enter associated course name" name="associatedCourse" id="associatedCourse" value="{{data.paperAssociateCourse}}" onkeyup="validateAssociatedCourse()"  required />
+                                   </div>
+                                   <div class="col-lg-4 mt-1   form-group">
+                                      <label>Total Marks</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="totalMarksError" style="color:red;"></span>
+                                      <input type="text"  class="form-control " placeholder="Enter total marks" name="totalMarks" id="totalMarks" value="{{data.paperTotalMarks}}" onclick='changeTotalmarks()' onkeypress="return onlyNumberKey(event)" readonly maxlength="6" onkeyup="validateTotalMarks()" required />
+                                   </div>
+                                   <div class="col-lg-4 mt-1   form-group">
+                                      <label>Passing Marks</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="passingMarksError" style="color:red;"></span>
+                                      <input type="text" class="form-control " placeholder="Enter passing marks" name="passingMarks" id="passingMarks" value="{{data.paperPassingMark}}" onkeypress="return onlyNumberKey(event)" onclick='changePassingMarks()' maxlength="6" onkeyup="validatePassingMarks()" readonly required />
+                                   </div> 
+                               </div>
+                      </div>
+                      
+                  </div>
+              </div>
+            </div>
+{% comment %} ============================================================================================================================================================ {% endcomment %}
+        <div class="col-lg-12 col-md-12 col-sm-12  ">
+        <div class="card form">
+          <div class="card-content ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-12 mt-1  ">
+                  <h4 class="title-1">Paper Sections Details</h4>
+                  <p style='display:none;' id='hiddenSectionalDetailsData'>{{data.questionTypeDetails}}</p>
+                </div>
+                <div class="col-lg-4 mt-1  form-group">
+                  <label>Paper Credit </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperIdError"
+                    style="color:red;"></span>
+                  <input type="text" class="form-control" placeholder="Enter paper credit" value="{{data.paperCredit}}" id='paperCredit'
+                    onkeypress="return onlyNumberKey(event)" onkeyup="creditValidate()" maxlength="3" />
+                </div>
+                <div class="col-lg-4 mt-1  form-group">
+                  <label>Total No. of Sections </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="uniquePaperIdError"
+                    style="color:red;"></span>
+                  <input type="text" id="no-of-section" class="form-control" placeholder="Enter total no. of sections"
+                    value="{{data.totalSection}}" onclick='changeSection()' onkeypress="return onlyNumberKey(event)" maxlength="2" onclick='checkCredit()'
+                    onkeyup="renderSections()" readonly />
+                </div>
+
+              </div>
+
+              <div class="sections" id="sections">
+                <div class="row" id='preiousSectionHtml'>
+                  <div class="col-lg-4 mt-1  form-group">
+                    <label>Total Question </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="totalQuestionsError"
+                      style="color:red;"></span>
+                    <input type="text" class="form-control" placeholder="Enter total questions" id='totalQuestions'
+                      value="{{data.totalnumberOuestion}}" onkeypress="return onlyNumberKey(event)" readonly onclick='changeTotalQuest()' onkeyup="checkTotalNumberOfQuestions()"
+                      maxlength="6" />
+                  </div>
+                  <div class="col-lg-4 mt-1  form-group">
+                    <label>Total Marks</label>
+                    <input type="text" class="form-control" id='total_Marks' value="{{data.paperTotalMarks}}" readonly />
+                  </div>
+                </div>
+                <div class="table-responsive  ">
+                  <table class="table table data-table" id="table_to_highlight">
+                    <thead>
+                      <tr>
+                        <th>Section No.</th>
+                        <th>No. of Questions</th>
+                        <th>Marks Per Questions</th>
+                        <th>Time Limit</th>
+                        <th>Total Marks Per section</th>
+                      </tr>
+                    </thead>
+                    <tbody id='sectionalRows'>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% comment %} // ============================================================================================================================================================ {% endcomment %}
+        <div class="col-lg-12 col-md-12 col-sm-12  ">
+        <div class="card form">
+          <div class="card-content ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-12 mt-1  ">
+                  <h4 class="title-1">Question Type Details</h4>
+                </div>
+
+              </div>
+
+              <div class="sections pt-2 ques_type">
+                <table class="table table data-table " id="example1">
+                  <thead>
+                    <tr>
+                      <th width="220">Section</th>
+                      <th width="375"> Select Questions</th>
+                      <th width="375">Select Question Type</th>
+                      <th class='text-right'>Action</th>
+
+                      {% comment %} <th> Question Type Selected</th> {% endcomment %}
+                    </tr>
+                  </thead>
+                  <tbody id='questdetails'>
+                  {% for i in res.sno %}
+                    <tr id="questionDetail_{{i}}">
+                    <td>
+                        <select class="form-control" id='section_{{i}}' title="Section {{i}}"><option class="d-none" >Select</option>
+                        {% for i in res.sno %}
+                        <option>section {{i}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select  title="Select question" class="selectpicker d-block" id='questionData_{{i}}' multiple data-live-search="false"> 
+                        {% for i in res.qData %}
+                            <option>Question {{i}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td> 
+                        <select title="Select question type" class="selectpicker d-block" id='questionType_{{i}}' data-live-search="false"> 
+                            <option>Objective</option>
+                            <option>Subjective</option>
+                            <option>fill in the Blanks</option>
+                            <option>True/false</option>
+                            <option>Coding</option>
+                        </select>
+                    </td>
+                    <td ><i id='trash_{{i}}' class="fa fa-trash" aria-hidden="true" style="margin-top: 8px;float:right;font-size:25px;color:red;" onclick="deleteSectionRow(this)"></i></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <h3 id='hideNoData' style='text-align:center;display:none;margin-top: 12px;'>No Data Available!</h3>
+                <div class="text-right pr-1 mt-1">
+                  <button class="add-more btn btn-outline-primary" id='addMoreQuestionDetailButton' onclick="addMoreSection()">+ Add More</button>
+                </div>
+                    <p style='display:none;' id='hiddenQuestionDetails'>{{res.questionNumer}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% comment %} // ============================================================================================================================================================ {% endcomment %}
+               {% if data.automatedSet == True %}
+                <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <div class="card form">
+                  <div class="card-content ">
+                      <div class="card-body set-creation"  >
+                               <div class="row ">
+                                 <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1">Paper Set Options</h4>
+                                 </div>
+ 
+                                    <div class="col-lg-4 mt-1  form-group">
+                                        <p>Is automated Set Creation Allowed?</p>
+                                   </div>
+                                    <div class="col-lg-4 mt-1  form-group">
+                                        <label><input type="radio" checked="" name="set" value="yes" onclick="paperSetOptions(this)"> Yes</label>
+                                       <label><input  type="radio" name="set" value="no"> No</label>
+                                     </div>
+
+                                    </div>
+
+                                    <div class="set-options" id="set-otp">
+                                       <div class="row">
+                                           <div class="col-lg-3 mt-1  form-group">
+                                               <label>Maximum Possible Sets</label>
+                                               <input type="text" class="form-control" value="{{res.possibleSets}}" name="" id="maxPossibleSets" onkeypress="return onlyNumberKey(event)" maxlength="3">
+                                           </div>
+                                            <div class="col-lg-4 mt-1  form-group">
+                                               <label>Languages</label>
+                                               <select   title="Select language" class="selectpicker d-block" multiple data-live-search="false" id='languageSelect'> 
+                                                      <option selected>Hindi</option>
+                                                      <option selected>English</option>
+                                                      <option>Marathi</option>
+                                                       <option>Tamil</option>
+                                                       
+                                                    </select>
+                                           </div>
+                                           <div class="col-lg-5 mt-1  form-group">
+                                              <label>Allowed Option</label>
+                                              <div style="margin-top: 10px">
+                                              {% if res.allowedOptions == 'User Selection' %}
+                                                <label><input checked="" type="radio" name="opt"  id="allowedOption" value="User Selection"> User Selection</label>
+                                               <label><input   type="radio" name="opt" id="allowedOption" value="Display All"> Display All</label>
+                                              {% else %}
+                                              <label><input type="radio" name="opt"  id="allowedOption" value="User Selection"> User Selection</label>
+                                               <label><input checked=""  type="radio" name="opt" id="allowedOption" value="Display All"> Display All</label>
+                                              {% endif %}
+
+                                              </div>
+                                           </div>
+                                       </div>
+
+                                    </div>
+                                     
+                                      
+                               </div>
+                             
+                      </div>
+                  </div>
+              </div>
+              {% else %}
+              <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <div class="card form">
+                  <div class="card-content ">
+                      <div class="card-body set-creation"  >
+                               <div class="row ">
+                                 <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1">Paper Set Options</h4>
+                                 </div>
+ 
+                                    <div class="col-lg-4 mt-1  form-group">
+                                        <p>Is automated Set Creation Allowed?</p>
+                                   </div>
+                                    <div class="col-lg-4 mt-1  form-group">
+                                        <label><input type="radio"  name="set" value="yes" onclick="paperSetOptions(this)"> Yes</label>
+                                       <label><input  type="radio" checked="" name="set" value="no"> No</label>
+                                     </div>
+
+                                    </div>
+
+                                    <div class="set-options" id="set-otp">
+                                       <div class="row">
+                                           <div class="col-lg-3 mt-1  form-group">
+                                               <label>Maximum Possible Sets</label>
+                                               <input type="text" class="form-control" value="{{res.possibleSets}}" name="" id="maxPossibleSets" onkeypress="return onlyNumberKey(event)" maxlength="3">
+                                           </div>
+                                            <div class="col-lg-4 mt-1  form-group">
+                                               <label>Languages</label>
+                                               <select   title="Select language" class="selectpicker d-block" multiple data-live-search="false" id='languageSelect'> 
+                                                      <option selected>Hindi</option>
+                                                      <option selected>English</option>
+                                                      <option>Marathi</option>
+                                                       <option>Tamil</option>
+                                                       
+                                                    </select>
+                                           </div>
+                                           <div class="col-lg-5 mt-1  form-group">
+                                              <label>Allowed Option</label>
+                                              <div style="margin-top: 10px">
+                                              {% if res.allowedOptions == 'User Selection' %}
+                                                <label><input checked="" type="radio" name="opt"  id="allowedOption" value="User Selection"> User Selection</label>
+                                               <label><input   type="radio" name="opt" id="allowedOption" value="Display All"> Display All</label>
+                                              {% else %}
+                                              <label><input type="radio" name="opt"  id="allowedOption" value="User Selection"> User Selection</label>
+                                               <label><input checked=""  type="radio" name="opt" id="allowedOption" value="Display All"> Display All</label>
+                                              {% endif %}
+
+                                              </div>
+                                           </div>
+                                       </div>
+
+                                    </div>
+                                     
+                                      
+                               </div>
+                             
+                      </div>
+                  </div>
+              </div>
+               {% endif %}
+               
+{% comment %} // ============================================================================================================================================================ {% endcomment %}
+
+               <div class="text-right  pt-0">
+                 {% comment %} css for disabling this button is applied in strting of this file {% endcomment %}
+                 <button class="btn btn-primary pl-5 pr-5" style='margin-right:20px;' onclick="updatePaper()">UPDATE</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   {% comment %} </form> {% endcomment %}
+   <p style='display:none;' id='tokenKey'>{{tokenKey}}</p>
+   </div>
+
+<!-- Modal -->
+
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>
+<script src="{% static 'adminModule\js\admin-js\customJS\examPaperJS\basicDetails.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\examPaperJS\editPaper.js' %}"></script>

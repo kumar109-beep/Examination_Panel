@@ -1,0 +1,442 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<!-- Extra Module Call  -->
+<script type="module" src="{% static 'adminModule/HtmlModule/addStudentForm.js' %}"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<link rel="stylesheet" href="{% static 'adminModule/css/integratedCSS/intlTelInput.css' %}">
+<link rel="stylesheet" href="{% static 'adminModule/css/integratedCSS/demo.css' %}">
+
+<script src="{% static 'adminModule/js/admin-js/IntegratedJS/intlTelInput.js' %}"></script>
+
+<div class="app-content content position-relative">
+    <div class="content-wrapper">
+
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2 my-4  ">Admin Profile Detail
+                   <a class="btn btn-warning   float-right btn-sm" style="color:white;" href="#" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">Update Password</a>
+                </h4>
+                <div class="card form">
+                    <div class="card-content ">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Personal Detail</h4>
+                                </div>
+<!-- success -->
+
+                                <!-- 
+                    {'id': 2, 'name': '', 'birth_date': '', 'mobile_number': '', 'country': '', 'state': '', 'city': '', 'pincode': '',
+                'address': '', 'images': None, 'signature': None, 'refrence_user': 3}
+             -->
+
+
+
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label>Admin Name </label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control"
+                                        placeholder="Enter First Name" name="adminFirstName" id="adminFirstName"
+                                        value="{{admin_data.name}}" />
+                                </div>
+                                {% comment %} data >>  {'id': 1, 'name': '', 'birth_date': '', 'gender': '', 'mobile_number': '9793202026', 'city': '', 'pincode': '', 'address': '', 'images': '/Upload_Images/adminImages/Capture2.PNG', 'signature': '/Upload_Images/adminSignature/Capture.PNG', 'refrence_user': {'id': 3, 'password': 'pbkdf2_sha256$216000$FaTj1Zyukjfu$K3xBOB9Eb/9dZ9fLN/bhUp6XHkmsw1t7vpJk7jtz9Dk=', 'last_login': '2021-05-17T08:39:16.697475Z', 'is_superuser': False, 'username': 'admin_web', 'first_name': '', 'last_name': '', 'email': 'admin@gmail.com', 'is_staff': False, 'is_active': True, 'date_joined': '2021-05-16T16:40:52Z', 'groups': [], 'user_permissions': []}, 'country': {'id': 1, 'country_code': 'ind', 'country_name': 'India', 'created_at': '2021-05-16T16:50:49.709256Z'}, 'state': {'id': 1, 'country_state': 'U.P.', 'created_at': '2021-05-16T16:51:03.355196Z', 'country_fk': 1}} {% endcomment %}
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Date of Birth</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                        <input type="date" id="start" class='form-control' name="adminDateBirth"
+                                    placeholder="dd/MM/yyyy" max='' value="{{admin_data.birth_date}}" />
+                                </div>
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Admin Mobile Number</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span id='editprofileMobileAlreadyExist' style='display:none;'>
+                                        <small style='color:red;'>Mobile no. already exist!</small>
+                                    </span>
+                                    <input type="tel" class="form-control" placeholder="Enter admin mobile number"
+                                        id='phone2' onkeypress="return /[0-9]/i.test(event.key)" maxlength="10"
+                                        name='adminMobileNo' value="{{admin_data.mobile_number}}" onkeyup="checkProfileDataAvailability(this)"/>
+                                </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label>Email ID</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span id='editprofileEmailAlreadyExist' style='display:none;'>
+                                        <small style='color:red;'>Email already exist!</small>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter email id"
+                                        name="adminEmailID" id='adminEmailID' value="{{admin_data.refrence_user.email}}" onkeyup="checkProfileDataAvailability(this)"/>
+                                    {% if emailID %}
+                                    <span style='display:none;'><small style='color:red;'>{{emailID}}</small></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-3 mt-1 form-group">
+                                    <label>Gender</label><br>
+                                    {% if admin_data.gender == 'Male' %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Male" checked="checked">&nbsp;&nbsp;<label>Male</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Female">&nbsp;&nbsp;<label>Female</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Others">&nbsp;&nbsp;<label>Others</label>
+                                    {% elif admin_data.gender == 'Female' %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Male">&nbsp;&nbsp;<label>Male</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Female" checked="checked">&nbsp;&nbsp;<label>Female</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Others">&nbsp;&nbsp;<label>Others</label>
+                                    {% elif admin_data.gender == 'Others' %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Male">&nbsp;&nbsp;<label>Male</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Female" >&nbsp;&nbsp;<label>Female</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Others" checked="checked">&nbsp;&nbsp;<label>Others</label>
+                                    {% else %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Male">&nbsp;&nbsp;<label>Male</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Female">&nbsp;&nbsp;<label>Female</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' name='adminGender'
+                                        value="Others">&nbsp;&nbsp;<label>Others</label>
+                                    {% endif %}
+                                </div>
+
+
+
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Contact Detail</h4>
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>Country</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select title="{{admin_data.country.country_name}}" class="form-control" id='adminCountry'
+                                        name="adminCountry">
+                                        <option class="d-none">Select</option>
+                                        {% for j in countryData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_name}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_name}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3   form-group" style="max-height: 300px !important;">
+                                    <label>State</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select title="{{admin_data.state.country_state}}" class="form-control" id='adminState'
+                                        name="adminState">
+                                        <option class="d-none">Select</option>
+                                        {% for j in stateData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_state}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_state}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 form-group">
+                                    <label>District</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" id='adminDistrict'
+                                        placeholder="Enter District" onkeypress="return /[a-zA-Z]/i.test(event.key)" name="adminDistrict" value="{{admin_data.city}}" />
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label>Pin Code</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" id='adminPincode'
+                                        placeholder="Enter pin code" onkeypress="return /[0-9]/i.test(event.key)" maxlength="6" name="adminPincode" value="{{admin_data.pincode}}" />
+                                </div>
+                                 <div class="col-lg-12 mt-1   form-group">
+                                    <label>Current Address</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <textarea class="form-control" id='adminAddress' name="adminAddress"
+                                        placeholder="Enter student address">{{admin_data.address}}</textarea>
+                                </div>
+
+
+                                <br><br>
+
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Upload</h4>
+                                </div>
+                                <div class="col-lg-3 mt-1 form-group" id='myDiv'>
+                                    <label>Upload Admin Photograph</label>
+                                    <label class="upl_photo">
+                                        <input type="file" name="images" id="stu_photo" accept=".png, .jpg, .jpeg">
+                                        {% if admin_data.images != None %}
+                                        <img src="http://13.233.247.133/static/{{admin_data.images}}" id="imgphoto">
+                                        {% else %}
+                                        <img src="{% static 'adminModule/images/avatar.jpg' %}" id="imgphoto">
+                                        {% endif %}
+                                        <span class="btn btn-info btn-sm">Choose Photo</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-3 mt-1 form-group">
+                                    <label>Upload Admin Signature</label>
+                                    <label class="upl_photo">
+                                        <input type="file" name="signature" id="stu_sign" accept=".png, .jpg, .jpeg">
+                                        <div class="media">
+                                            {% if admin_data.signature != None %}
+                                            <img src="http://13.233.247.133/static/{{admin_data.signature}}" id="imgsign">
+                                            {% else %}
+                                            <img src="{% static 'adminModule/images/sign.jpg' %}" id="imgsign">
+                                            {% endif %}
+                                        </div>
+                                        <span class="btn btn-info btn-sm">Choose Image</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right  pt-1">
+                    <!-- <button class="btn btn-primary pl-5 pr-5" onclick="onStudentDataSaved()">Submit</button> -->
+                    {% if authority.home == 'True' or authority.admin == '18pixels@admin' %}
+                    <a href="{% url 'home' %}" class="btn btn-secondary btn-sm pl-5 pr-5 my-1" id="">Cancel</a>
+                    {% endif %}
+                    <a class="btn btn-primary btn-sm pl-5 pr-5" id="addMoreDeatil" style="color:white;">Submit</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<p id='hiddenTokenKey' style="display:none;">{{tokenKey}}</p>
+<p id='hiddenAdminIDKey' style="display:none;">{{admin_id}}</p>
+<p id='hiddenReferenceID' style="display:;">{{refID}}</p>
+
+
+
+<!-- Modal -->
+<div class="modal fade small" id=success tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="../app-assets/images/success-icon-10.png">
+                <p>Student has been added successfully.</p>
+                <a href="" class="btn btn-info">OK</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 600;">Update User Password
+                </h5>
+                <span id='data' ></span>
+
+                {% comment %} <button id='dismissBtn' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> {% endcomment %}
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Current Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword"  onkeyup="checkOldPassword()" aria-describedby="Enter current password"
+                        placeholder="Enter Current Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">New Password</label><br><small style="color:#28afd0;">*Password must contain 1 Capital,1 small alphabets 1 numeric and 1 special character</small>
+                    <input type="password" class="form-control" id="exampleInputPassword1" onkeyup="checkNewPassword()" placeholder="Enter new password" readonly style="cursor:not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Re-enter New Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" onkeyup="checkNewPassword()" placeholder="Re-enter new password" readonly style="cursor:not-allowed;">
+                </div>
+            <input style="height:10px;width:10px;" class="" id="togglePassword" type='checkbox' onclick="showPassword()">&nbsp;&nbsp;Show Password
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id='cancelBtn' onclick="CancelBtn()">Cancel</button>
+                <button class="btn btn-primary" id='updateBtn' onclick='updatePassword()' disabled style="cursor:not-allowed;">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} ================================================================== {% endcomment %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+    $('select').selectpicker();
+</script>
+<script>
+    var i = 0;
+    $("#adminFirstName").on('keypress', function (e) {
+        if ($(this).val().length < 1) {
+            if (e.which == 32) {
+                return false;
+            }
+        }
+        else {
+            if (e.which == 32) {
+                if (i != 0) {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i = 0;
+            }
+        }
+        var regex = /^[a-zA-Z ]*$/;
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    });
+</script>
+<script>
+var email = $('#adminEmailID').val();
+var phone = $('#phone2').val();
+localStorage.setItem('adminEmail',email);
+localStorage.setItem('adminPhone',phone);
+function checkProfileDataAvailability(thisTxt) {
+    var check = '';
+    var fieldname = thisTxt['name'];
+    if (fieldname == 'adminEmailID') {
+        check = 'emailID';
+    } else if (fieldname == 'adminMobileNo') {
+        check = 'mobileNumber';
+    }
+
+    console.log('check value : ', check);
+    console.log('----------------------------')
+
+    $.ajax({
+        type: 'GET',
+        url: "/adminprofileDataSearch",
+        data: { 'check': check, 'valiadteString': thisTxt['value'].trim() },
+        success: function (response) {
+            console.log('data >> ',response['resultData'])
+            
+            var emailAddress = localStorage.getItem('adminEmail');
+            var contactDetail = localStorage.getItem('adminPhone');
+            console.log('data email >> ',response['resultData'][0]['mobile_number'],typeof(response['resultData'][0]['mobile_number']),contactDetail,typeof(contactDetail));
+
+            if (fieldname == 'adminEmailID' && response['resultData'].length > 0 && response['resultData'][0]['refrence_user']['email'].trim() != emailAddress) {
+                $('#editprofileEmailAlreadyExist').css('display', '');
+                $('#addMoreDeatil').attr('disabled',true);
+                return false;
+            }
+            if (fieldname == 'adminEmailID' && response['resultData'].length == 0) {
+                $('#editprofileEmailAlreadyExist').css('display', 'none');
+                $('#addMoreDeatil').attr('disabled',false);
+                return false;
+            }
+            if (fieldname == 'adminMobileNo' && response['resultData'].length > 0 && response['resultData'][0]['mobile_number'] != contactDetail) {
+                $('#editprofileMobileAlreadyExist').css('display', '');
+                $('#addMoreDeatil').attr('disabled',true);
+                return false;
+            }
+             if (fieldname == 'adminMobileNo' && response['resultData'].length == 0) {
+                $('#editprofileMobileAlreadyExist').css('display', 'none');
+                $('#addMoreDeatil').attr('disabled',false);
+                return false;
+            }
+        }
+    });
+
+}
+</script>
+<script>
+    $(document).ready(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day  = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10){
+            month = '0' + month.toString();
+        }
+        if(day < 10){
+            day = '0' + day.toString();
+        }
+        var maxDate = year +'-'+month+'-'+day;
+        $('#start').attr('max',maxDate);
+
+        var input = document.querySelector("#phone1");
+        window.intlTelInput(input, {
+            allowDropdown: false,
+            autoHideDialCode: false,
+            autoPlaceholder: "off",
+            dropdownContainer: document.body,
+            excludeCountries: ["us"],
+            formatOnDisplay: false,
+            geoIpLookup: function (callback) {
+                $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    callback(countryCode);
+                });
+            },
+            //hiddenInput: "full_number", 
+            initialCountry: "in",  //"auto",
+            localizedCountries: { 'in': 'India' },
+            nationalMode: false,
+            onlyCountries: ['in'],
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['in', 'jp'],
+            separateDialCode: true,
+            utilsScript: "../../../static/adminModule/js/integratedJS/utils.js",
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var input = document.querySelector("#phone2");
+        window.intlTelInput(input, {
+            allowDropdown: false,
+            autoHideDialCode: false,
+            autoPlaceholder: "off",
+            dropdownContainer: document.body,
+            excludeCountries: ["us"],
+            formatOnDisplay: false,
+            geoIpLookup: function (callback) {
+                $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    callback(countryCode);
+                });
+            },
+            //hiddenInput: "full_number",
+            initialCountry: "in",  //"auto",
+            localizedCountries: { 'in': 'India' },
+            nationalMode: false,
+            onlyCountries: ['in'],
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['in', 'jp'],
+            separateDialCode: true,
+            utilsScript: "../../../static/adminModule/js/integratedJS/utils.js",
+        });
+    });
+</script>
+{% include 'Admin/dashboard/footer.html' %}
+<script>
+    $("#adminCountry").val('{{admin_data.country|safe}}');
+    $('#adminCountry').selectpicker();
+
+
+    $("#adminState").val('{{admin_data.state|safe}}');
+    $('#adminState').selectpicker();
+</script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminValidation_JS/add-student-validation.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminProfile_JS\updatePassword.js' %}"></script>
+<script type="module"
+    src="{% static 'adminModule/js/admin-js/customJS/adminProfile_JS/moreProfileDetail.js' %}"></script>
+
+

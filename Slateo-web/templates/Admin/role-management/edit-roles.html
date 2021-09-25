@@ -1,0 +1,135 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12  ">
+             <h4 class="head mb-2  ">Edit Designation
+                {% if authority.roles_list == 'True' or authority.admin == '18pixels@admin' %}
+                <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'role_list' %}" >Back to list</a>
+                {% endif %}
+              </h4>
+                <div class="card  form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                      {% if success_data %}
+                          <span style='color:#3fd411;font-weight:500;'>{{ success_data }}</span>
+                            {% endif %}
+                      <form method='POST'>
+                      {% csrf_token %}
+                             <div class="row ">
+                                   <div class="col-lg-3 offset-md-1 mt-1  form-group">
+                                      <label>Role/Designation  ID </label>
+                                      <input type="text" class="form-control" placeholder="Enter authority id" name='roleId' value="{{data1.roleID}}" onclick='uniqueRoleIdAlert()' readonly/>
+                                   </div>
+                                    
+                                   <div class="col-lg-5 mt-1   form-group">
+                                      <label>Role/Designation Name</label>
+                                      <input type="text" class="form-control" id='roleName' placeholder="Enter authority name" name='roleName' value="{{data1.roleName}}" required/>
+                                   </div>
+                                   <input style="display: none;" type="text" class="form-control" id='assignedAuth' placeholder="Enter authority name" name='assignedAuth' value="{{data1.assign_authority}}" required/>
+                                     <div class="text-right col-lg-2 mt-2 pt-2">
+                                        <button  type='submit' class="btn btn-primary" >Update</button>
+                                   </div>
+                            </form>
+
+                                   <div class="col-lg-3 offset-md-1 mt-1  form-group">
+                                     <p class="text-dark">Attached Resources </p>
+                                      
+                                    </div>
+                                      <div class="col-lg-1  mt-1  form-group">
+                                       <p class="big font-weight-bold text-dark">{{data1.resource_count}}</p>
+                                    </div>
+
+                                    <div class="col-lg-7   form-group">
+                                       <a  class="btn btn-warning btn-sm mt-1 "   href="{% url 'resource_list' %}"   >Update</a>
+                                    </div>
+
+                                    
+
+                                     <div class="col-lg-3 offset-md-1 mt-1  form-group">
+                                     <p class="text-dark">Attached Authorities </p>
+                                      
+                                    </div>
+                                      <div class="col-lg-1  mt-1  form-group">
+                                       <p class="big font-weight-bold text-dark">{{data1.authCount}}</p>
+                                    </div>
+
+                                    <div class="col-lg-2   form-group">
+                                       <a  class="btn btn-warning btn-sm mt-1 "   href="{% url 'view_assigned_authorities' data1.id %}">Update</a>
+                                    </div>
+
+
+
+
+
+                                 
+                                      
+                              </div>
+                      </div>
+                  </div>
+              </div>
+
+               
+            </div>
+      </div>
+     </div>
+   </div>
+
+  
+
+   <!-- Modal -->
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Designation  has been updated successsfully.  </p>
+           <a href="{% url 'role_list' %}" data-dismiss="modal" class="btn btn-primary btn-sm"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+  <script>
+  function uniqueRoleIdAlert(){
+    swal.fire("You can't edit unique Role ID!");
+ }
+ </script>
+{% include 'Admin/dashboard/footer.html' %}
+<script>
+  var i = 0;
+  $("#roleName").on('keypress', function (e) {
+      if ($(this).val().length < 1) {
+          if (e.which == 32) {
+              return false;
+          }
+      }
+      else {
+          if (e.which == 32) {
+              if (i != 0) {
+                  return false;
+              }
+              i++;
+          }
+          else {
+              i = 0;
+          }
+      }
+      var regex = /^[a-zA-Z '.' ]*$/;
+      var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+      if (regex.test(str)) {
+          return true;
+      }
+
+      e.preventDefault();
+      return false;
+  });
+</script>

@@ -1,0 +1,95 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12 mt-1  ">
+           {% if message %}
+           <div class="alert alert-danger" role="alert">
+                <h4>{{message}}<button type="button" class="close" data-dismiss="alert">&times;</button></h4>
+            </div>
+           {% endif %}
+             <h4 class="head mb-2  "> Upload Resource List <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'resource_list' %}" >Back to list</a> <a   class="btn btn-info   float-right btn-sm  mt--1 mr-1 " href="{% url 'add_resourse_detail' %}"  > Add Resource Manually</a></h4>
+                <div class="card  form   pl-0 pr-0">
+                  <div class="card-content  ">
+                      <div class="card-body   pl-0 pr-0"  >
+                            <div class="upload-csv d-block">
+                             <div class="row ">
+                             <div class='col-lg-12 mt-1'>
+                                 {% if authority.download_csv == 'True' or authority.admin == '18pixels@admin' %}
+                                    <a href="{% static 'adminModule/sampleDownloads/resource_sample_csv.csv' %}" class="btn btn-info  btn-sm pl-2" style="color:white;">Download sample CSV</a>
+                                    {% endif %}
+                                    {% if authority.download_excel == 'True' or authority.admin == '18pixels@admin' %}
+                                    <a href="{% static 'adminModule/sampleDownloads/resource_sample_excel.xls' %}" class="btn btn-info  btn-sm" style="color:white;">Download sample excel</a>
+                                    {% endif %}
+                                    </div>
+                                <div class="col-lg-12 col-md-8 mt-2">
+                                        <div class="upload">
+                                        <h3 id="header_upload_sheet">
+                                            Upload Sheet
+                                        </h3>
+                                        <span id="reuploadSheet" class="btn" style="display:none;background-color:#28afd0;">
+                                                <a href="{% url 'upload_excel_data' %}" style="color:white;">Upload Another Sheet</a>
+                                        </span>
+                                        <div id='UploadCSV'>
+                                            <form action="" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <label for="browse_csv_file">
+                                            <input type="file" id="browse_csv_file" name="browse_csv_file"
+                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                                            <em id="uploadedFileName"><b>Choose a .csv /.xls file</b></em>
+                                            <span id="Browse_file" onclick="browse_csv_file()">Browse</span>
+                                            </label>
+                                            <div class="clearfix  "></div>
+                                            <p style='font-weight:bold;font-size:15px;' id="file" class="file"></p>
+                                            <button id="upload_csv_file" value="upload_csv_file" class="btn" style="background-color:#28afd0;color:white;" onclick='Sheetloader()'>Upload<i
+                                                class="fa fa-upload"></i></button>
+                                        </div>
+                                        </form>
+                                        </div>
+
+                                        <div class="upload mt-2 col-assign">
+                                        <div class="assign">
+                                        </div>
+                                        <div id="dvCSV"></div>
+
+                                        </div>
+
+                                    </div>
+                                    
+                                    </div>
+                                 {% comment %} ++++++++++++++++++++++++++++ {% endcomment %}
+
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+
+               {% comment %} <div class="text-right  pt-0 bottom-btn">
+                   <a  class="btn btn-primary  pl-5 pr-5"   href="{% url 'preview_student_data' %}">Submit</a>
+               </div> {% endcomment %}
+               
+          </div>
+      </div>
+     </div>
+   </div>
+
+   
+ 
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\adminResource_js\add-resource-via-sheet.js' %}" type="text/javascript"></script>
+
+<script>
+function Sheetloader(){
+     Swal.fire({
+                position: 'center',
+                title: "<b style='font-size:20px;font-weight:500;color:#1eb6e9;'><small>Uploading Resource Data ...</small></b>",
+                showConfirmButton: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                }
+            })
+}
+</script>

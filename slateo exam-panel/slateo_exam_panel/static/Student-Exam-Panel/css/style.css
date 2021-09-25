@@ -1,0 +1,156 @@
+.login {padding: 15px 0; background: url('../images/bg.png') 120% 0 no-repeat #002FB2; background-size: 60%; overflow-x: hidden!important;}
+.login .logo{max-width: 200px}
+.login .form{margin: 70px 0 }
+
+.login .form label {margin-bottom: 5px; color: #fff}
+.login .form h1, .login .form p{color: #fff}
+.login .form p{color: #fff;font-size: 18px; opacity: .7}
+.login .form a {color: #fff; text-decoration: none;}
+.login .form a.right{float: right;}
+.login .form .btn {background: #00BDFF;font-weight: 600; font-size: 18px; color: #fff}
+.login .form .form-control {outline: none!important; box-shadow: none; height: 45px}
+.dashboard  {background: #eee}
+.dashboard  header{background: rgb(0,65,191);
+background: linear-gradient(270deg, rgba(0,65,191,1) 0%, rgba(0,161,203,1) 100%); padding: 8px 0; position: fixed; width: 100%; top: 0; height: 70px; left: 0;z-index: 99}
+.dashboard .container {max-width: 98%}
+.dashboard .container.cc{max-width: 85%}
+.dashboard  header .menu {padding-left: 60px}
+.dashboard  header  img{max-width: 150px}
+.dashboard  header .menu a {color: #fff; text-decoration: none;  display: inline-block; margin: 15px 0; font-size: 18px ;opacity: .8 }
+.dashboard  header .menu a.active{font-weight: 600; opacity: 1}
+.dashboard  header .menu a:first-child{margin-right: 20px}
+.dashboard  header .last {padding-top: 15px; color: #fff; text-align: right;}
+.dashboard  header .last img{margin-left: 20px; max-width: 30px}
+.dashboard .sidebar {position: fixed; left: 0;  top: 70px; background: #fff; height: 100%; width:30%; padding: 0; overflow-y: auto; padding-bottom: 100px}
+.dashboard .sidebar h4 img{margin-right: 15px; float: left;}
+.dashboard .sidebar .options {margin:50px 0}
+.dashboard .sidebar .top {padding: 20px}
+.dashboard .sidebar .options .opt {display: block; margin: 25px 10px; font-weight: 500; font-size: 18px}
+.dashboard .sidebar .options .opt .radio{float: left;  margin-right: 25px; margin-top: 8px}
+.dashboard .sidebar p {font-weight: 700; color: #333; font-size: 18px ;margin: 0}
+.dashboard .sidebar p em {font-style: normal; color: #002FB2}
+.dashboard .sidebar p span {font-weight: 400; color: #002FB2}
+.dashboard .sidebar .timer {font-weight: 700; color: #002FB2; font-size: 25px;  }
+.dashboard .sidebar .timer span {font-weight: 400; margin-left: 10px; font-size: 20px}
+.dashboard .content{  padding: 70px 0; margin-left: 30%}
+.dashboard .content.full {margin-left: 2%; padding: 60px 0}
+.card {padding: 15px}
+.card.info{border: 0; padding: 25px}
+.card.info img{max-width: 85%}
+.card.info .det {padding:15px 20px 0}
+.card.info h4{font-size: 30px; font-weight: 700}
+.card.info h3{font-size: 36px; font-weight:400}
+.card.info p{font-size: 24px; font-weight: 700; color: #002FB2}
+.card .btn {background: #1B8C90;font-weight: 600; font-size: 18px; color: #fff;  float: right;}
+.card.info .det.d1 {text-align: right;}
+.card.info .det.d1 p {font-weight: 600; font-size: 20px}
+.card.info .det.d1 p span {color: #333; padding-right: 15px}
+.card.exams {padding: 30px; background: #eff3ff}
+.card .form-control {height: 45px}
+.card .head {padding-bottom: 15px; font-weight: 700; font-size: 24px}
+.card .head .option {float: right; padding: 5px 10px; font-size: 14px}
+
+h2.title {font-size: 30px}
+.card .exam-name {background: #C4CEEC; padding: 10px; font-weight: 700; margin-bottom: 15px}
+.card.exams  .inst {float: right; text-decoration: none; display: block; padding-top:8px}
+.card.exams .block {padding: 10px 0; border-bottom: solid 1px #ddd; margin-bottom: 20px}
+.card.exams  .inst img{max-width: 20px}
+.card.exams label {font-size: 14px; font-weight: 600}
+.card.exams  .timer {background: #d5dbef; padding: 5px; text-align: center; margin-top: 10px; font-size: 14px}
+.timer div {display: inline-block; font-weight: 600}
+.timer div span{padding-right: 2px}
+.timer img{max-width: 18px; margin-top: -3px}
+.timer.new div {display: inline-block; font-weight: 600; font-size: 20px}
+.timer.new em {font-style: normal; font-weight: 400}
+.card.exams.later {background: #fff; padding: 10px 15px}
+
+.card.exams.later .block {border:0; margin-bottom: 0; padding-bottom: 0}
+
+.card.exams label {font-size: 13px; font-weight: 600}
+.card.exams p{font-size: 14px}
+.card.info.ins{border: 0; padding: 10px 0 15px}
+ul.instt {list-style: none; margin-left: -22px}
+ul.instt li{background: url(../images/checked.png)  0 3px no-repeat; padding-left: 30px; margin: 13px 0}
+
+.read-ins {font-weight: 600; padding-left: 10px }
+.read-ins input{ height: 15px ;width: 15px; float: left; margin-right: 5px; margin-top: 5px}
+.read-ins .btn {background: #333; color: #fff; float: right;}
+.read-ins .btn.disable{opacity: .2; pointer-events: none;}
+.dashboard  header .last {padding-top: 12px}
+.dashboard  header .last span {background: rgba(255,255,255,.2); display: inline-block; padding: 4px 20px 5px; margin-left: 10px; border-radius: 5px; font-weight: 600; font-size: 13px; border: solid 1px rgba(255,255,255,.3);}
+
+.nav-tabs {border:0; margin: 0px 20px 0; }
+.nav-tabs .nav-link {border:0; box-shadow: -1px 3px 12px 0px rgba(0,0,0,0.15);
+-webkit-box-shadow: -1px 3px 12px 0px rgba(0,0,0,0.15);
+-moz-box-shadow: -1px 3px 12px 0px rgba(0,0,0,0.15); margin-right: 5px; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 3px; color: #333}
+.nav-tabs .nav-link.attempted {color: green}
+.nav-tabs .nav-link.marked {color: red}
+.nav-tabs .nav-link.active{background: #002FB2; color: #fff}
+.tab-content {padding: 15px 0}
+.accordion {
+ margin-top: 15px	  
+}
+ .accordion .card {
+	 border: none;
+	 margin-bottom: 20px; padding: 0
+}
+  .accordion .card .card-head{background: rgb(0,65,191);
+background: linear-gradient(270deg, rgba(0,65,191,1) 0%, rgba(0,161,203,1) 100%); padding: 10px}
+ .accordion .card h2 {
+	 background: url(../images/up-arrow.png) no-repeat calc(100% - 5px) center;
+	 background-size: 12px;
+	 cursor: pointer;
+	 font-size: 18px; color: #fff;
+ }
+ .accordion .card h2 span {font-size: 12px; font-weight: 400; padding-left: 15px}
+ 
+ .accordion .card h2.collapsed {
+	 background-image: url(../images/down-arrow.png);
+}
+ .accordion .card-body {
+	 padding-left: 20px;
+	 padding-right: 20px;
+}
+  .accordion .card-body.ques a{display: inline-block; width: 40px; height: 40px; border:solid 1px #bbb;text-align: center; line-height: 35px; text-decoration: none; color: #333; margin: 5px 3px; border-radius: 5px}
+   .accordion .card-body.ques a.attempted {color: green;
+    border-color: #78bd5b; background: #e9ffc7;
+   }
+    .accordion .card-body.ques a.marked {color: red;
+    border-color: #f78686; background: #fde1e1;
+   }
+   .accordion .card-body.ques a.skipped { opacity: .7
+   }
+   .accordion .card-body.ques a.active {color: black;
+    border-color: #666; background: #ccc;
+   }
+
+  .tab-pane ul.instt li {font-size: 14px}
+
+.questionss .top {font-weight: 600}
+.questionss .top span {float: right; display: inline-block; color: #002FB2; font-weight: 700; font-size: 16px;  }
+.questionss .top span i{padding-left: 15px; color: red}
+.questionss .ques {padding: 20px}
+.questionss .ques h4{font-weight: 400; font-size: 18px}
+
+.questionss .options {padding: 50px 0}
+.questionss .options label {display: block;}
+.questionss .options label div {background: #fff; border-radius: 20px; padding:7px 10px  ;display: block;  margin: 15px 0; cursor: pointer; font-weight: 600}
+
+.questionss .options label input{display: none;}
+.questionss .options label span{display: inline-block; width: 30px; height: 30px; border-radius: 30px; background: #c4d3fd; color: #002FB2; text-align: center; line-height: 30px; font-weight: 700; font-size: 14px; margin-right: 10px; position: relative; }
+.questionss .options p{font-weight: 700; opacity: .5}
+.questionss .options label input:checked + div{ background: #cce8a2; color: green; }
+ 
+.questionss .options label   span i {  position: absolute; left: 0;z-index: 99; width: 30px; height: 30px; border-radius: 30px; background: #fff; top: 0; display: none; line-height: 30px; color: green}
+.questionss .options label input:checked + div > span i {display: block;}
+
+.bottom {position: fixed; z-index: 999; width: 100%; bottom: 0; left: 0; height: 50px;}
+.bottom .submit {float: left; width: 30%; background: #1eb6ff; height: 50px; color: #fff; border:0; outline: none; font-weight: 600; font-size: 20px}
+.bottom .right-btns {background: #d5daff; height: 50px; width: 70%; float: left; padding: 12px 15px}
+.bottom .right-btns .prev, .bottom .right-btns .next {font-weight: 600; text-decoration: none; color:#002FB2; }
+.bottom .right-btns img {max-width: 20px}
+.bottom .right-btns .next {float: right;}
+.examm {top: 15%}
+
+.questionss .question {display: none;}
+.questionss .question.show{display: block;}

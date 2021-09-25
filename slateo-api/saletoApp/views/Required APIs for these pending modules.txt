@@ -1,0 +1,36 @@
+Required APIs for these pending modules
+========================================
+
+Evaluate Answer Module
+=======================================
+1. filter for completed exam list  done
+2. completed exam list done
+3. paper wise student list with attendance status
+4. search and filter on response page to search and filter students
+
+
+Report Card Module
+=======================================
+1. report card filters
+2. list of evaluated list ,under evaluation list and report generated list
+
+
+Report generated module
+---------------------------------------
+a. search and filter for student report card list
+b. notify all student 
+c. view report card for student
+d. send report card as pdf
+e. download report card as pdf
+f.  subject wise comparison
+
+
+Under evaluation module
+---------------------------------------
+a. paper list with proper data which is under evaluation
+
+
+Evaluated module
+---------------------------------------
+a. evaluated paper data with resource 
+b. publish report card

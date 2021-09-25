@@ -1,0 +1,80 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-6   mb-2 form-group ico pl-2">
+                         <h3 class="main-title">Subject to Course List</h3>
+                       </div>
+                     
+                     <div class="col-md-6 text-right pr-2  ">
+                        {% if authority.add_subjects_to_course == 'True' or authority.admin == '18pixels@admin' %}
+                          <a href="{% url 'add_subjects_to_course' %}" class="btn btn-primary"  >+ Add Subject To Course </a>
+                          {% endif %}
+                          {% if authority.add_subjects == 'True' or authority.admin == '18pixels@admin' %}
+                          <a href="{% url 'add_subjects' %}" class="btn btn-primary"  >+ Add Subject </a>
+                            {% endif %}
+                      </div>
+                      <div class="col-lg-4 col-md-8 col-sm-8   form-group ico pl-1">
+                    <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name="" onkeyup='subjectToCourseAjaxsearch()' id="subjectToCourseAjaxsearch"
+                                                    placeholder="Search">
+                   </div>
+               </div>
+           </div>
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Type Name</th>
+                            <th>Course Name</th>
+                            <th>Subject Name</th>
+                            <th class=''></th>
+                        </tr>
+                    </thead>
+                    <tbody id='subjectToCourseAppendData'>
+                    {% for i in data %}
+                        <tr>
+                            <td> {{i.courseFK.courseID}}</td>
+                            <td>{{i.type_of_courseFK.courseTypeName}}</td>
+                            <td>{{i.courseFK.courseName}}</td>
+                             <td class="subjects" style="font-weight: 700;">
+                             {% for j in i.subjectNameFK %}
+                             <span>{{j.subjectName}}</span>
+                             {% endfor %}
+                             </td>
+                              <td class="details-control">
+                              <a ctsId={{i.id}} class="del" onclick="deleteSubjectToCourse(this)"><i class="fa fa-trash"></i></a>
+                                 <a href="{% url 'edit_subjects_to_course' i.id %}" class="edit"><i class="fa fa-edit"></i></a>
+                            </td>
+                           
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+             
+            </div>
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)"
+                        maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example" class="float-right mr-1">
+                        <ul class="pagination">
+                          <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                          <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+      </div>
+     </div>
+   </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule/js/admin-js/customJS/adminCourse_JS/subjectToCourseAjaxSearch.js' %}"></script>

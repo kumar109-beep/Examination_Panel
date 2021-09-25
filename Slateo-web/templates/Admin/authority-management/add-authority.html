@@ -1,0 +1,62 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12  ">
+                             <form method='POST'>
+                             {% csrf_token %}
+             <h4 class="head mb-2  ">Add Authority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:red;'>{{res}}</span>
+              {% if authority.authority_list == 'True' or authority.admin == '18pixels@admin' %}
+              <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'authority_list' %}" >Back to list</a>
+                {% endif %}
+            </h4>
+                <div class="card  form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                             <div class="row ">
+                                  <div class="col-lg-3 offset-md-1 mt-1  form-group">
+                                      <label>Authority ID </label>
+                                      <input type="text" class="form-control" name='authorityID' id='authorityID' placeholder="Enter authority id" value="{{authorityID}}" required/>
+                                   </div>
+                                    
+                                   <div class="col-lg-5 mt-1   form-group">
+                                      <label>Authority Name</label>
+                                      <input type="text" class="form-control" name='authorityName' id='authorityName' placeholder="Enter authority name" value="{{authorityName}}" required/>
+                                   </div>
+
+                                   <div class="text-right col-lg-2 mt-2 pt-2">
+                                        <!-- {% comment %} <a  class="btn btn-primary   " href="javascript:;" data-toggle="modal" data-target="#success1" >Submit</a> {% endcomment %} -->
+                                        <button class="btn btn-primary" type='submit'>Submit</button>
+                                    </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>            
+            </div>
+                                </form>
+      </div>
+     </div>
+   </div>
+   <!-- Modal -->
+   <div class="modal fade small with-img" id="success1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p> Authority  has been added successsfully.  </p>
+           <a href="#" data-dismiss="modal" class="btn btn-primary btn-sm"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}

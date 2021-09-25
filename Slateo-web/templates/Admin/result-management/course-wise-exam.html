@@ -1,0 +1,189 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+            
+                    
+
+                     <div class="col-lg-6 mb-1"><h3>Exam Detail</h3></div>
+                      <div class="col-lg-6 mb-1 text-right"><a href="{% url 'report_card' %}" class='btn btn-sm btn-secondary'>Back</a></div>
+                      <div class="col-lg-4 mb-1 form-group no-ico  ">
+                      <label>Course Name</label>
+                      <input type='text' class="form-control" value="" id="courseType" name='courseName' readonly>
+                      <input type='text' class="form-control" style="display:none;" value="" id="courseTypeId" name='courseName' readonly>
+                            {% comment %} <select class="  form-control"  name='courseName' id='courseTypeId' > {% endcomment %}
+                              {% comment %} <option value="">Select CourseType</option> {% endcomment %}
+                              {% comment %} {% for i in courseList %}
+                              <option value={{i.id}}>{{i.courseTypeName}}</option>
+                              {% endfor %} {% endcomment %}
+                           {% comment %} </select> {% endcomment %}
+                      </div>
+
+                     <div class="col-lg-4 mb-1 form-group no-ico  ">
+                      <label>Exam Type</label>
+                            <select class="  form-control" name='subjectName' id=''>
+                            <option id='baseSelectOption' value='' class="d-none"> Select Exam Type</option>
+                             <option value='Quarterly'>Quarterly</option>
+                                       <option value='Half Yearly'>Half Yearly</option>
+                                       <option value='Annual'>Annual</option>
+                                    <option value='' disabled>----</option>
+                                    <option value='Unit Test'>Unit Test</option>
+                           </select>
+                      </div> 
+
+                        <div class="col-lg-4 mb-1 form-group no-ico pl-0  ">
+                      <label>Exam Year</label>
+                            <select class="  form-control select2-placeholder9" id="year" >
+                              <option> </option>
+                              <option value="2021" selected=''>2021</option>
+                              <option value="2020">2020 </option>
+                              <option value="2019">2019</option>
+                           </select>
+                      </div>
+
+                       
+
+
+                       <div class="col-md-1">
+                          {% comment %} <a href="#" class="btn btn-purple"  ><i class="fa fa-search"></i></a> {% endcomment %}
+                          {% comment %} <button class="btn btn-sm" style="color:white;background-color:#6f42c1" id='topicListSubmitButton' onclick="underDev()">Filter</button> {% endcomment %}
+                      </div>
+
+               </div>
+           </div>
+             <div class="table-responsive">
+                <table id="example1"  class="display table data-table  schedule-exam">
+                    <thead>
+                        <tr>
+                            <th>Exam ID</th>
+                            <th>Exam Name</th>
+                            <th>Course Type</th>
+                            <th>Course</th>
+                            <th>Exam Type</th>
+                            <th>Exam Status</th>
+                            <th class='text-center'>Total Completed Papers</th>
+                           
+                            <th width="150"></th>
+                             
+                        </tr>
+                    </thead>
+                    <tbody id="filteredPaperData">
+                    {% for i in completedExams %}
+                        <tr id="row1">
+                            <td> <a class="link">{{i.examID}} </a></td>
+                            <td>{{i.examName}}</td>
+                             <td>{{i.examAssociateCourseType.courseTypeName}}</td>
+                            <td>{{i.examAssociateCourse.courseName}}</td>
+                            <td>{{i.examType}}</td>
+                            {% if i.examStatus == 'Completed' %}
+                            <td style="color:#5ed84f;font-weight:600;">{{i.examStatus}}</td>
+                             <td class='text-center' style="font-weight:600;">7/7</td>
+                             <td><a href="{% url 'exam_wise_papers' i.id %}" class="select"  examId="{{i.id}}" examName="{{i.examName}}" onclick="getExamData(this)">View Papers</a></td>
+                             {% elif i.examStatus == 'Upcoming' %}
+                            <td style="color:#fdb901;font-weight:600;">{{i.examStatus}}</td>
+                             <td class='text-center' style="font-weight:600;">0/7</td>
+                             <td><a href="{% url 'exam_wise_papers' i.id %}" class="select"  style='pointer-events:none;color:grey;' >View Papers</a></td>
+                            {% else %}
+                            <td style="color:#28afd0;font-weight:600;">{{i.examStatus}}</td>
+                             <td class='text-center' style="font-weight:600;">2/8</td>
+                             <td><a href="{% url 'exam_wise_papers' i.id %}" class="select" examId="{{i.id}}" examName="{{i.examName}}" onclick="getExamData(this)">View Papers</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} <div class="text-center"><a href="" class="btn btn-dark mt-2">Load More</a> </div> {% endcomment %}
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)" maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example"  class="float-right mr-1">
+                    <ul class="pagination">
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+      </div>
+     </div>
+   </div>
+ 
+
+ 
+   {% include 'Admin/dashboard/footer.html' %}
+{% comment %} <script src="{% static 'adminModule\js\admin-js\customJS\admin_resultManagement_JS\add-coursetype.js' %}"></script> {% endcomment %}
+<script>
+  var cID = localStorage.getItem('c_ID');
+  var cValue = localStorage.getItem('c_value');
+    $('#courseTypeId').val(cID);
+    $('#courseType').val(cValue);
+
+
+
+$(document).ready(function () {
+    var courseTypeId = document.getElementById("courseTypeId");
+    var coursenameId = document.getElementById("coursenameId");
+
+
+
+    //courseTypeId.onchange = function () {
+        //empty Chapters- and Topics- dropdowns
+        coursenameId.length = 1;
+        var courseTypeId = document.getElementById("courseTypeId");
+        var selectedCourseTypeId = courseTypeId.value;
+
+        console.log('selectedCourseTypeId >> ',selectedCourseTypeId);
+
+        $.ajax({
+            type: 'GET',
+            url: "/chainedSubjects",
+            data: { courseId: selectedCourseTypeId},
+            success: function (response) {
+                console.log(response['subjectList']['data']['subjectNameFK']);
+                var courseStr = ''
+                if (response['subjectList']['data']['subjectNameFK'].length > 0){
+                    for (var i = 0; i < response['subjectList']['data']['subjectNameFK'].length;i++){
+                        var data = '<option value="' + response['subjectList']['data']['subjectNameFK'][i]['id'] + '">' + response['subjectList']['data']['subjectNameFK'][i]['subjectName'] +'</option>';
+                        courseStr = courseStr + data;
+                    }
+                    console.log(courseStr);
+
+                    $('#baseSelectOption').hide();
+                    $('#coursenameId').html('');
+                    $('#coursenameId').append(courseStr);
+
+                    
+                }else{
+                    var data = '<option value="">No Subject Associated with this Course!</option>';
+                    $('#baseSelectOption').show();
+                    $('#coursenameId').html('');
+                    $('#coursenameId').append(data);
+                    
+                }
+            }
+        });
+        
+    //}
+});
+
+function underDev(){
+    alert('Under development!');
+}
+
+
+function getExamData(thisTxt){
+  var e_ID = $(thisTxt).attr('examId');
+  var e_value = $(thisTxt).attr('examName');
+
+  localStorage.setItem('e_ID',e_ID);
+  localStorage.setItem('e_value',e_value);
+}
+</script>

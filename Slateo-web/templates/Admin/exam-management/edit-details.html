@@ -1,0 +1,346 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+  @media (max-width:1200px){
+    div.dataTables_wrapper {width: 1000px;}
+}
+</style>
+<div class="app-content content position-relative  ">
+
+  <div class="content-wrapper">
+
+    <div class="content-body">
+      <!-- Revenue, Hit Rate & Deals -->
+      <div class="col-lg-12 col-md-12 col-sm-12  ">
+        <h4 class="head mb-2  ">Basic Details 
+          {% if authority.exam_list == 'True' or authority.admin == '18pixels@admin' %}
+          <a href="{% url 'examlist' %}" class="btn btn-secondary btn-sm float-right" style="margin-top: -8px">Back</a>
+          {% endif %}
+        </h4>
+        <div class="card  form">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-4 mt-1 mb-2 form-group">
+                  <label>Exam Name</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                    <span style=''>
+                                        <small id='updateExamNameAlreadyExist' style='color:red;display:none;'>Exam name already exist!</small>
+                                    </span>
+                  <input id='updateExamName' type="text" class="form-control" onkeyup="checkUpdateExistence(this)" placeholder="Enter exam name"
+                    value="{{data1.examName}}" />
+                </div>
+                <div class="col-lg-4 mt-1 mb-2 form-group">
+                  <label>Exam Unique Code</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                  <input id="updateExamId" type="text" class="form-control" placeholder="Enter exam unique code"
+                    value="{{data1.examID}}" readonly />
+                </div>
+                <div class="col-lg-4 mt-1 mb-2 form-group">
+                  <label>Exam Type</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                  <select class="form-control" id='examType'>
+                    <option value=''>Select</option>
+                    <option value='Quarterly'>Quarterly</option>
+                    <option value='Half Yearly'>Half Yearly</option>
+                    <option value='Annual'>Annual</option>
+                    <option value='' disabled>----</option>
+                    <option value='Unit Test'>Unit Test</option>
+
+                  </select>
+                </div>
+                <div class="col-lg-4  mb-2 form-group">
+                  <label>Course Type</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                  <p id="updateExanCourse_Type" style="display: none;">{{data1.examAssociateCourseTypeID}}</p>
+                  <input readonly="" type="text" class="form-control" placeholder=""
+                    value="{{data1.examAssociateCourseType}}" onclick="returnAlert()" />
+                </div>
+                <div class="col-lg-4  mb-2 form-group">
+                  <label>Course</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                  <p id="updateExanCourse" style="display: none;">{{data1.examAssociateCourseID}}</p>
+                  <input readonly="" type="text" class="form-control" placeholder="Enter exam unique code"
+                    value="{{data1.examAssociateCourse}}" onclick="returnAlert()" />
+                </div>
+                <div class="col-lg-4 mb-2 form-group">
+                  <label>Attached Batch</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;"
+                    class="fas fa-asterisk"></i>
+                  <select class="form-control" id='attachedBatches'>
+                    {% for i in batchData %}
+                    <option value='{{i.id}}'>{{i.batchName}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-lg-4 mb-2  form-group">
+                  <label>Update Exam Password</label>
+                  <!-- <input type="password" class="form-control" placeholder="Enter exam password" value="" /> -->
+                  <input id="psw-input" type="password" class="form-control" placeholder="Enter new exam password" value=""
+                    onkeyup="resetConfirmPass()" onclick='updatePass()' readonly>
+                  <div id="pswmeter" class=""></div>
+                  <div id="pswmeter-message" class=""></div>
+                </div>
+                <div class="col-lg-4  mb-2  form-group">
+                  <p id="passwordUpdate" style="display: none;">{{data1.examPassword}}</p>
+                  <label>Confirm Update Password</label>
+                  <input type="password" id="txtConfirmPassword" class="form-control"
+                    placeholder="Confirm new exam password" value="" readonly />
+                  <div class="registrationFormAlert" style="color:#ff2e4c;" id="CheckPasswordMatch"></div>
+                </div>
+                <div id='cancelBtn' class="col-lg-12  mb-2  form-group text-right" style="display:none;">
+                  <button onclick='cancelUpdateBtn()' class="btn btn-warning btn-sm" style="color:white;">cancel update
+                    password</button>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <h4 class="head mb-0  ">Exam Paper Details</h4>
+        <div class="   form">
+          <div class="card-content pl-0 ">
+            <div class="card-body pb-0 pl-0 pr-0">
+              <div class="row ">
+                <div class="col-lg-12 pl-0 pr-0">
+                  <div class="table-responsive  ">
+                    <table id="example2" class="display table data-table schedule-exam">
+                      <thead>
+                        <tr>
+
+
+                          <th>Paper Name</th>
+                          <th>Subject</th>
+                          <th>Year</th>
+                          <th>Total Time </th>
+                          <th>Start Date </th>
+                          <th>Start Time </th>
+                          <th width="150" class="text-center">Proctor </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in data1.examPaperDetail %}
+                        <tr class='dataRows'>
+                          <td class='paperId' style='display:none;'>{{i.paperID}}</td>
+                          <td class='paper_Name'>{{i.paperName}}</td>
+                          <td class='paper_subjectName'>{{i.subjectName}} </td>
+                          <td class='paper_year'>{{i.year_p}}</td>
+                          <td class='paper_total_time'>{{i.totalPaperTime}} hr</td>
+                          <td>
+                            <input style='border:1px solid white;border-bottom:1px solid black;' min='' type="text"
+                              id="start" class='form-control paper_startDate' value="{{i.paperStartDate}}"
+                              onclick="editDate(this)" />
+                          </td>
+                          <td>
+                            <input style='border:1px solid white;border-bottom:1px solid black;' type="text" id="start"
+                              class='form-control paper_startTime' value="{{i.paper_time_start}}"
+                              onclick="editTime(this)" />
+                          </td>
+                          <td class="text-center">
+                            <select class="form-control paper_proctor">
+                              {% for i in resorceList %}
+                              <option value="{{i.proctorId}}">{{i.proctorName}}</option>\
+                              {% endfor %}
+                            </select>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-right pt-2">
+          <button class="btn btn-primary btn-sm pl-5 pr-5" id='updateExamBtn' onclick='updateExamData()'>Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+        <p>Exam detail has been updated successfully.</p>
+        <div class="text-center"> <a href="{% url 'examlist' %}" class="btn btn-primary">OK</a> </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/admin-examManagement/validate-create-exam.js' %}"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/admin-examManagement/edit-exam.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\admin-examManagement\validate_ExamName_ID.js' %}"></script>
+
+<script>
+  function returnAlert() {
+    Swal.fire('<small>This fiels is not <b>Editable</b>.</small>');
+    return false;
+  }
+</script>
+<script>
+  $("#examType").val('{{data1.examType|safe}}');
+  $('#examType').selectpicker();
+
+
+  $("#attachedBatches").val('{{batchIdArray}}');
+  $('#attachedBatches').selectpicker();
+  
+
+  {% comment %} var batches = eval({{data1.batchManagement_mtwom|safe}});
+  console.log('batches data >>> ',batches)
+   $("#attachedBatches").val(batches);
+  $('#attachedBatches').selectpicker(); {% endcomment %}
+</script>
+<script>
+  function editDate(thisTxt) {
+    console.log(thisTxt['type']);
+
+
+
+    $(thisTxt).attr('type', 'date');
+    $(thisTxt).addClass('form-control');
+    $(thisTxt).val(thisTxt['value']);
+  }
+
+  function editTime(thisTxt) {
+    console.log(thisTxt['type']);
+
+
+
+    $(thisTxt).attr('type', 'time');
+    $(thisTxt).addClass('form-control');
+    $(thisTxt).val(thisTxt['value']);
+  }
+</script>
+<script>
+  var i = 0;
+  $("#updateExamName").on('keypress', function (e) {
+    if ($(this).val().length < 1) {
+      if (e.which == 32) {
+        return false;
+      }
+    }
+    else {
+      if (e.which == 32) {
+        if (i != 0) {
+          return false;
+        }
+        i++;
+      }
+      else {
+        i = 0;
+      }
+    }
+    var regex = /^[a-zA-Z ]*$/;
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+      return true;
+    }
+
+    e.preventDefault();
+    return false;
+  });
+</script>
+<script>
+  var i = 0;
+  $("#updateExamId").on('keypress', function (e) {
+    if ($(this).val().length < 1) {
+      if (e.which == 32) {
+        return false;
+      }
+    }
+    else {
+      if (e.which == 32) {
+        if (i != 0) {
+          return false;
+        }
+        i++;
+      }
+      else {
+        i = 0;
+      }
+    }
+    var regex = /^[a-zA-Z0-9]*$/;
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+      return true;
+    }
+
+    e.preventDefault();
+    return false;
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10) {
+      month = '0' + month.toString();
+    }
+    if (day < 10) {
+      day = '0' + day.toString();
+    }
+    var minDate = year + '-' + month + '-' + day;
+    $('.paper_startDate').attr('min', minDate);
+  })
+</script>
+
+
+<script>
+function updatePass() {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You want to change current exam password!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Update Password'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $('#psw-input').attr('readonly',false);
+      $('#txtConfirmPassword').attr('readonly',false);
+      $('#cancelBtn').show();
+    }
+  })
+}
+
+
+function cancelUpdateBtn() {
+  $('#psw-input').val('');
+  $('#txtConfirmPassword').val('');
+
+  $('#pswmeter').html('');
+  $('#pswmeter-message').html('');
+  $('#CheckPasswordMatch').html('');
+
+  $('#psw-input').attr('readonly',true);
+  $('#txtConfirmPassword').attr('readonly',true);
+  $('#cancelBtn').hide();
+}
+</script>

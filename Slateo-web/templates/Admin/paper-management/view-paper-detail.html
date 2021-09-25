@@ -1,0 +1,208 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             
+             <div class="col-lg-12 col-md-12 col-sm-12  ">
+               <h4 class="head mb-2  ">Exam Paper Details | Paper ID: <strong>PID001</strong>   <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'paper_list' %}" >Back</a></h4>
+                <div class="card form paper_det">
+                    <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12 mt-1  ">
+                             <h4 class="title-1">Basic Details <a href="{% url 'create_paper' %}"><i class="fa fa-edit   float-right"></i></a></h4>
+                           </div>
+
+                               <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper ID  </label>
+                                       <p class="value">PID001</p>
+                                   </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper Name </label>
+                                       <p class="value">Maths-Algebra</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Associated Course</label>
+                                       <p class="value">B.Sc.</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Total Marks</label>
+                                      <p class="value">100</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Passing Marks</label>
+                                       <p class="value">40</p>
+                                   </div>
+
+                                   <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1">Paper Sections Details <a href="{% url 'create_paper_2' %}"><i class="fa fa-edit   float-right"></i></a></h4>
+                                 </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Paper Credit  </label>
+                                      <p class="value">4</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total No. of Sections </label>
+                                      <p class="value">3</p>
+                                    </div>
+                                    <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Question  </label>
+                                      <p class="value">50</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Marks </label>
+                                      <p class="value">100</p>
+                                    </div>
+
+                                    <div class="col-lg-12 mt-1  form-group">
+                                        <div class="sec_det">
+                                            <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <label>Section </label>
+                                                </div>
+                                                 <div class="col-lg-2   form-group">
+                                                  <label>No. of Questions </label>
+                                                </div>
+                                                 <div class="col-lg-2  form-group">
+                                                  <label>Marks Per Question </label>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <label>Is time limit on this section </label>
+                                                </div>
+                                                <div class="col-lg-3   form-group">
+                                                  <label>Total Marks Per Question </label>
+                                                </div> 
+                                            </div>
+                                              <div class="row" id='sectiondataAppend'>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">A</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">20</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">2</p>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">No</p>
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">40</p>
+                                                </div> 
+                                            </div>
+                                             <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">A</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">10</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">2</p>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">No</p>
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">20</p>
+                                                </div> 
+                                            </div>
+                                            <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">A</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">20</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">2</p>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">Yes</p>
+                                                  <p class="value v1">
+                                                    <span> Duration:<em>00:15:00</em></span>
+                                                    <span> Time limit starts after:<em>01:30:00</em></span>
+                                                  </p>
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">40</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <div class="col-lg-12 mt-1  ">
+                                         <h4 class="title-1">Question Type Details <a href="{% url 'create_paper_3' %}"><i class="fa fa-edit   float-right"></i></a></h4>
+                                       </div>
+                                        <div class="col-lg-3 mt-1  form-group">
+                                            <label>Section </label>
+                                          </div>
+                                         <div class="col-lg-3 mt-1  form-group">
+                                            <label>Questions </label>
+                                          </div>
+                                          <div class="col-lg-6 mt-1  form-group">
+                                            <label> Question Type  </label>
+                                         </div>
+
+                                          <div class="col-lg-3   form-group">
+                                            <p class="value">A</p>
+                                          </div>
+                                         <div class="col-lg-3   form-group">
+                                            <p class="value">1,2,3,4,5 </p>
+                                          </div>
+                                          <div class="col-lg-6    form-group">
+                                            <p class="value">Objective</p>
+                                         </div>
+                                         <div class="col-lg-3   form-group">
+                                            <p class="value">B</p>
+                                          </div>
+                                         <div class="col-lg-3   form-group">
+                                            <p class="value">1,2,3,4,5 </p>
+                                          </div>
+                                          <div class="col-lg-6    form-group">
+                                            <p class="value">Fill in the blanks</p>
+                                         </div>
+
+                                          <div class="col-lg-12 mt-3  ">
+                                            <h4 class="title-1">Paper Set Options <a href="{% url 'create_paper_4' %}"><i class="fa fa-edit   float-right"></i></a></h4>
+                                         </div>
+                                          <div class="col-lg-3 mt-1  form-group">
+                                            <label>Is automated Set Creation Allowed? </label>
+                                            <p class="value">Yes</p>
+                                          </div>
+                                          <div class="col-lg-9 mt-1  form-group">
+                                              <div class="row">
+                                                   <div class="col-lg-3  form-group">
+                                                     <label>Maximum Possible Sets</label>
+                                                       <p class="value">5</p>
+                                                   </div>
+                                                    <div class="col-lg-4 form-group">
+                                                     <label>Languages</label>
+                                                       <p class="value">Hindi, English</p>
+                                                   </div>
+                                                   <div class="col-lg-4 form-group">
+                                                     <label>Allowed Option</label>
+                                                       <p class="value">User Selection</p>
+                                                   </div>
+                                              </div>
+                                          </div>
+                                          
+
+                                  </div>
+
+                         </div>
+                       </div>
+                     </div>
+             </div>
+                 
+            </div>
+            
+          
+      </div>
+     </div>
+   </div>
+
+    <p id="sectionDetailPara" style="display: none;">{{data.sectionDetails}}</p>
+   
+{% include 'Admin/dashboard/footer.html' %}

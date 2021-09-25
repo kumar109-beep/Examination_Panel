@@ -1,0 +1,173 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+  <!-- <script>
+Swal.fire('This module is under discussion!');
+</script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-6 mb-2 form-group ico pl-2">
+                     <h3 class="main-title">Authority List</h3>
+                 </div>
+                 <div class="col-md-6 text-right pr-2  ">
+                       <button id='assignRoleBtn' class="btn btn-primary" data-toggle="modal" data-target="#assign-role" onclick='showSelectedAuthority()'>Assign Roles </button>
+                       {% if authority.add_authority == 'True' or authority.admin == '18pixels@admin' %}
+                       <a href="{% url 'add_authority' %}" class="btn btn-info" >+ Add Authority </a>
+                        {% endif %}
+                  </div>
+             </div>
+           </div>
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                            <th> <label id='sel_master'><input type="checkbox" name="" onclick="SelectAll_Authorities(this)"></label></th>
+                            <th>Authority ID</th>
+                            <th>Authority Name</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="getTabledata">
+                    {% for i in data %}
+                        <tr>
+                            <td><label id='sel_users'><input type="checkbox" name=""></label></td>
+                            <td style='display:none;'>{{i.id}}</td>
+                            <td>{{i.authorityID}}</td>
+                            <td>{{i.authorityName}}</td>
+                            <td class="details-control">
+                                {% comment %} <a href="{% url 'delete_authority' i.id %}" class="del" data-toggle="tooltip" title="Delete Authority"><i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this Authority?\nAll assigned role and resources will be removed permanentaly!');"></i></a> {% endcomment %}
+                                <a href="{% url 'view_authority_resources' i.id %}" class="user" title="View Resources"><i class="fa fa-user"></i></a>
+                                <a href="{% url 'view_authority_detail' i.id %}" class="view" title="View detail"><i class="fa fa-eye"></i></a>
+                                {% comment %} <a href="{% url 'edit_authority' i.id %}" class="edit pr-1" data-toggle="tooltip" title="View Resources"><i class="fa fa-edit"></i></a>  {% endcomment %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> {% endcomment %}
+      </div>
+     </div>
+   </div>
+
+     <!-- Modal -->
+  <div class="modal fade big " id="assign-role" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <div class="row">
+            <div class="col-md-12"> 
+                Assign the following Authority to following Designation: 
+            </div>
+         </div>
+       </div>
+        <div class="modal-body  pt-0">
+                <div class="form">
+                  <div class="card-content  ">
+                      <div class="card-body">
+                        <div id="assign-roles"  >
+                         <div class="row ">
+                             <div class="col-lg-12 pr-0 ">
+                                   <div class="table-responsive mt--2 " style="max-height:450px;">
+                                      <table   class="display table table-striped table-bordered  ">
+                                            <thead>
+                                                <tr>
+                                                    {% comment %} <th> <label><input type="checkbox" name=""></label></th> {% endcomment %}
+                                                    <th>Authority ID</th>
+                                                    <th>Authority Name</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id='selectedAuthorities'>
+                                                <tr id='nothingSelected'>
+                                                <td style="display:none;">-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                   </div>
+                               </div>
+                                <div class="col-lg-5 pl-0 sel_roles pt-2 pl-2 pb-2">
+                                  <h5>Assign Roles/Designation</h5>
+                                    <select class="selectpicker" multiple data-live-search="true" id='selectedRoles' onclick='checkRoles()'><option class="d-none">Responsibilities</option>
+                                        {% for i in roleData %}
+                                        <option value={{i.id}}>{{i.roleName}}</option>
+                                        {% endfor %}
+                                      </select>    
+                                </div>
+                                <div class="col-lg-7 text-right pt-4   ">
+                                   <a href="#" data-dismiss="modal" class="btn btn-gray mr-1">Cancel</a>
+                                  <button href="javascript:;"  class="btn btn-dark" id='saveBtn' disabled onclick='getAuthorityWithRole()'>Save & Continue</button>
+                                </div>
+                           </div>                        
+                        </div>
+                        <div id="assigned-roles">
+                         <div class="row ">
+                             <div class="col-lg-12 pr-0 ">
+                                 <h5>Preview data</h5>
+                                   <div class="table-responsive mt--2 col-md-12 ">
+                                      <table   class="display table table-striped table-bordered  ">
+                                            <thead>
+                                                <tr>
+                                                     <th>Authority Name</th>
+                                                    <th>Assigned Role/Designation</th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody id='assignedRoleAndAuthority'>
+                                                {% comment %}
+                                                <tr>
+                                                    <td style='display:none;'></td>
+                                                    <td>Batch Management</td>
+                                                    <td>Teacher, Proctor</td>                                                    
+                                                </tr> 
+                                                {% endcomment %}
+                                            </tbody>
+                                        </table>
+                                   </div>
+                               </div>
+                                <div class="col-lg-12 text-right pt-4   ">
+                                    <a href="#"   class="btn btn-gray mr-1 float-left back">back</a>
+                                    <a href="#" data-dismiss="modal" class="btn btn-gray mr-1">Cancel</a>
+                                    <button href="#" data-toggle="modal" data-target="#success" data-dismiss="modal" class="btn btn-dark" onclick='submitAuthData()'>Submit</button>
+                                </div>
+                           </div>     
+                        </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<p id='hiddenTokenKey' style="display:none;">{{tokenKey}}</p>
+
+
+    <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Roles have been assigned successfully. </p>
+           <a href="#" data-dismiss="modal" class="btn btn-primary btn-sm">OK</a>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+ 
+{% include 'Admin/dashboard/footer.html' %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminAuthority_JS/authorityList.js' %}"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>

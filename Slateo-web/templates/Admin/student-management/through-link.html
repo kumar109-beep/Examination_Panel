@@ -1,0 +1,85 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12 mt-1  ">
+             <h4 class="head mb-2  ">Add Student Thorugh Link 
+               {% if authority.student_list == 'True' or authority.admin == '18pixels@admin' %} 
+               <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'student_list' %}" >Back to list</a>
+               {% endif %}
+               {% if authority.add_students == 'True' or authority.admin == '18pixels@admin' %} 
+                <a   class="btn btn-info   float-right btn-sm  mt--1 mr-1 " href="{% url 'add_student_detail' %}"  > Add Student Manually</a>
+                {% endif %}
+                {% if authority.upload_excel_data == 'True' or authority.admin == '18pixels@admin' %} 
+                <a   class="btn btn-info   float-right btn-sm  mt--1 mr-1 " href="{% url 'upload_excel_data' %}"  > Upload Excel/CSV</a>
+              {% endif %}
+            </h4>
+                <div class="card  form   pt-5 pb-5">
+                  <div class="card-content  ">
+                      <div class="card-body   "  >
+                            
+                           <input type="text" value="https://demo.eighteenpixels.in/slateo/student-detail-form.html" name="" class="link-box" id="link-box">
+                           <div class="msg"></div>
+                           <div class="text-center mt-2">
+                              <button class="btn btn-primary" onclick="myFunction()">Copy Link</button>
+                           </div>
+                      </div>
+                  </div>
+              </div>
+
+               <!-- <div class="text-right  pt-0 bottom-btn">
+                   <a  class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#alert" href="javascript:;">Submit</a>
+               </div>
+               <div class="text-right  pt-0 bottom-btn1">
+                   <a class="btn btn-primary pl-5 pr-5"  href="preview-data.php">Preview  & Submit</a>
+               </div> -->
+          </div>
+      </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want to add 55 new student.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Students list has been successsfully added.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}

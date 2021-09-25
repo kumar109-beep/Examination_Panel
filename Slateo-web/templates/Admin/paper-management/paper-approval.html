@@ -1,0 +1,241 @@
+{% load static %}
+<!-- {% include 'Admin/dashboard/header.html' %} -->
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+            
+             <div class="col-lg-12 col-md-12 col-sm-12  ">
+               <h4 class="head mb-2  ">Preview Paper Details   <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'paper_approval_list' %}" >Back</a></h4>
+                <div class="card form paper_det">
+                    <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12 mt-1  ">
+                             <h4 class="title-1"><b>Basic Details</b></h4>
+                           </div>
+
+                               <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper ID  </label>
+                                       <p class="value" id='uniquePaperId'>{{data.paperID}}</p>
+                                   </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper Name </label>
+                                       <p class="value" id='uniquePaperName'>{{data.paperName}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Associated Course</label>
+                                       <p class="value">{{courseName}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Associated Subject</label>
+                                       <p class="value">{{subjectName}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Total Paper Time</label>
+                                       <p class="value">{{data.totalPaperTime}} Hrs.</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Total Marks</label>
+                                      <p class="value">{{data.paperTotalMarks}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Passing Marks</label>
+                                       <p class="value">{{data.paperPassingMark}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Language</label>
+                                       <p class="value">{{paperLanguage}}</p>
+                                   </div>
+                                    <div class="col-lg-12 mt-1   form-group">
+                                      <label>Guidelines</label>
+                                       <p class="value">{{data.paperGuideLines}}</p>
+                                   </div>
+
+                                   <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1"><b>Paper Sections Details</b></h4>
+                                 </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total No. of Sections </label>
+                                      <p class="value">{{data.totalNoSection}}</p>
+                                    </div>
+                                    <div class="col-lg-2 mt-1  form-group">
+                                      <label>Total Question  </label>
+                                      <p class="value">{{data.totalnumberOuestion}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1  form-group">
+                                      <label>Total Marks </label>
+                                      <p class="value">{{data.paperTotalMarks}}</p>
+                                    </div>
+                                    <div class="col-lg-12 mt-1  form-group">
+                                        <div class="sec_det">
+                                            <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <label>Section </label>
+                                                </div>
+                                                 <div class="col-lg-2   form-group">
+                                                  <label>No. of Questions </label>
+                                                </div>
+                                                 <div class="col-lg-2  form-group">
+                                                  <label>Mandatory   Questions </label>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <label>Question  Type </label>
+                                                </div>
+                                                <div class="col-lg-3   form-group">
+                                                  <label>Total Marks Per Section </label>
+                                                </div> 
+                                            </div>
+                                            <div  id='sectiondataAppend'>
+                                              <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">A</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">20</p>
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  <p class="value">10</p>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">Objective</p>
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                  <p class="value">20</p>
+                                                </div> 
+                                            </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+
+                                        <div class="col-lg-12 mt-1  ">
+                                         <h4 class="title-1"><b>Questions Details</b></h4>
+                                       </div>
+                                       <div id='questionsApeend'>
+                                       
+                                       </div> 
+                                          <div class="col-lg-12 mt-3  ">
+                                            <h4 class="title-1"><b>Paper Set Options</b></h4>
+                                         </div>
+                                          <div class="col-lg-3 mt-1  form-group">
+                                            <label>Is automated Set Creation Allowed? </label>
+                                            <p class="value">Yes</p>
+                                          </div>
+                                          <div class="col-lg-9 mt-1  form-group">
+                                              <div class="row">
+                                                   <div class="col-lg-3  form-group">
+                                                     <label>Maximum Paper Sets</label>
+                                                       <p class="value">5</p>
+                                                   </div>
+                                                     
+                                              </div>
+                                          </div>
+                                  </div>
+
+                         </div>
+                       </div>
+                       <hr><hr>
+                       <div class="form-group">
+                        <label style="font-weight: 700;font-size: medium;">Paper Approval Status</label><br>
+                        {% if data.paperStatus == 'Approved' %}
+                        <input type="radio" checked='' class="mt-1" style='height:15px;width:15px;' name='Approval'
+                             value="Approve"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Right handed">Approve</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" class="mt-1" style='height:15px;width:15px;' name='Approval'
+                            value="Reject"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Left handed">Reject</label>&nbsp;
+                        {% elif data.paperStatus == 'Rejected' %}
+                        <input type="radio" class="mt-1" style='height:15px;width:15px;' name='Approval'
+                             value="Approve"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Right handed">Approve</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" checked='' class="mt-1" style='height:15px;width:15px;' name='Approval'
+                            value="Reject"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Left handed">Reject</label>&nbsp;
+                        {% else %}
+                        <input type="radio" class="mt-1" style='height:15px;width:15px;' name='Approval'
+                             value="Approve"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Right handed">Approve</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" class="mt-1" style='height:15px;width:15px;' name='Approval'
+                            value="Reject"  onclick='remarks(this)'>&nbsp;&nbsp;<label for="Left handed">Reject</label>&nbsp;
+                        {% endif %}
+                    </div>
+                       <div class="form-group">
+                        <label for="exampleFormControlTextarea1" style="font-weight: 700;">Correction Remarks</label>
+                        {% if data.paperStatus == 'Approved' %}
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>{{data.paperRemark}}</textarea>
+                        {% elif data.paperStatus == 'Rejected' %}
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{data.paperRemark}}</textarea>
+                        {% else %}
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        {% endif %}
+                      </div>
+                     </div>
+             </div>
+ {% comment %} {'data': {'id': 12, 'paperID': 'paper-002', 'paperName': 'BSC-math-002', 'paperTotalMarks': '50', 'paperPassingMark': '30', 'paperStatus': 'Approved', 'paperDeafaultLanguage': 'English', 'paperLanguage': '2', 'paperGuideLines': 'gsfggfu EGFGG ewfgewiugfuiewbgv', 'totalPaperTime': '13:00', 'totalNoSection': '2', 'totalnumberOuestion': '3', 'sectionDetails': "['1-2-2-25-1,2', '2-2-1-25-1,2']", 'SectionWiseQuestionList': '[{"Section_1":["507","508"]},{"Section_2":["511"]}]', 'automatedSet': False, 'noOfSets': '1', 'paperRemark': 'Paper Approved!', 'created_at': '2021-06-11T12:46:33.407048Z', 'updated_at': '2021-06-13T20:39:52.343356Z', 'paperAssociateCourse': 1, 'paperAssociateSubject': 1}, 'status': True, 'message': 'success', 'sectioncount': 2} {% endcomment %}
+                 
+             </div>
+            
+           <div class="text-right bottom-btn">
+               <button class="btn btn-primary mr-1" onclick="paper_approval()">Submit</button>
+                   <!-- <a  class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#alert" href="javascript:;"></a> -->
+            </div>
+      </div>
+     </div>
+   </div>
+
+     <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want to create exam paper <strong>(Maths-Algebra)</strong>.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p> Exam paper has been created successsfully.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm"   >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+      <p id="sectionDetailPara" style="display: none;">{{data.sectionDetails}}</p>
+    <p id="sectionQuestiondata" style="display: none;">{{questionsDict}}</p>
+<!-- {% include 'Admin/dashboard/footer.html' %} -->
+<script src="{% static 'adminModule/js/admin-js/customJS/adminPaper_JS/paperApprovalAjaxSearch.js' %}"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminPaper_JS/paper-approval.js' %}"></script>
+
+<script>
+function remarks(thisTxt){
+  var value = $(thisTxt).val();
+  console.log('remark value >> ',value);
+  if(value.trim() == 'Approve'){
+    $('#exampleFormControlTextarea1').text('Paper approved!');
+    $('#exampleFormControlTextarea1').attr('readonly',true);
+  }else{
+    $('#exampleFormControlTextarea1').text('');
+    $('#exampleFormControlTextarea1').attr('readonly',false);
+  }
+}
+</script>
+{% comment %} E:\CompanyProject\JUNE 2021\28.06.2021\slateo-web\static\adminModule\js\admin-js\customJS\adminPaper_JS\paper-approval.js {% endcomment %}

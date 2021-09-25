@@ -1,0 +1,182 @@
+{% load static %}
+<!-- {% include 'Admin/dashboard/header.html' %} -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" /> -->
+    <div class="app-content content position-relative  ">
+
+    <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2  ">Individual Course Grade Management
+                  <a class="btn btn-default float-right btn-sm  mt-1" href="{% url 'grade_list' %}">Back to list</a>
+                </h4>
+
+            </div>
+            {% comment %} <button class="btn btn-primary btn-sm  mt-1 ml-2" onclick='hideCollective()' style='display:none;'>Individual Grades</button> {% endcomment %}
+                  <button class="btn btn-primary btn-sm  mt-1 ml-2" onclick='hideIndividual()' style='display:;'>Collective Grades</button>
+         
+      <div class="content-wrapper">
+        
+        <div class="content-body">
+
+           <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card  form">
+                  <div class="card-content">
+                      <div class="card-body">
+                             <div class="row ">
+                                   <div class="col-lg-6 mt-1 mb-2 form-group no-ico ">
+                                     <label>Course Type</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                        <select class="form-control select2"  name='courseType' id='courseTypeID' >
+                                          <option value='' class="d-none">Select Course Type</option>
+                                          {% for i in courseTypeList %}
+                                          <option value={{i.id}}>{{i.courseTypeName}}</option>
+                                          {% endfor %}
+                                      </select>
+                                  </div>
+                                    <div class="col-lg-6 mt-1 mb-2 form-group no-ico ">
+                                     <label>Course</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                     <select class="form-control select2" id='courseName'>
+                                    <option value=''>Select Course</option>
+                                     </select>
+                                   </div>
+                                   <div class="col-lg-12 mb-2  form-group">
+                                     {% comment %} <label>Enter lower limits for Grades</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                     <p class='mt-1'><strong>Lower limit for Grade A</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p>
+
+                                    <p class='mt-1'><strong>Lower limit for Grade B</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p>
+
+                                    <p class='mt-1'><strong>Lower limit for Grade C</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p>
+
+                                    <p class='mt-1'><strong>Lower limit for Grade D</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p>
+
+                                    <p class='mt-1'><strong>Lower limit for Grade E</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p>
+
+                                    <p class='mt-1'><strong>Lower limit for Grade F</strong>
+                                    <input id="psw-input" type="password" class="form-control" placeholder="Enter percentage" value="" onkeyup=""></p> {% endcomment %}
+                                     <label for="basic-url">Enter lower limits percentage for grades</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                        <div class="input-group mb-1 mt-1">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon3"><strong>Lower limit for Grade A</strong></span>
+                                          </div>
+                                          <input type="text" class="form-control float" id="basic-url" placeholder="Enter percentage" aria-describedby="basic-addon3">
+                                        </div>
+
+                                        <div class="input-group mb-1">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon3"><strong>Lower limit for Grade B</strong></span>
+                                          </div>
+                                          <input type="text" class="form-control float" id="basic-url" placeholder="Enter percentage" aria-describedby="basic-addon3">
+                                        </div>
+
+                                        <div class="input-group mb-1">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon3"><strong>Lower limit for Grade C</strong></span>
+                                          </div>
+                                          <input type="text" class="form-control float" id="basic-url" placeholder="Enter percentage" aria-describedby="basic-addon3">
+                                        </div>
+
+                                        <div class="input-group mb-1">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon3"><strong>Lower limit for Grade D</strong></span>
+                                          </div>
+                                          <input type="text" class="form-control float" id="basic-url" placeholder="Enter percentage" aria-describedby="basic-addon3">
+                                        </div>
+
+                                        <div class="input-group mb-1">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon3"><strong>Lower limit for Grade E</strong></span>
+                                          </div>
+                                          <input type="text" class="form-control float" id="basic-url" placeholder="Enter percentage" aria-describedby="basic-addon3">
+                                        </div>
+                                    
+                                   </div>
+                               </div>
+                      </div>
+                  </div>
+              </div>
+               <div class="text-right    pt-1" style="min-height: 550px;">
+                    <button class="btn btn-primary btn-sm pl-5 pr-5" onclick="" id=''>Submit</button>                   
+                 </div>
+            </div>
+      </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <p>Exam ID/Name already exists. Enter the Exam ID/Name which has not been  used before. </p>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+
+  <script>
+    var i = 0;
+    $("#examUniqueName").on('keypress', function (e) {
+        if ($(this).val().length < 1) {
+            if (e.which == 32) {
+                return false;
+            }
+        }
+        else {
+            if (e.which == 32) {
+                if (i != 0) {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i = 0;
+            }
+        }
+        var regex = /^[a-zA-Z ]*$/;
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    });
+</script>
+<script>
+  var i = 0;
+  $("#examUniqueCode").on('keypress', function (e) {
+      if ($(this).val().length < 1) {
+          if (e.which == 32) {
+              return false;
+          }
+      }
+      else {
+          if (e.which == 32) {
+              if (i != 0) {
+                  return false;
+              }
+              i++;
+          }
+          else {
+              i = 0;
+          }
+      }
+      var regex = /^[a-zA-Z0-9]*$/;
+      var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+      if (regex.test(str)) {
+          return true;
+      }
+
+      e.preventDefault();
+      return false;
+  });
+</script>

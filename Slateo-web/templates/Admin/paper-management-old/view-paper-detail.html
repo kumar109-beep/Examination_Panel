@@ -1,0 +1,214 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             
+             <div class="col-lg-12 col-md-12 col-sm-12  ">
+               <h4 class="head mb-2  ">Exam Paper Details | Paper ID : <strong>{{data.paperID}}
+               <span class='float-right'>
+                <a class="btn btn-primary btn-min-width btn-sm " href="{% url 'edit_paper_detail' data.id %}">Edit Paper</a>
+                <a   class="btn btn-default btn-sm" href="{% url 'paper_list' %}" >Back</a>
+                </span></h4>
+                {% comment %} <span class='text-right'>
+                <a class="btn btn-primary btn-min-width btn-sm " href="{% url 'edit_paper_detail' data.id %}">Edit Paper</a>
+                <a   class="btn btn-default btn-sm" href="{% url 'paper_list' %}" >Back</a>
+                </span> {% endcomment %}
+               
+                <div class="card form paper_det">
+                    <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12 mt-1  ">
+                             <h4 class="title-1">Basic Details</h4>
+                           </div>
+
+                               <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper ID  </label>
+                                       <p class="value">{{data.paperID}}</p>
+                                   </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper Name </label>
+                                       <p class="value">{{data.paperName}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Associated Course</label>
+                                       <p class="value">{{data.paperAssociateCourse}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Total Marks</label>
+                                      <p class="value">{{data.paperTotalMarks}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Passing Marks</label>
+                                       <p class="value">{{data.paperPassingMark}}</p>
+                                   </div>
+
+                                   <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1">Paper Sections Details</h4>
+                                 </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Paper Credit  </label>
+                                      <p class="value">{{data.paperCredit}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total No. of Sections </label>
+                                      <p class="value">{{data.totalSection}}</p>
+                                    </div>
+                                    <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Question  </label>
+                                      <p class="value">{{data.totalnumberOuestion}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Marks </label>
+                                      <p class="value">{{data.paperTotalMarks}}</p>
+                                    </div>
+
+                                    <div class="col-lg-12 mt-1  form-group">
+                                        <div class="sec_det">
+                                            <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <label>Section </label>
+                                                </div>
+                                                 <div class="col-lg-2   form-group">
+                                                  <label>No. of Questions </label>
+                                                </div>
+                                                 <div class="col-lg-2  form-group">
+                                                  <label>Marks Per Question </label>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <label>Is time limit on this section </label>
+                                                </div>
+                                                <div class="col-lg-3   form-group">
+                                                  <label>Total Marks Per Question </label>
+                                                </div> 
+                                            </div>
+                                              <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  {% for i in res.sno %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  {% for i in res.nOQ %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                  {% for i in res.mPQ %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  {% for i in res.tL %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                  {% for i in res.mPS %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <div class="col-lg-12 mt-1  ">
+                                         <h4 class="title-1">Question Type Details</h4>
+                                       </div>
+                                        <div class="col-lg-3 mt-1  form-group">
+                                            <label>Section </label>
+                                          </div>
+                                         <div class="col-lg-3 mt-1  form-group">
+                                            <label>Questions </label>
+                                          </div>
+                                          <div class="col-lg-6 mt-1  form-group">
+                                            <label> Question Type  </label>
+                                         </div>
+
+                                          <div class="col-lg-3   form-group">
+                                            {% for i in res.section %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                          </div>
+                                         <div class="col-lg-3   form-group">
+                                            {% for i in res.questionNumer %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                          </div>
+                                          <div class="col-lg-6    form-group">
+                                            {% for i in res.questionType %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                         </div>
+                                          <div class="col-lg-12 mt-3  ">
+                                            <h4 class="title-1">Paper Set Options</h4>
+                                         </div>
+                                         {% if data.automatedSet %}
+                                          <div class="col-lg-3 mt-1  form-group">
+                                            <label>Is automated Set Creation Allowed? </label>
+                                            <p class="value">Yes</p>
+                                          </div>
+                                          <div class="col-lg-9 mt-1  form-group">
+                                              <div class="row">
+                                                   <div class="col-lg-3  form-group">
+                                                     <label>Maximum Possible Sets</label>
+                                                       <p class="value">{{res.possibleSets}}</p>
+                                                   </div>
+                                                    <div class="col-lg-4 form-group">
+                                                     <label>Languages</label>
+                                                       <p class="value">{{res.languages}}</p>
+                                                   </div>
+                                                   {% if res.allowedOptions == 'User Selection' %}
+                                                   <div class="col-lg-4 form-group">
+                                                     <label>Allowed Option</label>
+                                                       <p class="value">User Selection</p>
+                                                   </div>
+                                                   {% elif res.allowedOptions == 'Display All' %}
+                                                   <div class="col-lg-4 form-group">
+                                                     <label>Allowed Option</label>
+                                                       <p class="value">Display All</p>
+                                                   </div>
+                                                   {% endif %}
+                                              </div>
+                                          </div>
+                                          {% else %}
+                                           <div class="col-lg-3 mt-1  form-group">
+                                            <label>Is automated Set Creation Allowed? </label>
+                                            <p class="value">No</p>
+                                          </div>
+                                          <div class="col-lg-9 mt-1  form-group">
+                                              <div class="row">
+                                                   <div class="col-lg-3  form-group">
+                                                     <label>Maximum Possible Sets</label>
+                                                       <p class="value">-</p>
+                                                   </div>
+                                                    <div class="col-lg-4 form-group">
+                                                     <label>Languages</label>
+                                                       <p class="value">-</p>
+                                                   </div>
+                                                   <div class="col-lg-4 form-group">
+                                                     <label>Allowed Option</label>
+                                                       <p class="value">-</p>
+                                                   </div>
+                                              </div>
+                                          </div>
+                                          {% endif %}
+                                          
+
+                                  </div>
+
+                         </div>
+                       </div>
+                     </div>
+             </div>
+                 
+            </div>
+            
+          
+      </div>
+     </div>
+   </div>
+
+   
+{% include 'Admin/dashboard/footer.html' %}

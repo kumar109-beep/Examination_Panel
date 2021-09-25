@@ -1,0 +1,235 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<script src="{% static 'adminModule/editor/editor.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<style>
+    .donate-now {
+        list-style-type: none;
+        margin: 25px 0 0 0;
+        padding: 0;
+    }
+
+    .donate-now li {
+        float: left;
+        margin: 0 5px 0 0;
+        width: 100px;
+        height: 40px;
+        position: relative;
+    }
+
+    .donate-now label,
+    .donate-now input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .donate-now input[type="radio"] {
+        opacity: 0.01;
+        z-index: 100;
+    }
+
+    .donate-now input[type="radio"]:checked+label,
+    .Checked+label {
+        background: #28afd0;
+        color: beige;
+        text-align: center;
+    }
+
+    .donate-now label {
+        padding: 5px;
+        border: 1px solid #CCC;
+        cursor: pointer;
+        z-index: 90;
+    }
+
+    .donate-now label:hover {
+        background: #DDD;
+    }
+</style>
+<link href="{% static 'adminModule/editor/editor.css' %}" type="text/css" rel="stylesheet" />
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <h4 class="head mb-2  ">Add Question
+                    {% if authority.question_list == 'True' or authority.admin == '18pixels@admin' %}
+                    <a class="btn btn-default   float-right btn-sm  mt--1" href="{% url 'question_list' %}">Back to
+                        list</a>
+                    {% endif %}
+                </h4>
+
+                <div class="card  pt-0 pl-0 pr-0 form">
+                    <div class="card-content">
+                        <div class="card-body pt-0   pl-0 pr-0">
+                            <div class="tops_add_ques">
+                                <div class="row">
+                                    <div class="col-lg-4 mb-1 form-group no-ico pl-2">
+                                        <select class="selectpicker form-control selectpicker-placeholder7"
+                                            data-live-search="true" id="courseName">
+                                            <option value='' style="pointer-events: none;">Select Course</option>
+                                            {% for i in data1 %}
+                                            <option value="{{i.id}}">{{i.courseName}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4  mb-1 form-group no-ico pl-2">
+                                        <select class="selectpicker form-control selectpicker-placeholder8"
+                                            data-live-search="true" id="subjectID" onchange="available_TOPIC()">
+                                            <option id='baseSelectOption' value=''>Select Subject</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 mb-1 form-group no-ico  pl-2">
+                                        <select class="selectpicker form-control selectpicker-placeholder12"
+                                            data-live-search="true" id='topicID'>
+                                            <option value='' style="pointer-events: none;">Select Topic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- style='opacity: 0.3;pointer-events: none;' -->
+                            <div class="contt pt-2 pl-2 pr-2" id='questionDetailDiv'
+                                style="pointer-events: none;opacity: 0.3;">
+                                <div class="row">
+                                    <div class="col-lg-3 mb-1 form-group no-ico">
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id='questionType' onchange="questionType(this)">
+                                            <option value='' id='baseQuestionType'>Select Question Type</option>
+                                            {% for a in questionType %}
+                                            <option value="{{ a.id }}">{{ a.questio_type_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-1 form-group no-ico" id='objectiveOptions'>
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id="optionCount" onchange="optionCount(this)">
+                                            <option>Select No. of Options </option>
+                                            <option value="2">2 </option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-1 form-group no-ico  pl-2">
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id='questionlanguage' onchange="questionlanguageDropDown(this)" disabled>
+                                            <option value='' id='baselanguage' style="pointer-events: none;">Select
+                                                Language</option>
+                                            {% for j in language %}
+                                            <option value='{{ j.id }}'>{{ j.languageName }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-1 form-group no-ico  pl-2">
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id='questionSubType'>
+                                            <option value='' id='baseQuestionSubType'>Select Question Sub-type</option>
+                                            {% for b in questionSubType %}
+                                            <option value="{{ b.id }}">{{ b.questio_sub_type_name }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-1 form-group no-ico">
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id='questionDifficulty'>
+                                            <option value='' id='basedifficulty'>Difficulty level</option>
+                                            {% for c in questionLevel %}
+                                            <option value="{{ c.id }}">{{ c.questio_level_type_name }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-1 form-group no-ico">
+                                        <input type="text" class="form-control" placeholder="Correct Marks" value=""
+                                            id='questionCorrectMark' />
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="contt pl-2 pr-2" id=''>
+                                <div class="row">
+                                    <div class="col-lg-12   mt-0  form-group">
+                                        <div id='labelForLangugae' style="display: ;"></div>
+
+                                    </div>
+                                    <div class="col-lg-12   mt-0  form-group" id="renderEditor">
+
+                                    </div>
+                                    <div class="col-lg-8 mt-1 no-ico  form-group">&nbsp;</div>
+                                </div>
+
+                                <div id="options" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="hidden" value="{{uniqueCode}}" name='refrenceUniuecode' readonly>
+                                <div class="text-center col-lg-12 mt-2 pt-2 pr-3" id='questionButtons'
+                                    style='opacity: 0.3;pointer-events: none;'>
+                                    <a class="btn btn-danger btn-lg mr-2 " href="javascript:;" data-toggle="modal"
+                                        data-target="#allert">Discard</a>
+                                    <button class="btn btn-success btn-lg  mr-2 "
+                                        onclick='saveQuestionButton()'>Save</button>
+                                    <button class="btn btn-primary  btn-lg my-3 " onclick='saveAndNextQuestionButton()'>Save& Add More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'adminModle/images/success-icon-10.png' %}">
+                <p> Question has been addedd successsfully. </p>
+                <a href="{% url 'subject_list' %}" class="btn btn-primary btn-sm">OK</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade small with-img" id="allert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+                <p> Are you sure want to discard the changes. </p>
+                <a href="#" data-dismiss="modal" class="btn btn-gray btn-sm">No</a>
+                <a href='' class="btn btn-danger btn-sm">Yes</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminQuestionBank_JS/add-question.js' %}"></script>

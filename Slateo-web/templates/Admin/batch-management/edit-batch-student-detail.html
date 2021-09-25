@@ -1,0 +1,113 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                    <div class="col-lg-5  mb-1 form-group ico  ">
+                   </div>
+                
+                    <div class="col-md-7 text-right pr-2  ">
+                      {% if authority.batch_list == 'True' or authority.admin == '18pixels@admin' %}
+                        <button class="btn btn-default   float-right btn-sm  ml-1" onclick="goback()" >Back to list</button>
+                        {% endif %}
+                    </div>
+               </div>
+           </div>
+             
+             <div class="detail_block">
+                 <div class="card form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12  mt-1  ">
+                              <div class="head">
+                                <div class="row ">
+                                   <div class="col-lg-3  pt-1 ">
+                                    <label>Batch ID  </label>
+                                    <p class="value">BID001</p>
+                                   </div>
+                                   <div class="col-lg-3  pt-1 ">
+                                    <label>Batch Name  </label>
+                                    <p class="value">B. tech. (CS) 1st Year</p>
+                                   </div>
+                                </div>
+                              </div>
+                           </div>
+                         </div>
+                         {% comment %} student data >>  {'id': 1, 'fullName': 'Manoj-Kumar', 'mobileNumber': '8965745896', 'dateOfBirth': '1997-06-01', 'gender': 'Male', 'handy': 'Right', 'disability': 'No', 'images': '/Upload_Images/studentImages/profileimages_zEkGEvd.jpg', 'signature': '/Upload_Images/studentSignature/signature-523237_960_720_CiT4pja.jpg', 'guardianName': 'Satyanarayan Mandal', 'guardianEmail': 'satyanarayan@gmail.com', 'relationwithGuardian': 'Brother', 'guardianMobile': '5555565656', 'temp_district': 'Lakhisarai', 'temp_address': 'Loshghani PS Pirir Bazar', 'temp_pincode': '811112', 'temp_vs_perm': 'on', 'perm_district': 'Lakhisarai', 'perm_address': 'Loshghani PS Pirir Bazar', 'perm_pincode': '811112', 'created_at': '2021-06-07T13:33:24.588308Z', 'updated_at': '2021-06-14T12:33:21.767265Z', 'referUser': {'id': 3, 'password': 'pbkdf2_sha256$216000$GR2L1tekqdsg$ltkvnV7o9bh3XNfTIRhCWw2WaqOdhweyHKzR1gjHlU4=', 'last_login': None, 'is_superuser': False, 'username': '100', 'first_name': '', 'last_name': '', 'email': 'rohit.18pixels@gmail.com', 'is_staff': False, 'is_active': True, 'date_joined': '2021-06-07T13:33:24.400552Z', 'groups': [], 'user_permissions': []}, 'courseTypeFK': {'id': 1, 'courseTypeID': 'fgsdrg', 'courseTypeName': 'UG', 'created_at': '2021-06-04T08:44:07.140672Z', 'updated_at': '2021-06-04T08:44:07.140699Z'}, 'courseFK': {'id': 1, 'courseID': 'dwede', 'courseName': 'BSC', 'created_at': '2021-06-04T08:44:28.860559Z', 'updated_at': '2021-06-04T08:44:28.860583Z', 'courseType': 1}, 'temp_countryfk': {'id': 1, 'country_code': 'in', 'country_name': 'India', 'created_at': '2021-06-04T08:38:30.787881Z', 'updated_at': '2021-06-04T08:38:30.787916Z'}, 'temp_statefk': {'id': 1, 'country_state': 'UP', 'created_at': '2021-06-04T08:38:40.592219Z', 'updated_at': '2021-06-04T08:38:40.592246Z', 'country_fk': 1}, 'perm_countryfk': {'id': 1, 'country_code': 'in', 'country_name': 'India', 'created_at': '2021-06-04T08:38:30.787881Z', 'updated_at': '2021-06-04T08:38:30.787916Z'}, 'perm_statefk': {'id': 1, 'country_state': 'UP', 'created_at': '2021-06-04T08:38:40.592219Z', 'updated_at': '2021-06-04T08:38:40.592246Z', 'country_fk': 1}, 'suject': [{'id': 1, 'subjectID': 'dews', 'subjectName': 'Maths', 'created_at': '2021-06-04T08:44:44.223559Z', 'updated_at': '2021-06-04T08:44:44.223596Z'}, {'id': 2, 'subjectID': 'sci001', 'subjectName': 'Science', 'created_at': '2021-06-08T09:55:31.589253Z', 'updated_at': '2021-06-08T09:55:31.589279Z'}], 'fullname': 'Manoj Kumar'} {% endcomment %}
+
+                          <div class="row mt-2">
+                             <div class="col-lg-12  pt-1   mb-2 "><h4 class="title-1">Student Details</h4></div>
+                              <div class="col-lg-2  ">
+                                    <img src="{% static 'adminModule/images/avatar.jpg' %}">
+                              </div>
+                           <div class="col-lg-3   ">
+                                <label>Registration No.</label>
+                                <p class="value">{{studentDetail.referUser.username}}</p>
+                                <label>Name</label>
+                                <p class="value">{{studentDetail.fullname}}</p>
+                                <label>Gender  </label>
+                                <p class="value">{{studentDetail.gender}}</p>
+                             </div>
+                              <div class="col-lg-3   ">
+                                 <label>Date of birth  </label>
+                                 <p class="value">{{studentDetail.dateOfBirth}}</p>
+                                 <label>Parent Name</label>
+                                 <p class="value">{{studentDetail.guardianName}}</p>
+                                  <label>Relation with parent  </label>
+                              <p class="value">{{studentDetail.relationwithGuardian}}</p>
+                             </div>
+                              <div class="col-lg-3    ">
+                                <label>Email ID</label>
+                              <p class="value">{{studentDetail.referUser.email}}</p>
+                               <label>Mobile No.</label>
+                                 <p class="value">{{studentDetail.mobileNumber}}</p>
+                                  <label>Parent's Mobile no.  </label>
+                              <p class="value">{{studentDetail.guardianMobile}}</p>
+                           </div>
+                           
+                           
+                               
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+
+             </div>
+      </div>
+     </div>
+   </div>
+ 
+  <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Batch detail has been updated successsfully.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\adminBatch_JS\batch-management.js' %}"
+    type="text/javascript"></script>
+
+<script>
+function goback(){
+  var url = localStorage.getItem('url');
+  location.href = url;
+}
+</script>

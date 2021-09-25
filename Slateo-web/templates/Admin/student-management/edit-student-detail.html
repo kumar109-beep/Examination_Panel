@@ -1,0 +1,622 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<script type='module'
+    src="{% static 'adminModule/js/admin-js/customJS/adminStudent_JS/edit-student-detail.js' %}"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<link rel="stylesheet" href="{% static 'adminModule/css/integratedCSS/intlTelInput.css' %}">
+<link rel="stylesheet" href="{% static 'adminModule/css/integratedCSS/demo.css' %}">
+
+<script src="{% static 'adminModule/js/admin-js/IntegratedJS/intlTelInput.js' %}"></script>
+<div class="app-content content position-relative  ">
+
+    <div class="content-wrapper">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2  ">Edit Student Details 
+                        {% if authority.student_list == 'True' or authority.admin == '18pixels@admin' %} 
+                    <a class="btn btn-default   float-right btn-sm  mt--1 "
+                        href="{% url 'student_list' %}">Back to list</a>
+                        {% endif %}
+                     </h4>
+                <div class="card form">
+                    <div class="card-content ">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Personal Detail</h4>
+                                </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label>Registration No.</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" placeholder="Enter registration no."
+                                        value="{{studentData.referUser.username}}" name='registrationNumber' readonly />
+                                    {% if registrationNumberError %}
+                                    <span id=style='display:;'><small
+                                            style='color:red;'>{{registrationNumberError}}</small></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label>First Name </label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" placeholder="Enter first name"
+                                        value="{{studentData.fname}}" onkeypress="return /[a-zA-Z]/i.test(event.key)" name='StudentFname' id='' />
+                                </div>
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter last name"
+                                        value="{{studentData.lname}}" onkeypress="return /[a-zA-Z]/i.test(event.key)" name='StudentLname' />
+                                </div>
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Date of Birth</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="date" id="dateOfBirth" class='form-control' name="dateOfBirth"
+                                        min="1947-01-01" max="new Date()" value="{{studentData.dateOfBirth}}" placeholder="" />
+                                </div>
+                                <div class="col-lg-3    form-group">
+                                    <label>Gender</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" name='gender' id="gender">
+                                        <option class="d-none">Select</option>
+                                        {% if studentGender == 'Male' %}
+                                        <option selected="">Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                        {% elif studentGender == 'Female' %}
+                                        <option>Male</option>
+                                        <option selected="">Female</option>
+                                        <option>Other</option>
+                                        {% elif studentGender == 'Other' %}
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option selected="">Other</option>
+                                        {% else %}
+                                        <option selected="">Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>Parent Name</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" onkeypress="return /[a-zA-Z]/i.test(event.key)" placeholder="Enter parent name"
+                                        value="{{studentData.guardianName}}" name='guardianName' id="guardianName" />
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>Relation with parent</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" name='relationwithGuardian' id="relationwithGuardian">
+                                        {% if studentData.relationwithGuardian %}
+                                        <option value="{{studentData.relationwithGuardian}}" selected>
+                                            {{studentData.relationwithGuardian}}</option>
+                                        {% endif %}
+                                        <option class="d-none">Select</option>
+                                        <option>Father</option>
+                                        <option>Mother</option>
+                                        <option>Brother</option>
+                                        <option>Sister</option>
+                                        <option>Local guardian</option>
+                                    </select>
+                                </div>
+
+                                <!-- studentData >> {'id': 175, 'fullName': 'hhhv-hvhvhv', 'mobileNumber': '4644646425', 'dateOfBirth': '1998-08-05', 'gender': 'Male', 'handy': 'Left', 'disability': 'Yes', 'images': '/Upload_Images/studentImages/small_green_tree.jpg', 'signature': None, 'guardianName': 'jhhgghghh', 'guardianEmail': 'bkjbjkklkbkjbn@gmail.com', 'relationwithGuardian': 'Mother', 'guardianMobile': '6464646464', 'temp_district': 'mnvhjvhjvhvhjh', 'temp_address': 'jkkjhjvhjvhjvbhj', 'temp_pincode': '645779', 'temp_vs_perm': 'on', 'perm_district': 'mnvhjvhjvhvhjh', 'perm_address': 'jkkjhjvhjvhjvbhj', 'perm_pincode': '645779', 'created_at': '2021-05-15T17:14:21.572963Z', 'referUser': {'id': 779, 'password': 'pbkdf2_sha256$216000$B16fFMBum4lW$dyqi1CcW6641WSEb+8uOyajY1dcftQ6RMCN5CSNp+x4=', 'last_login': None, 'is_superuser': False, 'username': '1511', 'first_name': '', 'last_name': '', 'email': 'jbjjbhjbhjb@gmail.com', 'is_staff': False, 'is_active': True, 'date_joined': '2021-05-15T17:14:21.387570Z', 'groups': [], 'user_permissions': []}, 'courseTypeFK': {'id': 47, 'courseTypeID': 'phd023', 'courseTypeName': 'P.H.D', 'created_at': '2021-05-12T08:36:27.422031Z'}, 'courseFK': {'id': 70, 'courseID': '232323', 'courseName': 'Computer Vision', 'created_at': '2021-05-13T20:21:16.639847Z', 'courseType': 47}, 'temp_countryfk': {'id': 1, 'country_code': 'IN', 'country_name': 'INDIA', 'created_at': '2021-05-13T06:46:29.542161Z'}, 'temp_statefk': {'id': 2, 'country_state': 'Bihar', 'created_at': '2021-05-14T08:37:09.910165Z', 'country_fk': 1}, 'perm_countryfk': {'id': 1, 'country_code': 'IN', 'country_name': 'INDIA', 'created_at': '2021-05-13T06:46:29.542161Z'}, 'perm_statefk': {'id': 2, 'country_state': 'Bihar', 'created_at': '2021-05-14T08:37:09.910165Z', 'country_fk': 1}, 'suject': [{'id': 44, 'subjectID': 'jj34n', 'subjectName': 'Java', 'created_at': '2021-05-12T09:06:12.952002Z'}, {'id': 45, 'subjectID': 'ccsd2', 'subjectName': 'C language', 'created_at': '2021-05-12T09:06:48.556454Z'}, {'id': 46, 'subjectID': 'dser34', 'subjectName': 'studentData Science', 'created_at': '2021-05-12T09:07:25.867751Z'}], 'fname': 'hhhv', 'lname': 'hvhvhv'} -->
+
+                                <div class="col-lg-3   form-group">
+                                    <label style=''>Hand selection</label><br>
+                                    {% if studentData.handy == 'Right' %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Right" name='handy'
+                                        id="handy" checked>&nbsp;&nbsp;<label for="Right handed">Right handed</label>
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Left" name='handy'
+                                        id="handy">&nbsp;&nbsp;<label for="Right handed">Left handed</label>
+                                    {% else %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Right" name='handy'
+                                        id="handy">&nbsp;&nbsp;<label for="Right handed">Right handed</label>
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Left" name='handy'
+                                        id="handy" checked>&nbsp;&nbsp;<label for="Right handed">Left handed</label>
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>Disability</label><br>
+                                    {% if studentData.disability == 'Yes' %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="No" name='disable'
+                                        id="disable" >&nbsp;&nbsp;<label for="Right handed">No</label>
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Yes" name='disable'
+                                        id="disable" checked>&nbsp;&nbsp;<label for="Right handed">Yes</label>
+                                    {% else %}
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="No" name='disable'
+                                        id="disable" checked>&nbsp;&nbsp;<label for="Right handed">No</label>
+                                    <input type="radio" class="mt-1" style='height:15px;width:15px;' value="Yes" name='disable'
+                                        id="disable" >&nbsp;&nbsp;<label for="Right handed">Yes</label>
+                                    {% endif %}
+                                </div>
+
+
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Contact Detail</h4>
+                                </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label>Email ID </label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span id='editStudentEmailAlreadyExist' style='display:none;'>
+                                        <small style='color:red;'>Email already exist!</small>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter email id"
+                                        value="{{studentData.referUser.email}}" name='emailID' id="emailID" onkeyup="checkUserAvailability(this)"/>
+                                    {% if emailIDError %}
+                                    <span style='display:none;'><small style='color:red;'>{{emailIDError}}</small></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Mobile Number</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span id='editStudentContactAlreadyExist' style='display:none;'>
+                                        <small style='color:red;'>Mobile no. already exist!</small>
+                                    </span>
+                                    <input type="tel" class="form-control" placeholder="Enter mobile number"
+                                        value="{{studentData.mobileNumber}}" onkeypress="return /[0-9]/i.test(event.key)"
+                                        maxlength="10" onkeyup="checkUserAvailability(this)" name="mobileNumber" id='phone1' />
+                                    {% if mobileNumberError %}
+                                    <span style='display:none;'><small
+                                            style='color:red;'>{{mobileNumberError}}</small></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-3 mt-1   form-group">
+                                    <label>Parents's Mobile Number</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span style='display:;'><small
+                                        style='color:red;' id='ParentContactValidat'></small></span>
+                                    <input type="tel" class="form-control" placeholder="Enter parent's mobile number"
+                                        id="phone2" onkeypress="return /[0-9]/i.test(event.key)" maxlength="10"
+                                        value="{{studentData.guardianMobile}}" name='guardianMobile' />
+                                </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                    <label style=''>Parent's Email ID</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <span id=''>&nbsp;&nbsp;&nbsp;
+                                        <small style='color:red;' id='parentEmailValidation'></small>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter parent's email id"
+                                        name="guardianEmail" id="guardianEmail" onkeyup="checkParentEmail()"
+                                        value="{{studentData.guardianEmail}}" />
+                                </div>
+
+                                <div class="col-lg-12 mt-0 mb-1   form-group">
+                                    <label>Current Address</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <textarea class="form-control" name='temp_address' id="temp_address"
+                                        placeholder="Enter student address">{{studentData.temp_address}}</textarea>
+                                </div>
+
+                                <div class="col-lg-3   form-group">
+                                    <label>Country</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" name='temp_country' id="temp_country">
+                                        <option class="d-none">Select</option>
+                                        {% for j in countryTempData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_name}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_name}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>State</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" name='temp_state' id="temp_state">
+                                        {% for j in stateTempData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_state}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_state}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label>District</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" id='temp_district'
+                                        placeholder="Enter District" onkeypress="return /[a-zA-Z]/i.test(event.key)" name="temp_district" value="{{studentData.temp_district}}"
+                                        required />
+                                </div>
+
+                                <div class="col-lg-3 form-group">
+                                    <label>Pin Code</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" placeholder="Enter pin code"
+                                        id="temp_pincode" value="{{studentData.temp_pincode}}"
+                                        onkeypress="return /[0-9]/i.test(event.key)" maxlength="6"
+                                        name='temp_pincode' />
+                                </div>
+                                <br><br>
+                                
+                                {% if studentData.temp_vs_perm == 'on' %}
+                                <input type="checkbox" class='ml-2' style='height:15px;width:15px;' name="temp_vs_perm"
+                                    onclick="isSame_Current_Adrr_Edit()" checked>&nbsp;&nbsp;<span
+                                    style='font-weight:bold;'>Same as current
+                                    address.</span><br><br>
+                                    {% else %}
+                                    <input type="checkbox" class='ml-2' style='height:15px;width:15px;' name="temp_vs_perm"
+                                    onclick="isSame_Current_Adrr_Edit()">&nbsp;&nbsp;<span
+                                    style='font-weight:bold;'>Same as current
+                                    address.</span><br><br>
+                                
+                                {% endif %}
+                                
+
+                                <div class="col-lg-12 mt-0 mb-1   form-group">
+                                    <label>Permanent Address</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <textarea class="form-control" id='perm_address' name="perm_address"
+                                        placeholder="Enter student address">{{studentData.perm_address}}
+                                     </textarea>
+                                </div>
+                                <div class="col-lg-3   form-group">
+                                    <label>Country</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" id='perm_country' name="perm_country">
+                                        <option class="d-none">Select</option>
+                                        {% for j in countryPermData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_name}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_name}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3   form-group">
+                                    <label>State</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select class="form-control" id='perm_state' name="perm_state">
+                                        {% for j in statePermData %}
+                                        {% if j.status == "True"  %}
+                                            <option value={{j.id}} selected='selected'>{{j.country_state}}</option>
+                                        {% else %}
+                                         <option value={{j.id}}>{{j.country_state}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label>District</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" id='perm_district'
+                                        placeholder="Enter District" onkeypress="return /[a-zA-Z]/i.test(event.key)" name="perm_district" value="{{studentData.perm_district}}"
+                                        required />
+
+                                </div>
+
+                                <div class="col-lg-3 form-group">
+                                    <label>Pin Code</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <input type="text" class="form-control" id='perm_pincode'
+                                        placeholder="Enter pin code" name="perm_pincode" value="{{studentData.perm_pincode}}"
+                                        onkeypress="return /[0-9]/i.test(event.key)" maxlength="6" />
+                                </div>
+
+
+
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Course Detail</h4>
+                                </div>
+
+                                <div class="col-lg-4 mt-1 form-group">
+                                    <label>Course Type</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select title='{{studentData.courseTypeFK.courseTypeName}}' class="form-control" data-live-search="true"
+                                        id='course' name="course" onchange="onChangeGetCourseType(this)">
+                                        <option value='' class="d-none"> Select Course Type First</option>
+                                        {% for i in courseData %}
+                                         <option value="{{i.id}}">{{i.courseTypeName}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-4 mt-1 form-group">
+                                    <label>Course</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select title='{{studentData.courseFK.courseName}}' class="form-control" data-live-search="true"
+                                        id='courseName' name="courseName" id="courseName"
+                                        onchange="onChangeCourse(this)">
+                                        <option value="" class="d-none"> Select Course</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-4 mt-1 form-group">
+                                    <label>Subject</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                    <select title='{{studentData.subjects_render}}' class="form-control" name="subject_Name"
+                                        id="subjectName" id='subjectName' onchange="onChangeSubject(this)" multiple
+                                        data-live-search="true">
+                                        <option value="" class="d-none"> Select Subject</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-lg-12 mt-1  ">
+                                    <h4 class="title-1">Upload</h4>
+                                </div>
+
+                                <div class="col-lg-3 mt-1 form-group">
+                                    <label>Upload Student Photograph</label>
+                                    <label class="upl_photo">
+                                        <input type="file" name="" id="stu_photo" accept=".png, .jpg, .jpeg">
+                                        {% comment %} {% endcomment %}
+                                        {% if studentData.images != None %}
+                                        <img src="http://13.233.247.133/static/{{studentData.images}}" id="imgphoto">
+                                        {% else %}
+                                        <img src="{% static 'adminModule/images/avatar.jpg' %}" id="imgphoto">
+                                        {% endif %}
+
+                                        <span class="btn btn-info btn-sm">Change Photo</span>
+                                    </label>
+
+                                </div>
+
+                                <div class="col-lg-3 mt-1 form-group">
+                                    <label>Upload Student Signature</label>
+                                    <label class="upl_photo">
+                                        <input type="file" name="" id="stu_sign" accept=".png, .jpg, .jpeg">
+                                        <div class="media">
+                                            {% if studentData.signature != None %}
+                                            <img src="http://13.233.247.133/static/{{studentData.signature}}" id="imgsign">
+                                            {% else %}
+                                            <img src="{% static 'adminModule/images/sign.jpg' %}" id="imgsign">
+                                            {% endif %}
+                                        </div>
+                                        <span class="btn btn-info btn-sm">Change Signature</span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-right  pt-1">
+                    <button class="btn btn-primary pl-5 pr-5" id="updateStudentData">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p id='hiddenTokenKey' style="display:none;">{{tokenKey}}</p>
+
+<!-- Modal -->
+<div class="modal fade small" id=success tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+                <p>Student has been updated successfully.</p>
+                <a href="{% url 'student_list' %}" class="btn btn-info">OK</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script>
+    var i = 0;
+    $("#guardianName").on('keypress', function (e) {
+        if ($(this).val().length < 1) {
+            if (e.which == 32) {
+                return false;
+            }
+        }
+        else {
+            if (e.which == 32) {
+                if (i != 0) {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i = 0;
+            }
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $('select').selectpicker();
+</script>
+<script>
+    $(document).ready(function () {
+        var email = $('#emailID').val();
+        var phone = $('#phone1').val();
+
+        localStorage.setItem('email',email);
+        localStorage.setItem('phone',phone);
+
+
+        
+        // =========================================================================================================
+        // Data >> 
+        // {'id': 173, 'fullName': 'ihhjg-jgjgj', 'mobileNumber': '5656565656', 'dateOfBirth': '1898-06-01', 'gender': 'Male', 'handy': 'Right', 'disability': 'No', 'images': None, 'signature': None, 'guardianName': 'jjkhhkh', 'guardianEmail': 'jhkjhkjhkjh@gmail.com', 'relationwithGuardian': 'Sister', 'guardianMobile': '6565656565', 'temp_district': 'jlkjlkjlkj', 'temp_address': 'nmbkjkjhjk', 'temp_pincode': '545664', 'temp_vs_perm': 'on', 'perm_district': 'jlkjlkjlkj', 'perm_address': 'nmbkjkjhjk', 'perm_pincode': '545664', 'created_at': '2021-05-15T15:21:46.364029Z', 'referUser': {'id': 777, 'password': 'pbkdf2_sha256$216000$9LM8vjdLGaui$GVBMmJDhd6nTmJbIviE3b9MW9h9OPG88OyF88XyMr2Y=', 'last_login': None, 'is_superuser': False, 'username': '11212', 'first_name': '', 'last_name': '', 'email': 'nlkklkljlkjlk@gmail.com', 'is_staff': False, 'is_active': True, 'date_joined': '2021-05-15T15:21:46.155901Z', 'groups': [], 'user_permissions': []}, 'courseTypeFK': {'id': 40, 'courseTypeID': 'pg0012', 'courseTypeName': 'PG', 'created_at': '2021-05-10T08:40:20.125323Z'}, 'courseFK': {'id': 38, 'courseID': 'msc01', 'courseName': 'M.Sc', 'created_at': '2021-05-12T07:49:47.573570Z', 'courseType': 40}, 'temp_countryfk': {'id': 1, 'country_code': 'IN', 'country_name': 'INDIA', 'created_at': '2021-05-13T06:46:29.542161Z'}, 'temp_statefk': {'id': 2, 'country_state': 'Bihar', 'created_at': '2021-05-14T08:37:09.910165Z', 'country_fk': 1}, 'perm_countryfk': {'id': 1, 'country_code': 'IN', 'country_name': 'INDIA', 'created_at': '2021-05-13T06:46:29.542161Z'}, 'perm_statefk': {'id': 2, 'country_state': 'Bihar', 'created_at': '2021-05-14T08:37:09.910165Z', 'country_fk': 1}, 'suject': [{'id': 31, 'subjectID': 'sub001', 'subjectName': 'Maths', 'created_at': '2021-05-11T07:37:41.087034Z'}, {'id': 33, 'subjectID': 'bbn324', 'subjectName': 'Politics', 'created_at': '2021-05-12T08:14:54.629374Z'}, {'id': 39, 'subjectID': 'een24', 'subjectName': 'Environmental', 'created_at': '2021-05-12T08:49:42.873737Z'}], 'fname': 'ihhjg', 'lname': 'jgjgj'}
+        // =========================================================================================================
+
+        var couseTypeID = "{{studentData.courseTypeFK.id|safe}}";
+        $('#subjectName').html('');
+        $('#subjectName').selectpicker('refresh');
+        $.ajax({
+            type: 'GET',
+            url: "/chainedCourses",
+            data: { courseTypeId: couseTypeID },
+            success: function (response) {
+                console.log(response['courseList']);
+                var courseStr = ' <option value="" class="d-none"> Select Course</option>'
+                if (response['courseList'].length > 0) {
+                    for (var i = 0; i < response['courseList'].length; i++) {
+                        var data = '<option value = "' + response['courseList'][i]['id'] + '" > ' + response['courseList'][i]['courseName'] + '</option > ';
+                        courseStr = courseStr + data;
+
+                    }
+                    $('#courseName').html('');
+                    $('#courseName').html(courseStr);
+                    $('#courseName').selectpicker('refresh');
+
+                    var data = "{{studentData.courseFK.id|safe}}";
+                    $("#courseName").val(data);
+                    $('#courseName').selectpicker('refresh');
+
+                } else {
+                    var data = '<option value="">No Course Associated with this Course Type !</option>';
+                    $('#baseSelectOption').show();
+                    $('#courseName').html('');
+                    $('#courseName').html(data);
+                    $('#courseName').selectpicker('refresh');
+                }
+            }
+        }).then(function () {
+            // course
+            var couseID = "{{studentData.courseFK.id|safe}}";
+            var courseTypeID = $('select[name="course"]').val();
+            $.ajax({
+                type: 'GET',
+                url: "/getSlectedSubject",
+                data: { 'couseID': couseID, 'courseTypeID': courseTypeID },
+                success: function (response) {
+                    $('#subjectName').html('');
+                    $('#subjectName').selectpicker('refresh');
+                    console.log(response['subjectList']);
+                    var courseStr = ' <option  value="" class="d-none"> Select Course</option>'
+                    for (var i = 0; i < response['subjectList'].length; i++) {
+                        var data = '<option value = "' + response['subjectList'][i]['id'] + '" > ' + response['subjectList'][i]['subjectName'] + '</option > ';
+                        courseStr = courseStr + data;
+                    }
+                    if (response['subjectList']['message'] == "Subject not found") {
+                        var data = '<option value="">No Subject</option > ';
+                        courseStr = courseStr + data;
+                    }
+
+                    $('#subjectName').html('');
+                    $('#subjectName').html(courseStr);
+                    $('#subjectName').selectpicker('refresh');
+
+                    var data = eval("{{subjectList|safe}}")
+                    console.log('subjectList >> ',data,typeof(data));
+                    $("#subjectName").val(data);
+                    $('#subjectName').selectpicker('refresh');
+                    // subjectListing
+                }
+            })
+        })
+
+        // ==========================================================================================================
+        var input = document.querySelector("#phone1");
+        window.intlTelInput(input, {
+            allowDropdown: false,
+            autoHideDialCode: false,
+            autoPlaceholder: "off",
+            dropdownContainer: document.body,
+            excludeCountries: ["us"],
+            formatOnDisplay: false,
+            geoIpLookup: function (callback) {
+                $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    callback(countryCode);
+                });
+            },
+            //hiddenInput: "full_number", 
+            initialCountry: "in",  //"auto",
+            localizedCountries: { 'in': 'India' },
+            nationalMode: false,
+            onlyCountries: ['in'],
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['in', 'jp'],
+            separateDialCode: true,
+            utilsScript: "../../../static/adminModule/js/integratedJS/utils.js",
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var input = document.querySelector("#phone2");
+        window.intlTelInput(input, {
+            allowDropdown: false,
+            autoHideDialCode: false,
+            autoPlaceholder: "off",
+            dropdownContainer: document.body,
+            excludeCountries: ["us"],
+            formatOnDisplay: false,
+            geoIpLookup: function (callback) {
+                $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    callback(countryCode);
+                });
+            },
+            //hiddenInput: "full_number",
+            initialCountry: "in",  //"auto",
+            localizedCountries: { 'in': 'India' },
+            nationalMode: false,
+            onlyCountries: ['in'],
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['in', 'jp'],
+            separateDialCode: true,
+            utilsScript: "../../../static/adminModule/js/integratedJS/utils.js",
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminValidation_JS\edit-student-validation.js' %}"></script>
+<script>
+    $("#course").val('{{studentData.courseTypeFK.id|safe}}');
+    $('#course').selectpicker();
+</script>
+<script>
+function checkUserAvailability(thisTxt) {
+    var check = '';
+    var email = '';
+    var contact = '';
+    var fieldname = thisTxt['name'];
+    if (fieldname == 'registrationNumber') {
+        check = 'registrationNumber';
+    } else if (fieldname == 'emailID') {
+        check = 'emailID';
+        email = email + $('#emailID').val();
+    } else if (fieldname == 'mobileNumber') {
+        check = 'mobileNumber';
+        contact = contact + $('#phone1').val();
+    }
+
+    console.log('check value : ', check);
+    console.log('----------------------------')
+
+    $.ajax({
+        type: 'GET',
+        url: "/validateUserAvailability",
+        data: { 'check': check, 'valiadteString': thisTxt['value'].trim() },
+        success: function (response) {
+            var emailAddress = localStorage.getItem('email');
+            var contactDetail = localStorage.getItem('phone');
+
+            if (fieldname == 'emailID' && response['resultData'].length > 0 && response['resultData'][0]['referUser']['email'] != emailAddress) {
+                $('#editStudentEmailAlreadyExist').css('display', '');
+                $('#addStudentData').attr('disabled',true);
+                return false;
+            }
+            if (fieldname == 'emailID' && response['resultData'].length == 0) {
+                $('#editStudentEmailAlreadyExist').css('display', 'none');
+                $('#addStudentData').attr('disabled',false);
+                return false;
+            }
+            if (fieldname == 'mobileNumber' && response['resultData'].length > 0 && response['resultData'][0]['mobileNumber'] != contactDetail) {
+                $('#editStudentContactAlreadyExist').css('display', '');
+                $('#addStudentData').attr('disabled',true);
+                return false;
+            }
+             if (fieldname == 'mobileNumber' && response['resultData'].length == 0) {
+                $('#editStudentContactAlreadyExist').css('display', 'none');
+                $('#addStudentData').attr('disabled',false);
+                return false;
+            }
+
+        }
+    });
+
+}
+</script>
+<script>
+$(function(){
+    $('[type="date"]').prop('max', function(){
+        return new Date().toJSON().split('T')[0];
+    });
+});
+</script>

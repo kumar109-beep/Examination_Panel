@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<div>
+    <!-- ====================================================================================================================================================== -->
+    <!--   PAGE 01 HTML : BASIC DETAILS OF NEW EXAM  -->
+    <div id='individualBlock' style='display:;'>
+        {% include 'Admin/grade-management/individual-grade.html' %}
+    </div>
+    <!--   PAGE 02 HTML : SELECT EXAM PAPERS   -->
+    <div id='collectiveBlock' style='display:none;'>
+        {% include 'Admin/grade-management/collective-grade.html' %}
+    </div>
+    <!-- ====================================================================================================================================================== -->
+</div>
+{% include 'Admin/dashboard/footer.html' %}
+<scripT>
+    function onlyNumberKey(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>
+<!-- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+    $('select').selectpicker();
+</script>
+ -->
+<script src="{% static 'adminModule/js/admin-js/customJS/adminGrades_JS/createGrades.js' %}"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+{% comment %} <script src="{% static 'adminModule/js/admin-js/customJS/admin-examManagement/validate-create-exam.js' %}"></script> {% endcomment %}
+{% comment %} <script src="{% static 'adminModule\js\admin-js\customJS\admin-examManagement\validate_ExamName_ID.js' %}"></script> {% endcomment %}
+{% comment %}  {% endcomment %}
+
+
+

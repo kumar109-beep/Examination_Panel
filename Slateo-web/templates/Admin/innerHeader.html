@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+ 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>Dashboard  - Slateo </title>
+    <link rel="apple-touch-icon" href="{% static 'adminModule/images/ico/apple-icon-120.png' %}g">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/forms/toggle/switchery.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/plugins/forms/switch.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/core/colors/palette-switch.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/charts/chartist.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/charts/chartist-plugin-tooltip.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/tables/datatable/datatables.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/vendors/css/forms/selects/select2.min.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/bootstrap-extended.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/colors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/components.min.css' %}">
+    <!-- END: Theme CSS-->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/core/menu/menu-types/vertical-menu.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/core/colors/palette-gradient.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/core/colors/palette-gradient.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/pages/chat-application.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/pages/dashboard-analytics.min.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+      <link rel="stylesheet" type="text/css" href="{% static 'adminModule/css/custom.css' %}">
+    <!-- END: Custom CSS-->
+
+  </head>
+  <!-- END: Head-->
+
+  <!-- BEGIN: Body-->
+  <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light "> 
+
+      <div class="navbar-wrapper">
+        <div class="navbar-container content">
+         
+          <div class="collapse navbar-collapse show" id="navbar-mobile">
+            <ul class="nav navbar-nav mr-auto float-left">
+              <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+              <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
+            <li class="main-head">Exam Management</li>
+            </ul>
+            <ul class="nav navbar-nav float-right">         
+              
+              <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span class="badge badge-pill badge-sm badge-danger badge-up badge-glow">5</span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <div class="arrow_box_right">
+                    <li class="dropdown-menu-header">
+                      <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6>
+                    </li>
+                    <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
+                        <div class="media">
+                          <div class="media-left align-self-center"><i class="ft-share info font-medium-4 mt-2"></i></div>
+                          <div class="media-body">
+                            <h6 class="media-heading info">New exam added</h6>
+                            <p class="notification-text font-small-3 text-muted text-bold-600">Lorem ipsum dolor sit amet!</p><small>
+                              <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">3:30 PM</time></small>
+                          </div>
+                        </div></a><a href="javascript:void(0)">
+                        <div class="media">
+                          <div class="media-left align-self-center"><i class="ft-user font-medium-4 mt-2 warning"></i></div>
+                          <div class="media-body">
+                            <h6 class="media-heading warning">New User Registered</h6>
+                            <p class="notification-text font-small-3 text-muted text-bold-600">Aliquam tincidunt mauris eu risus.</p><small>
+                              <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">10:05 AM</time></small>
+                          </div>
+                        </div></a><a href="javascript:void(0)">
+                        <div class="media">
+                          <div class="media-left align-self-center"><i class="ft-repeat font-medium-4 mt-2 danger"></i></div>
+                          <div class="media-body">
+                            <h6 class="media-heading danger">Exam Conducted</h6>
+                            <p class="notification-text font-small-3 text-muted text-bold-600">Lorem ipsum dolor sit ametest?</p><small>
+                              <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Yesterday</time></small>
+                          </div>
+                        </div></a><a href="javascript:void(0)">
+                        <div class="media">
+                          <div class="media-left align-self-center"><i class="ft-list font-medium-4 mt-2 primary"></i></div>
+                          <div class="media-body">
+                            <h6 class="media-heading primary">Exam Paper generated</h6><small>
+                              <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last week</time></small>
+                          </div>
+                        </div></a><a href="javascript:void(0)">
+                       </a></li>
+                    <li class="dropdown-menu-footer"><a class="dropdown-item info text-right pr-1" href="javascript:void(0)">Read all</a></li>
+                  </div>
+                </ul>
+              </li>
+               
+              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="{% static 'adminModule/images/dashboard/profile.png' %}" alt="avatar"></span></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{% static 'adminModule/images/dashboard/profile.png' %}" alt="avatar"><span class="user-name text-bold-700 ml-1">John Doe</span></span></a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a> 
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="login.html"><i class="ft-power"></i> Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- END: Header-->
+      
+
+    <!-- BEGIN: Main Menu-->
+    <div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true" >
+      <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+          <li class="nav-item mr-auto"><a class="navbar-brand" href="../dashboard.php"><img class="brand-logo" alt="Chameleon admin logo" src="{% static 'adminModule/images/dashboard/Slateo Logo.png' %}"/>
+              <h3 class="brand-text"> </h3></a></li>
+          <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+        </ul>
+      </div>
+       <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+           <li class=" nav-item active"><a href="../dashboard.php"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/dashboard.png' %}"><span class="menu-title" data-i18n="">Dashboard</span> </a>
+          </li>
+          <li class=" nav-item"><a href=""><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/exam.png' %}"><span class="menu-title" data-i18n="">Exam Management</span> </a>
+            <ul class="menu-content">
+             <li><a class="menu-item" href="exam-details.php">Exam List</a>
+              </li>
+              <li><a class="menu-item" href="create-exam.php">Create Exam</a>
+              </li>
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="#"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/exam-process.png' %}"><span class="menu-title" data-i18n="">Exam Process</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="#"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/batch.png' %}"><span class="menu-title" data-i18n="">Batch Management</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="#"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/student.png' %}"><span class="menu-title" data-i18n="">Student Management</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="#"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/resource.png' %}"><span class="menu-title" data-i18n="">Resource Management</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            </ul>
+          </li>
+           <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/role.png' %}"><span class="menu-title" data-i18n="">Roles/Designation <br> Management</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            </ul>
+          </li>
+           <li class=" nav-item"><a href="#"><img width="30" src="{% static 'adminModule/images/dashboard/sidebar/authorise.png' %}"><span class="menu-title" data-i18n="">Authority Listing</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            
+            </ul>
+          </li>
+            <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/exam-paper.png' %}"><span class="menu-title" data-i18n="">Exam Paper/Subject<br> Listing</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            
+            </ul>
+          </li>
+           <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/question-bank.png' %}"><span class="menu-title" data-i18n="">Question Bank <br>Management</span></a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="">Option 1</a>
+              </li>
+              <li><a class="menu-item" href="">option 2</a>
+              </li>
+            
+            </ul>
+          </li>
+           <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/profile.png' %}"><span class="menu-title" data-i18n="">Profile Management</span></a>
+             
+          </li>
+           <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/header.png' %}"><span class="menu-title" data-i18n="">Header Display</span></a>
+             
+          </li>
+          <li class=" nav-item"><a href="#"><img width="30" height="32" src="{% static 'adminModule/images/dashboard/sidebar/request.png' %}"><span class="menu-title" data-i18n="">Request Heading</span></a>
+             
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- END: Main Menu-->

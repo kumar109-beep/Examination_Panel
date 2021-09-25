@@ -1,0 +1,70 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+        <div class="content-header row" >
+             <div class="col-md-2">  Unique Exam ID <br> <span>{{data1.examID}}</span></div>
+              <div class="col-md-2">  Exam Name <br> <span>{{data1.examName}}</span></div>
+              <div class="col-md-2">Total Papers <br> <span>{{paperCount}}</span></div>
+              <div class="col-md-2">Exam Type <br> <span>{{data1.examType}}</span></div>
+              <div class="col-md-2">Course  <br>  <span>{{data1.examAssociateCourse}}</span></div>
+              
+            <div class="col-md-2 text-right ">
+                    {% if authority.edit_exam == 'True' or authority.admin == '18pixels@admin' %}
+                <a href="{% url 'edit_exam' data1.id %}" class="btn  btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                {% endif %}
+            </div>
+              <div class="col-md-8 mt-2">Attached Batches<br><br>
+              {% for i in data1.batchManagement_mtwom %}
+              <span style="border:1px solid white;background-color:grey;color:white;padding:2px;">{{i.batchName}}</span>
+              {% endfor %}
+              </div>
+        </div>
+      <div class="content-wrapper  ">
+      
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             <div class="table-responsive  ">
+               <table id="example2"  class="display table data-table schedule-exam">
+                    <thead>
+                        <tr>
+                            <th>Paper Name</th>
+                            <th>Subject</th>
+                            <th>Year</th>
+                            <th>Total Time </th>
+                            <th>Start Date </th>
+                            <th>Start Time </th>
+                            <th width="150" class="text-center">Proctor </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data1.examPaperDetail %}
+                            <tr >
+                            <td>{{i.paperName}}</td>
+                            <td>{{i.subjectName}} </td>
+                            <td>{{i.year_p}}</td>
+                            <td>{{i.totalPaperTime}} hr</td>
+                            <td>{{i.StartDate}}</td>
+                            <td>{{i.paper_time_start}}</td>
+                            <td class="text-center">
+                                 {{i.paper_procter_name}}
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                          {% comment %} this is my data  :>>>>  {'data': {'id': 44, 'examName': 'rr', 'examID': 'eewgggew', 'examAssociateCourse': 'BSC', 'examAssociateCourseID': 1, 'examType': 'Quarterly', 'examStartDate': '1/1/2021', 'examEndDate': '1/14/2021', 'examPassword': '1', 'examPaperDetail': [{'id': 20, 'subjectName': 'Maths', 'year': '2021-06-14T13:09:41.000Z', 'paperName': 'CherNicholson', 'paperID': 18, 'totalPaperTime': '01:54', 'paperStartDate': '2021-06-19', 'paper_time_start': '14:30', 'paper_procter_id': 221, 'paper_procter_name': 'Geeta-Yadav'}], 'batchManagement_mtwom': [{'id': 22, 'batchName': 'Batch003'}]}, 'status': True, 'message': 'sucess'} {% endcomment %}
+                    </tbody>
+                </table>
+             
+            </div>
+            <div class="text-right pr-2">
+                    {% if authority.exam_list == 'True' or authority.admin == '18pixels@admin' %}
+                <a href="{% url 'examlist' %}" class="btn btn-secondary mt-2">Back</a> 
+                {% endif %}
+            </div>
+
+
+            
+      </div>
+     </div>
+   </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}

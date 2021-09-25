@@ -1,0 +1,201 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div>
+
+  <!-- ====================================================================================================================================================== -->
+  <!--   PAGE 01 HTML : BASIC DETAILS   -->
+  <div id='paperBasicdetail' style='display:;'>
+    {% include 'Admin/paper-management/createPaper/create-paper-1.html' %}
+  </div>
+  <!--   PAGE 02 HTML : SECTIONAL DETAILS   -->
+  <div id='paperSectionaldetail' style='display:none;'>
+    {% include 'Admin/paper-management/createPaper/create-paper-2.html' %}
+  </div>
+  <!--   PAGE 03 HTML : QUESTION DETAILS   -->
+  <div id='paperQuestiondetail' style='display:none;'>
+    {% include 'Admin/paper-management/createPaper/create-paper-3.html' %}
+  </div>
+
+  <!--   PAGE 04 HTML : SET CREATION DETAILS   -->
+  <div id='papersetCreationDetail' style='display:none;'>
+    {% include 'Admin/paper-management/createPaper/create-paper-4.html' %}
+  </div>
+
+  <!--   PAGE 05 HTML : PREVIEW PAPER DETAILS   -->
+  <div id='paperPreviewDetail' style='display:none;'>
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body ">
+          <!-- Revenue, Hit Rate & Deals -->
+
+          <div class="col-lg-12 col-md-12 col-sm-12  ">
+            <h4 class="head mb-2  ">Preview Paper Details <button class="btn btn-default   float-right btn-sm  mt--1 "
+                href="#" onclick='paperQuestionDetailPage()'>Back</button></h4>
+            <div class="card form paper_det">
+              <div class="card-content ">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col-lg-12 mt-1  ">
+                      <h4 class="title-1">Basic Details <a onclick="paperBasicDetailPage()"><i class="fa fa-edit   float-right"></i></a></h4>
+                    </div>
+
+                    <div class="col-lg-3 mt-1  form-group">
+                      <label>Unique Paper ID </label>
+                      <p class="value" id="UID"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1  form-group">
+                      <label>Unique Paper Name </label>
+                      <p class="value" id="UNAME"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Associated Course</label>
+                      <p class="value" id="assoCourse"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Subject</label>
+                      <p class="value" id="subjectName"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Total Paper Time</label>
+                      <p class="value" id="tPTime"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Total Marks</label>
+                      <p class="value" id="tPmarks"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Passing Marks</label>
+                      <p class="value" id="tPPmarks"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Language</label>
+                      <p class="value" id="paperLang"></p>
+                    </div>
+                    <div class="col-lg-3 mt-1   form-group">
+                      <label>Default Language</label>
+                      <p class="value" id="paperDefaultLang"></p>
+                    </div>
+                    <div class="col-lg-12 mt-1   form-group">
+                      <label>Guidelines</label>
+                      <p class="value" id=paperGuide></p>
+                    </div>
+
+                    <div class="col-lg-12 mt-1  ">
+                      <h4 class="title-1">Paper Sections Details <a onclick="paperSectionDetailPage()"><i class="fa fa-edit   float-right"></i></a>
+                      </h4>
+                    </div>
+                    <div class="col-lg-3 mt-1  form-group">
+                      <label>Total No. of Sections </label>
+                      <p class="value" id="paperSec">3</p>
+                    </div>
+                    <div class="col-lg-2 mt-1  form-group">
+                      <label>Total Question </label>
+                      <p class="value" id="paperTQues">50</p>
+                    </div>
+                    <div class="col-lg-12 mt-1  form-group">
+                      <div class="sec_det" id='sectionPaperRows'>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-1  ">
+                      <h4 class="title-1">Questions Details <a onclick="paperQuestionDetailPage()"><i class="fa fa-edit   float-right"></i></a></h4>
+                    </div>
+                    <div id="paperQuestionAppendDiv">
+                      
+                    </div>
+                    
+                  <div class="col-lg-12 mt-3  ">
+                    <h4 class="title-1">Paper Set Options <a onclick="paperSetDetailPage()"><i class="fa fa-edit   float-right"></i></a></h4>
+                  </div>
+                  <div class="col-lg-3 mt-1  form-group">
+                    <label>Is automated Set Creation Allowed? </label>
+                    <p class="value" id='autoSetGenerat'></p>
+                  </div>
+                  <div class="col-lg-9 mt-1  form-group">
+                    <div class="row">
+                      <div class="col-lg-3  form-group">
+                        <label>Maximum Possible Sets</label>
+                        <p class="value" id='maxSet'></p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-right  pt-2 bottom-btn">
+        <a class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#alert" href="javascript:;">Submit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Are you sure want to create exam paper <br><strong id="modalPaperName"></strong>. </p>
+
+        <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+        <button class="btn btn-primary btn-sm" onclick="submitPaperData()">Yes</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="../app-assets/images/success-icon-10.png">
+        <p> Exam paper has been created successsfully. </p>
+
+
+        <a href="" class="btn btn-primary btn-sm">OK</a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- ====================================================================================================================================================== -->
+</div>
+{% include 'Admin/dashboard/footer.html' %}
+<scripT>
+  function onlyNumberKey(e) {
+    var x = e.which || e.keycode;
+    if ((x >= 48 && x <= 57))
+      return true;
+    else
+      return false;
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminPaper_JS/admin-create-paper.js' %}"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminPaper_JS/adminPaperStep_1.js' %}"></script>
+

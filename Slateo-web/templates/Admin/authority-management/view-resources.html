@@ -1,0 +1,83 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             <div class="row">
+               <div class="col-lg-4 col-md-8 col-sm-8  mb-2 form-group ico pl-3">
+                 <i class="fa fa-search"></i>
+                    <select class="select2 form-control select2-placeholder5" id="default-select">
+                       <option> </option>
+                        <option value="1" selected="">Batch Management</option>
+                        <option value="2">User Management</option>
+                         <option value="3">Exam Management</option>
+                     
+                  </select>
+                 </div>
+                  <div class="col-lg-8 col-md-4 col-sm-4 pt-2 pr-3  ">
+                    {% if authority.authority_list == 'True' or authority.admin == '18pixels@admin' %}
+                     <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'authority_list' %}" >Back</a>
+                        {% endif %}
+                  </div>
+                 <div class="col-lg-12 col-md-12 col-sm-12  pl-3  mt-1">
+                 <h4 class="head mb-2  ">Authority Name:  <strong>Batch Management</strong> <span class="pl-2 pr-2">|</span> No. of Roles Assigned: <strong>2</strong>   <span class="pl-2 pr-2">|</span> Total No. of resources: <strong>105</strong>  </h4>
+               </div>
+
+           </div>
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                              <th>S.No.</th>
+                              <th>Resource Name</th>
+                              <th>Designation</th>   
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ram Singh</td>
+                            <td>Teacher</td>
+                             
+                        </tr>
+                         <tr>
+                            <td>2</td>
+                            <td>Kishan Verma</td>
+                            <td> Teacher</td>
+                             
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Kishan Verma</td>
+                            <td> Teacher</td>
+                             
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Kamlesh Verma</td>
+                            <td> Proctor</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Kajal Singh</td>
+                            <td> Proctor</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+             
+            </div>
+
+             {% comment %} <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> {% endcomment %}
+            
+           
+      </div>
+     </div>
+   </div>
+
+    <!-- Modal -->
+  
+ 
+ 
+{% include 'Admin/dashboard/footer.html' %}

@@ -1,0 +1,191 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div class="app-content content position-relative  ">
+  <div class="content-wrapper  ">
+    <div class="content-body ">
+      <!-- Revenue, Hit Rate & Deals -->
+      <div class="top-options pl-1 mb-0">
+        <div class="row">
+          <div class="col-lg-5  mb-1 form-group ico  ">
+          </div>
+
+          <div class="col-md-7 text-right pr-2  ">
+              {% if authority.edit_student == 'True' or authority.admin == '18pixels@admin' %}
+            <a class="btn btn-primary btn-min-width btn-sm " href="{% url 'edit_student_detail' studentDetail.id %}">Edit Detail </a>
+            {% endif %}
+            {% if authority.student_list == 'True' or authority.admin == '18pixels@admin' %}
+            <a class="btn btn-default   float-right btn-sm  ml-1" href="{% url 'student_list' %}">Back to list</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="detail_block">
+        <div class="card form">
+          <div class="card-content ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-4 mx-auto mt-1  ">
+                  <div class="head">
+                    <div class="row ">
+                      <div class="col-lg-6   ">
+                        <label>Student Photo </label>
+                        {% if studentDetail.images != None %}
+                        <img src="http://13.233.247.133/static/{{studentDetail.images}}" id="imgphoto">
+                        {% else %}
+                        <img src="{% static 'adminModule/images/avatar.jpg' %}" id="imgphoto">
+                        {% endif %}
+                      </div>
+
+                      <div class="col-lg-6  ">
+                        <label>Student Signature </label>
+                        {% if studentDetail.signature != None %}
+                        <img src="http://13.233.247.133/static/{{studentDetail.signature}}" id="imgsign">
+                        {% else %}
+                        <img src="{% static 'adminModule/images/sign.jpg' %}" id="imgsign">
+                        {% endif %}
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-lg-12  pt-1 ">
+                  <h4 class="title-1">Personal Details</h4>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Registration No.</label>
+                  <p class="value">{{studentDetail.referUser.username}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Name</label>
+                  <p class="value">{{studentDetail.fullName}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Gender </label>
+                  <p class="value">{{studentDetail.gender}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Date of birth </label>
+                  {% if studentDetail.dateOfBirth != '' %}
+                   <p class="value">{{studentDetail.dateOfBirth}}</p>
+                  {% else %}
+                   <p class="value">NA</p>
+                  {% endif %}
+                 
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Parent Name</label>
+                  <p class="value">{{studentDetail.guardianName}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Relation with guardian </label>
+                  <p class="value">{{studentDetail.relationwithGuardian}}</p>
+                </div>
+                
+                <div class="col-lg-3 pt-1 ">
+                  <label>Hand selection</label>
+                  <p class="value">{{studentDetail.handy}}</p>
+                </div>
+
+                <div class="col-lg-3  pt-1 ">
+                  <label>Disability</label>
+                  <p class="value">{{studentDetail.disability}}</p>
+                </div>
+
+                <div class="col-lg-12  pt-3 ">
+                  <h4 class="title-1">Contact Details</h4>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Email ID</label>
+                  <p class="value">{{studentDetail.referUser.email}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Mobile No.</label>
+                  <p class="value">{{studentDetail.mobileNumber}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Parents's Mobile no. </label>
+                  <p class="value">{{studentDetail.guardianMobile}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Parents's Mobile no. </label>
+                  <p class="value">{{studentDetail.guardianEmail}}</p>
+                </div>
+
+                <div class="col-lg-3  pt-1 ">
+                  <label> Current Address</label>
+                  <p class="value">{{studentDetail.temp_address}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Country</label>
+                  <p class="value">{{studentDetail.temp_countryfk.country_name}}</p>
+                </div>
+
+                <div class="col-lg-3  pt-1 ">
+                  <label>State </label>
+                  <p class="value">{{studentDetail.temp_statefk.country_state}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>District</label>
+                  <p class="value">{{studentDetail.temp_district}}</p>
+                </div>
+                <div class="col-lg-12  pt-1 ">
+                  <label>Pin code </label>
+                  <p class="value">{{studentDetail.temp_pincode}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label> Permanent Address</label>
+                  <p class="value">{{studentDetail.perm_address}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Country</label>
+                  <p class="value">{{studentDetail.perm_countryfk.country_name}}</p>
+                </div>
+
+                <div class="col-lg-3  pt-1 ">
+                  <label>State </label>
+                  <p class="value">{{studentDetail.perm_statefk.country_state}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>District</label>
+                  <p class="value">{{studentDetail.perm_district}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Pin code </label>
+                  <p class="value">{{studentDetail.perm_pincode}}</p>
+                </div>
+
+                <div class="col-lg-12  pt-3 ">
+                  <h4 class="title-1">Course Details</h4>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Course Type</label>
+                  <p class="value">{{studentDetail.courseTypeFK.courseTypeName}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Course </label>
+                  <p class="value">{{studentDetail.courseFK.courseName}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Subject </label>
+                  {% for i in studentDetail.suject %}
+                  <p class="value">{{i.subjectName}}</p>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}

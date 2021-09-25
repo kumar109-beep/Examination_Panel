@@ -1,0 +1,174 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div class="app-content content position-relative  ">
+
+    <div class="content-wrapper">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2  ">Add
+                    Role/Designation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                        style='color:red;'>{{res}}</span>
+                        {% if authority.roles_list == 'True' or authority.admin == '18pixels@admin' %}
+                        <a class="btn btn-default   float-right btn-sm  mt--1 "
+                        href="{% url 'role_list' %}">Back to list</a>
+                        {% endif %}
+                    </h4>
+                <div class="card  form">
+                    <div class="card-content ">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="card-body">
+                            {% if success_data %}
+                          <span style='color:#3fd411;font-weight:500;'>{{ success_data }}</span>
+                            {% endif %}
+                                <div class="row ">
+                                    <div class="col-lg-6 mt-1  form-groroleIDup">
+                                        <label>Role/Designation ID </label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i><span id='' >&nbsp;&nbsp;&nbsp;
+                                            <small style='color:red;' id='roleIDValidation'></small>
+                                        </span>
+                                        {% if errDict.roleID %}
+                                        <span style='color:#ff8785;font-weight:500;'>Already exist</span>
+                                        <input type="text" class="form-control" placeholder="Enter Role/Designation id"
+                                            value="{{roleId}}" id="" name='roleID' onkeyup="validateRoleId(this)" required />
+                                        {% else %}
+                                        <input type="text" class="form-control" placeholder="Enter Role/Designation id"
+                                            value="{{roleId}}" id="roleID" onkeypress="return /[a-zA-Z0-9]/i.test(event.key)" name='roleID' required />
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-lg-6 mt-1   form-group">
+                                        <label>Role/Designation Name</label>&nbsp;<i style="color:red;font-size:10px;font-weight:900;" class="fas fa-asterisk"></i>
+                                        {% if errDict.roleName %}
+                                        <span style='color:#ff8785;font-weight:500;'>Already exist</span>
+                                        <input type="text" class="form-control"
+                                            placeholder="Enter Role/Designation name" value="{{roleName}}"
+                                            name='roleName' id="roleName" required />
+                                        {% else %}
+                                        <input type="text" class="form-control"
+                                            placeholder="Enter Role/Designation name" value="{{roleName}}"
+                                            name='roleName' id="roleName" required />
+                                        {% endif %}
+                                        
+                                    </div>
+
+                                    <div class="col-lg-12 mt-2 pt-2 text-right">
+                                        <button type='submit' class="btn btn-primary" id="submitBtn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade small with-img" id="success1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+                <p> Authority has been added successsfully. </p>
+                <a href="#" data-dismiss="modal" class="btn btn-primary btn-sm">OK</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- <script>
+Swal.fire('This module is under discussion!');
+</script> -->
+{% include 'Admin/dashboard/footer.html' %}
+<script>
+function validateRoleId(thisTxt){
+    var data =  $(thisTxt).val();
+    console.log(data,data.length);
+    if(data.length < 4){
+        $('#roleIDValidation').css('color','red');
+          $('#roleIDValidation').html('Min. 4 characters allowed');
+          $('#submitBtn').attr('disabled',true);
+    }else{
+        $('#roleIDValidation').css('color','');
+          $('#roleIDValidation').html('');
+          $('#submitBtn').attr('disabled',false);
+    }
+}
+</script>
+
+<script>
+    var i = 0;
+    $("#roleID").on('keypress', function (e) {
+        // if ($(this).val().length < 1) {
+        if (e.which == 32) {
+            return false;
+        }
+        // }
+        // else {
+        //     if (e.which == 32) {
+        //         if (i != 0) {
+        //             return false;
+        //         }
+        //         i++;
+        //     }
+        //     else {
+        //         i = 0;
+        //     }
+        // }
+        // $('#courseTypeIdValidation').css('color','primary');
+        //   $('#courseTypeIdValidation').html('Min 4 characters allowed');
+        // var regex = new RegExp("^[a-zA-Z0-9]{4:20}$");
+        // var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        // if (str.length > 4) {
+        //     // $('#courseTypeIdValidation').css('color','green');
+        //     // $('#courseTypeIdValidation').html('Valid ID');
+        //     // $('#submitBtn').attr('disabled',false);
+        //     return true;
+        // }
+        // else{
+        //   $('#courseTypeIdValidation').css('color','red');
+        //   $('#courseTypeIdValidation').html('Only 4 characters allowed');
+        //   $('#submitBtn').attr('disabled',true);
+        // }
+
+        // e.preventDefault();
+        // return false;
+    });
+</script>
+<script>
+    var i = 0;
+    $("#courseName").on('keypress', function (e) {
+        if ($(this).val().length < 1) {
+            if (e.which == 32) {
+                return false;
+            }
+        }
+        else {
+            if (e.which == 32) {
+                if (i != 0) {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i = 0;
+            }
+        }
+        var regex = /^[a-zA-Z '.' ]*$/;
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    });
+</script>

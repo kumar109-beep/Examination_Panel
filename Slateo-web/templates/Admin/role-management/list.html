@@ -1,0 +1,133 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+ 
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-6 mb-2 form-group ico pl-2 ">
+                     <h3 class="main-title">Role/Designation List</h3>
+                 </div>
+                 <div class="col-md-6 text-right pr-2  ">
+                    {% if authority.add_roles_designation == 'True' or authority.admin == '18pixels@admin' %}
+                       <a href="{% url 'add_role' %}" class="btn btn-info" >+ Add Designation </a>
+                       {% endif %}
+                  </div>
+                   <div class="col-lg-4 col-md-8 col-sm-8   form-group ico pl-1">
+                    <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name="" onkeyup='roleAjaxsearch()' id="roleAjaxsearch"
+                                                    placeholder="Search">
+                   </div>
+             </div>
+           </div>
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                            {% comment %} <th>S.no.</th> {% endcomment %}
+                            <th>Designation  ID</th>
+                            <th>Designation Name</th>
+                              <th>Total Assigned Authorities</th>
+                             
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="roleData">
+                        {% for i in data1 %}
+                            <tr>
+                            {% comment %} <td>{{i.s_no}}</td> {% endcomment %}
+                            <td style='display:none;'>{{i.id}}</td>
+                            <td>{{i.roleID}}</td>
+                            <td>{{i.roleName}}</td>
+                             <td>{{i.assignAuthCount}}</td>
+                            <td class="details-control">
+                                {% comment %} <a href="#" class="del ml-0" title="Remove"><i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this Role/Designation?');"></i></a> {% endcomment %}
+                               <a roleId="{{i.id}}" class="del" onclick="deleteRole(this)"><i class="fa fa-trash"></i></a>
+                                <a href="{% url 'view_resources' i.id %}" class="user"  title="View Resources"><i class="fa fa-user"></i></a>
+                                <a href="{% url 'view_role_detail' i.id %}" class="view" title="View detail"><i class="fa fa-eye"></i></a>
+                                <a href="{% url 'edit_roles' i.id %}" class="edit pr-1" title="Edit Detail"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'view_assigned_authorities' i.id %}" class="edit pr-1" title="attached Authorities"><i class="far fa-address-book"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div id="showAvailabilty" class="text-center" style="display:none;background-color: white;"><h3 class="pt-2 pb-2">No Record Available!</h3></div>
+             
+            </div>
+            {% comment %} <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> {% endcomment %}
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)"
+                        maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example" class="float-right mr-1">
+                        <ul class="pagination">
+                          <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                          <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+
+
+      </div>
+     </div>
+   </div>
+
+
+     <!-- Modal -->
+      <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want  remove this role.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Role has been successsfully removed.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+<!-- <script>
+Swal.fire('This module is under discussion!');
+</script> -->
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\adminAuthority_JS\roleAjaxSearch.js' %}"></script>
+ 
+
+

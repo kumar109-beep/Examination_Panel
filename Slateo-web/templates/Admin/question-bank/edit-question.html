@@ -1,0 +1,184 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+		<script src="{% static 'adminModule/editor/editor.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+		<script>
+			$(document).ready(function() {
+        $("#txtEditor").Editor();
+        $('.Editor-editor').html('{{specificQuestionData.question|safe}}');
+			});
+           
+		</script>
+		{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> {% endcomment %}
+		{% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> {% endcomment %}
+		<link href="{% static 'adminModule/editor/editor.css' %}" type="text/css" rel="stylesheet"/>
+
+
+
+    <div class="app-content content position-relative">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12">
+             <h4 class="head mb-2  ">Edit Question
+              {% if authority.question_list == 'True' or authority.admin == '18pixels@admin' %}
+             <a   class="btn btn-default   float-right btn-sm  mt--1" href="{% url 'question_list' %}" >Back to list </a>
+              {% endif %}
+            </h4>
+                <div class="card  pt-0 pl-0 pr-0 form">
+                  <div class="card-content">
+                      <div class="card-body pt-0   pl-0 pr-0"  >
+                         <div class="tops_add_ques">
+                                         {% comment %} specific question detail >>  {'id': 12, 'question': 'jjghjgjhvhjvjhvjh', 'optionList': "[['False', 'True'], ['False', 'klmlk;m']]", 'sameQuestionrefrence': '', 'created_at': '2021-05-16T19:16:45.644736Z', 'refrence_Questions_Type_Detail': {'id': 18, 'Topic': 'Calculus', 'selectNoOption': '2', 'correctMarks': '5', 'created_at': '2021-05-16T19:13:55.182288Z', 'selectCourse': {'id': 1, 'courseID': 'bsc021', 'courseName': 'B.SC', 'created_at': '2021-05-16T16:52:48.327981Z', 'courseType': 1}, 'selectSubject': {'id': 1, 'subjectID': 'eng021', 'subjectName': 'English', 'created_at': '2021-05-16T16:53:34.312611Z'}, 'questionType': {'id': 1, 'questio_type_id': 'obj021', 'questio_type_name': 'Objective', 'created_at': '2021-05-16T16:59:18.293517Z'}, 'subQuestionType': {'id': 1, 'questio_sub_type_id': 'fil0215', 'questio_sub_type_name': 'Fill in the Blanks', 'created_at': '2021-05-16T16:57:28.413438Z'}, 'difficultyLevel': {'id': 2, 'questio_level_type_id': 'easy021', 'questio_level_type_name': 'Easy', 'created_at': '2021-05-16T16:56:58.899560Z'}}, 'selectLanguage': {'id': 1, 'languageCode': 'hind021', 'languageName': 'Hindi', 'created_at': '2021-05-16T17:00:08.419115Z'}} {% endcomment %}
+
+
+                                         <p id='edit_questionTypeID' style='display:none;'>{{specificQuestionData.refrence_Questions_Type_Detail.questionType.id}}</p>
+                                         <p id='edit_subQuestionTypeID' style='display:none;'>{{specificQuestionData.refrence_Questions_Type_Detail.subQuestionType.id}}</p>
+                                         <p id='edit_difficultyLevelID' style='display:none;'>{{specificQuestionData.refrence_Questions_Type_Detail.difficultyLevel.id}}</p>
+                                         <p id='edit_selectCourseID' style='display:none;'>{{specificQuestionData.refrence_Questions_Type_Detail.selectCourse.id}}</p>
+                                         <p id='edit_selectSubjectID' style='display:none;'>{{specificQuestionData.refrence_Questions_Type_Detail.selectSubject.id}}</p>
+                             <div class="row" style='pointer-events: none;'>
+                                <div class="col-lg-4 mb-1 form-group no-ico pl-2">
+                                <label style='font-weight:600;'>Course</label>
+                                    <input type="text" class="form-control" placeholder="Course" value="{{specificQuestionData.refrence_Questions_Type_Detail.selectCourse.courseName}}" readonly id=''/>
+                                </div>
+
+
+                                 <div class="col-lg-4  mb-1 form-group no-ico pl-2">
+                                <label style='font-weight:600;'>Subject</label>
+                                    <input type="text" class="form-control" placeholder="Subject" value="{{specificQuestionData.refrence_Questions_Type_Detail.selectSubject.subjectName}}" readonly id=''/>
+                                </div>
+
+                                <div class="col-lg-4 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Topic</label>
+                                    <input type="text" class="form-control" placeholder="Topic" value="{{specificQuestionData.refrence_Questions_Type_Detail.Topic}}" readonly id='edit_topic'/>
+                                </div>
+
+                                
+                              </div>
+                            </div>
+                            <div class="contt pt-2 pl-2 pr-2"  id='questionDetailDiv'>
+                              <div class="row">
+
+                              <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Language</label>
+                                 <p id='edit_langID' style='display:none;'>{{specificQuestionData.selectLanguage.id}}</p>
+                                    <input type="text" class="form-control" placeholder="Language" value="{{specificQuestionData.selectLanguage.languageName}}" readonly id='editQuestionLang'/>
+                                </div>
+                                 <div class="col-lg-2 mb-1 form-group no-ico  ">
+                                <label style='font-weight:600;'>Question Type</label>
+                                   <input type="text" class="form-control" id='questionType' placeholder="Question Type" value="{{specificQuestionData.refrence_Questions_Type_Detail.questionType.questio_type_name}}" readonly id=''/>
+                                </div>
+                                <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Question Sub-Type</label>
+                                    <input type="text" class="form-control" placeholder="Question Sub Type" value="{{specificQuestionData.refrence_Questions_Type_Detail.subQuestionType.questio_sub_type_name}}" readonly id=''/>
+                                </div>
+                                <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Difficulty level</label>
+                                    <input type="text" class="form-control" placeholder="Difficulty level" value="{{specificQuestionData.refrence_Questions_Type_Detail.difficultyLevel.questio_level_type_name}}" readonly id=''/>
+                                </div>
+                                   <div class="col-lg-4 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Correct marks</label>
+                                      <input type="text" class="form-control" placeholder="Correct Marks" value="{{specificQuestionData.refrence_Questions_Type_Detail.correctMarks}}" readonly id='edit_correctMarks'/>
+                                   </div>
+
+                                  <div class="col-lg-12   mt-0  form-group">
+                                      <label style='font-weight:600;'>Question</label>
+                                      <textarea class="form-control" id="txtEditor" style="height: 200px" placeholder="Type Questio here.."></textarea>
+                                   </div>
+
+                                {% if specificQuestionData.refrence_Questions_Type_Detail.questionType.questio_type_name == 'Objective' %}
+                                    <div class="col-lg-4 mt-1 no-ico  form-group" style='pointer-events:none;' id='objectiveOptions'>
+                                      <select class=" form-control" id="optionCount" onchange="renderOptions()">
+                                        <option>Select No. of Options </option>
+                                        <option value="2">2 </option>
+                                         <option value="3">3</option>
+                                          <option value="4">4</option>
+                                           <option value="5">5</option>
+                                           <option value="6">6</option>
+
+                                          
+                                       </select>
+                                   <p style='display:none;' id='optionList'>{{specificQuestionData.optionList}}</p>
+                                   </div>
+                                   <p style='display:none;' id='optionCurrentCount'>{{optionCountData}}</p>
+                                    <div class="col-lg-8 mt-1 no-ico  form-group">&nbsp;</div>
+                                    </div>
+
+                                    <div id="options" style="display: none">
+                                {% endif %}
+                                    </div>
+                                 </div>
+
+                                    <div class="row">
+                                      <div class="text-center col-lg-12 mt-2 pt-2 pr-3" id='questionButtons'>
+                                        {% if authority.question_list == 'True' or authority.admin == '18pixels@admin' %}
+                                          <a  class="btn btn-danger btn-lg mr-2 " href="{% url 'question_list' %}" >Discard</a>
+                                          {% endif %}
+                                           <button  class="btn btn-info btn-lg  mr-2 " onclick='editSpecificQuestion()' >Update</button>
+                                       </div>
+                                   </div>
+
+
+ 
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+      </div>
+     </div>
+   </div>
+              <p id='sameQuestionrefrence' style='display:none;'>{{sameQuestionrefrence}}</p>
+
+   <!-- Modal -->
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModle/images/success-icon-10.png' %}">
+           <p> Question   has been addedd successsfully.  </p>
+           <a href="{% url 'question_list' %}" class="btn btn-primary btn-sm"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade small with-img" id="allert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Are you sure want to discard the changes.  </p>
+           <a href="#" data-dismiss="modal" class="btn btn-gray btn-sm"  >No</a>
+            <button data-dismiss="modal" class="btn btn-danger btn-sm" onclick="discardButton()" >Yes</button>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+
+ <script>
+ {% comment %} Swal.fire('You can only edit question!'); {% endcomment %}
+ </script>
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminQuestionBank_JS/edit-question.js' %}"></script>
+

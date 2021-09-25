@@ -1,0 +1,101 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper report-card  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-3 mb-1 form-group no-ico pt-1  ">
+                      <h3>Report Card</h3>
+                  </div>
+
+                <div class="col-lg-9 mb-1 form-group no-ico  ">
+                     <div class="rep_info">
+                        <span>Class: 9</span><span>Year: 2021</span>
+                     </div> 
+                </div>
+                 
+
+               </div>
+           </div>
+             <div class="table-responsive">
+                <table id="example1"  class="display table data-table  schedule-exam">
+                    <thead>
+                        <tr>
+                            <th>Paper Name</th>
+                            <th>Subject</th>
+                            <th>Evaluation Status</th>
+                             
+                            <th   width="150">Evaluators</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  >
+                             
+                            <td>Paper 1</td>
+                            <td>Maths</td>
+                            
+                             <td>15/45</td>
+                             
+                             <td><a href="{% url 'evaluators' %}" class="select"   >View  </a></td>
+                              
+                        </tr>
+                         <tr >
+                            <td>Paper 2</td>
+                            <td>Physics</td>
+                             <td>15/45</td>
+                             <td><a href="{% url 'evaluators' %}" class="select"   >View  </a></td>
+                        </tr>
+                         <tr  >
+                             
+                            <td>Paper 3</td>
+                            <td>English</td>
+                            
+                             <td>15/45</td>
+                             
+                             <td><a href="{% url 'evaluators' %}" class="select"   >View  </a></td>
+                              
+                        </tr>
+                        <tr  >
+                             
+                            <td>Paper 4</td>
+                            <td>Hindi</td>
+                            
+                             <td>15/45</td>
+                             
+                             <td><a href="{% url 'evaluators' %}" class="select"   >View  </a></td>
+                              
+                        </tr>
+                        <tr  >
+                             
+                            <td>Paper 5</td>
+                            <td>Chemistry</td>
+                            
+                             <td>15/45</td>
+                             
+                             <td><a href="{% url 'evaluators' %}" class="select"   >View  </a></td>
+                              
+                        </tr>
+ 
+                    </tbody>
+                     <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-center">Total Copies evalauated</td>
+                            <td colspan="2">225/225</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div  class="mt-1 pl-2 pr-2">
+
+              <a href="{% url 'report_card' %}" class="btn btn-sm btn-secondary mt-2">Back</a> 
+
+              <a href="#" data-target="#alert" data-toggle="modal" class="btn   btn-primary mt-2 float-right">Publish Report Card</a> 
+               
+            </div>
+      </div>
+     </div>
+   </div>
+
+
+   {% include 'Admin/dashboard/footer.html' %}

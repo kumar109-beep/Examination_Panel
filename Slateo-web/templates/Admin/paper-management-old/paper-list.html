@@ -1,0 +1,86 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-5  mb-1 form-group ico pl-2">
+                        {% comment %} <i class="fa fa-search"></i>
+                          <select class="select2 form-control select2-placeholder4" id="default-select">
+                             <option> </option>
+                              <option value="1">Exam paper 1</option>
+                              <option value="2">Exam paper 2</option>
+                               <option value="3">Exam paper 3</option>
+                              <option value="4">Exam paper 4</option>
+                               <option value="5">Exam paper 5</option>
+                              <option value="6">Exam paper 6</option>
+                        </select> {% endcomment %}
+                        <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name="" id="myInput"
+                                                    placeholder="Search">
+                       </div>
+                    
+                     <div class="col-md-7 text-right pr-2  ">
+                          <div class="btn-group mr-1 mb-1">
+                                <a class="btn btn-primary btn-min-width  "  href="{% url 'create_paper' %}">Create Exam Paper </a>
+                            </div>
+ 
+                      </div>
+               </div>
+           </div>
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                            <th>Paper ID</th>
+                            <th>Paper Name</th>
+                            <th>Total Marks</th>
+                            <th>Passing Marks</th>
+                            <th>No. of Sections</th>
+                             <th></th>
+                             
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in data %}
+                        <tr  >
+                            <td style='display:none;'>{{item.id}}</td>
+                            <td>{{item.paperID}}</td>
+                            <td>{{item.paperName }}</td>
+                            <td>{{item.paperTotalMarks}}</td>
+                            <td>{{item.paperPassingMark}}</td>
+                            <td>{{item.totalSection}}</td>
+                            <td class="details-control">
+                                <a href="{% url 'delete_paper' item.id %}" class="del" ><i class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_paper_detail' item.id %}" class="edit"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'view_paper_detail' item.id %}" class="view" ><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+             
+            </div>
+            <div class="text-center"><a href="" class="btn btn-dark mt-2">Load More</a> </div>
+      </div>
+     </div>
+   </div>
+
+<script>
+$('#myInput').on('keyup', function () {
+    var value = $(this).val();
+    console.log(value);
+
+    $('table tr').each(function (records) {
+        if (records !== 0) {
+            var id = $(this).find('td').text();
+            if (id.indexOf(value) !== 0 && id.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) < 0) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        }
+    })
+})
+ </script>
+{% include 'Admin/dashboard/footer.html' %}

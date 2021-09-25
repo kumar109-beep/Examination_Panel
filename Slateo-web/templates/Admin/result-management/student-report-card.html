@@ -1,0 +1,207 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper report-card ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-5 mb-1 form-group no-ico    ">
+                      <a href="" class="btn btn-sm btn-primary">Send to Student as PDF<i class="fas fa-paper-plane"></i> </a>
+                      <a href="/pdf" class="btn btn-sm btn-secondary" target="_blank">Download as PDF<i class="fas fa-arrow-circle-down"></i></a>
+                  </div>
+
+                <div class="col-lg-3 mb-1 form-group no-ico  ">
+                     
+                </div>
+
+                 <div class="col-lg-4 text-right mb-1 form-group no-ico  ">
+                  
+                        <a href="{% url 'report_card_published' %}" class="btn btn-sm btn-secondary">Back</a>
+                </div>
+                 
+
+               </div>
+           </div>
+
+           <div id="report-area" class="report-area">
+               <div class="top-options pl-1 mb-0">
+                <div class="row"><br><br>
+                     <div class="col-lg-12 text-center mb-1 form-group no-ico    ">
+                          <h1 style='text-decoration:underline;'>Report Card</h1>
+                      </div>
+
+                      <div class="col-lg-6">
+                            <div class="stu_info">
+                                <p><strong>Student Name:</strong> Ramesh Singh</p>
+                                <p><strong>Registration no:</strong> RS00245454</p>
+                                <p><strong>Course:</strong> B.Tech</p>
+                                <p><strong>Session:</strong> 2021-22</p>
+
+                                <p><strong>Passing Status:</strong> Passed</p>
+
+                            </div>
+                      </div>
+                        <div class="col-lg-4">
+            <img class="stu_pic" style='border-radius:70%;height:120px;width:120px;' src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg">
+
+                        </div>
+
+                   
+
+                   </div>
+               </div>
+
+               <div class="row">
+
+                  <div class="col-lg-10">
+                    <div class="table-responsive">
+                    <table id="example1"  class="display table data-table  schedule-exam">
+                        <thead>
+                            <tr>
+                                <th width="300" >Subject</th>
+                                <th >Total Marks</th>
+                                <th>Passing Marks</th>
+                                 <th> Marks Obtained</th>
+                                 <th> Grade Obtained</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  >
+                                <td>English</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>65</td>
+                                <td>C</td>
+                            </tr>
+                             <tr  >
+                                <td>Hindi</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>60</td>
+                                <td>C</td>
+                            </tr>
+                             <tr  >
+                                <td>Mathematics</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>70</td>
+                                <td>B</td>
+                            </tr>
+                             <tr  >
+                                <td>Social Science</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>80</td>
+                                <td>A</td>
+                            </tr>
+                             <tr  >
+                                <td>Science</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>55</td>
+                                <td>D</td>
+                            </tr>
+
+                             <tr  >
+                                <td>Arts</td>
+                                <td>100</td>
+                                <td> 33</td>
+                                <td>80</td>
+                                <td>A</td>
+                            </tr>
+ 
+                        </tbody>
+                        
+                    </table>
+                    </div>
+
+               </div>
+                    <div class="col-lg-2">
+                        <div class="res">
+                              <span>20</span>
+                                  Rank
+                        </div>
+
+                         <div class="res">
+                              <span>84%</span>
+                                  Percentage
+                        </div>
+                        {% comment %} <div class="res">
+                              <span>A</span>
+                                  Grade
+                        </div> {% endcomment %}
+                          
+                    </div>
+
+                      {% comment %} <div  class="col-lg-8 mx-auto mt-3">
+                        <h2 class="text-center mb-3">Subject wise marks comparison</h2>
+                        <canvas id="densityChart" width="600" height="400"></canvas>
+                        
+                      </div> {% endcomment %}
+
+
+                 </div>
+            </div>
+            
+      </div>
+     </div>
+   </div>
+ 
+
+   {% include 'Admin/dashboard/footer.html' %}
+<script type="text/javascript">
+  var densityCanvas = document.getElementById("densityChart");
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 16;
+
+var yMarks = {
+  label: 'Your marks',
+  data: [65, 60, 70, 80, 55 ,80],
+  backgroundColor: '#28afd0',
+  borderWidth: 0,
+  yAxisID: "y-axis-density"
+};
+
+var aMarks = {
+  label: 'Average Marks',
+  data: [ 50, 65, 75, 70, 85 ,90],
+  backgroundColor: '#fdb901',
+  borderWidth: 0 
+  
+};
+
+var hMarks = {
+  label: 'Highest Marks',
+  data: [ 70, 80, 85, 80, 90 ,88],
+  backgroundColor: '#5ed84f',
+  borderWidth: 0 
+  
+};
+
+var planetData = {
+  labels: ["English", "Hindi", "Maths", "Science", "Social Science", "Arts"],
+  datasets: [yMarks, aMarks, hMarks]
+};
+
+var chartOptions = {
+  scales: {
+    xAxes: [{
+      barPercentage: 1,
+      categoryPercentage: 0.6
+    }],
+    yAxes: [{
+      id: "y-axis-density"
+    }],
+  }
+};
+
+var barChart = new Chart(densityCanvas, {
+  type: 'bar',
+  data: planetData,
+  options: chartOptions
+});
+</script>
+
+

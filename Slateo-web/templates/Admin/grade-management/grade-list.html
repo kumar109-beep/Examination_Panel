@@ -1,0 +1,124 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+    div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: none;
+    width: auto;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper  ">
+
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="top-options mb-0">
+                <div class="row">
+                    <div class="col-lg-5 mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control ml-3" name=""
+                            onkeyup='examAjaxsearch()' id="examAjaxsearch" placeholder="Search">
+                        <br>
+                        {% if success %}
+                        <span style='color:green;'>{{success}}</span>
+                        {% endif %}
+                    </div>
+
+                    {% comment %}  {% endcomment %}
+                    <div class="col-md-3 ">
+                        
+                    </div>
+                    <div class="col-md-4 ">
+                        {% if authority.create_exam == 'True' or authority.admin == '18pixels@admin' %}
+                        <a href="{% url 'individualGrade' %}" class="btn  btn-primary btn-sm float-right">+ Create Grades</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt--4">
+                <table id="example" class="display table data-table pt-1">
+                    <thead>
+                        <tr class='text-center'>
+                            <th>Course Type</th>
+                            <th>Course</th>
+                            <th>Grade A Lower Limit</th>
+                            <th>Grade B Lower Limit</th>
+                            <th>Grade C Lower Limit</th>
+                            <th>Grade D Lower Limit</th>
+                            <th>Grade E Lower Limit</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="">
+                        <tr class="in-queue text-center">
+                            <td style='color:#28afd0;'>UG</td>
+                            <td>BSC</td>
+                            <td>80</td>
+                            <td>70</td>
+                            <td>60</td>
+                            <td>50</td>
+                            <td>40</td>
+                            <td class="details-control">
+                                <a href="#" class="del ml-1"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_grade' %}" class="edit"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr class="in-queue text-center">
+                            <td style='color:#28afd0;'>PG</td>
+                            <td>MSC</td>
+                            <td>90</td>
+                            <td>85</td>
+                            <td>80</td>
+                            <td>75</td>
+                            <td>70</td>
+                            <td class="details-control">
+                                <a href="#" class="del ml-1"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_grade' %}" class="edit"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr class="in-queue text-center">
+                            <td style='color:#28afd0;'>UG</td>
+                            <td>B.TECH</td>
+                            <td>80</td>
+                            <td>70</td>
+                            <td>60</td>
+                            <td>50</td>
+                            <td>40</td>
+                            <td class="details-control">
+                                <a href="#" class="del ml-1"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_grade' %}" class="edit"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+            <!-- <div class="text-center"><a href="" class="btn btn-primary mt-2">Load More</a> </div> -->
+            <div class='col-lg-2 float-right'>
+                <nav aria-label="Page navigation example" class="float-right mr-1">
+                    <ul class="pagination">
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()"
+                                id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()"
+                                id='nextButton' style='color:#007dc6;'>Next</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+    $('select').selectpicker();
+</script>
+
+<script src="{% static 'adminModule\js\admin-js\customJS\admin-examManagement\examAjaxSearch.js' %}"></script>

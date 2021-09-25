@@ -1,0 +1,117 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+    div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: none;
+    width: auto;
+}
+@media (max-width:1200px){
+    .dt-new div.dataTables_wrapper {width: 1000px;}
+}
+
+@media (max-width:400px){
+    .dt-new div.dataTables_wrapper {width: 600px;}
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<div class="app-content content position-relative">
+    <div class="content-wrapper  ">
+
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="top-options mb-0">
+                <div class="row">
+                    <div class="col-lg-5 col-11  mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i>
+                        <input type="text"  class="form-control ml-3" name=""
+                            onkeyup='examAjaxsearch()' id="examAjaxsearch" placeholder="Search">
+                        <br>
+                        {% if success %}
+                        <span style='color:green;'>{{success}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-2 ml-auto">
+                        <div class="form-group ico mb-1">
+                            <!-- <select class="form-control selectpicker" onchange="examFilter()" id='examFilterID'>
+                                <option class="d-none">Filter</option>
+                                <option value='Ongoing Exams'>Ongoing Exams</option>
+                                <option value="Upcoming Exams">Upcoming Exams</option>
+                                <option value="Completed Exams">Completed Exams</option>
+                                <option value="Starting Month">Starting Month</option>
+                                <option value="End Month">End Month</option>
+                                <option value="Next Year">Next Year</option>
+                            </select> -->
+                        </div>
+                    </div>
+                    <div class="col-md-3  text-right">
+                        {% if authority.create_exam == 'True' or authority.admin == '18pixels@admin' %}
+                        <a href="{% url 'create_exam' %}" class="btn  btn-primary">+ Create Exam</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt--4 dt-new">
+                <table id="example" class="display table data-table  pt-3">
+                    <thead>
+                        <tr>
+                            <th>Exam Unique ID</th>
+                            <th>Exam Name</th>
+                            <th>Course</th>
+                            <th>Total Papers</th>
+                            <th>Total Students</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            {% comment %} <th>Status</th> {% endcomment %}
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="examAppendData">
+                        {% for item in examList %}
+                        <tr class="in-queue">
+                            <td>{{item.examID}}</td>
+                            <td>{{item.examName}}</td>
+                            <td>{{item.examAssociateCourse}}</td>
+                            <td>{{item.examTotalPaper}}</td>
+                            <td>{{item.examTotalStudent}}</td>
+                            <td>{{item.startDate}}</td>
+                            <td>{{item.endDate}}</td>
+                            {% comment %} <td><span class="status ">{{item.exam_status}}</span></td> {% endcomment %}
+                            <td class="details-control">
+                                {% if authority.edit_details == 'True' or authority.admin == '18pixels@admin' %}
+                                <a href="{% url 'exam-details' item.id %}" class="view ml-1"><i
+                                        class="fa fa-eye"></i></a>
+                                {% endif %}
+                                {% if authority.edit_exam == 'True' or authority.admin == '18pixels@admin' %}
+                                <a href="{% url 'edit_exam' item.id %}" class="edit"><i class="fa fa-edit"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- <div class="text-center"><a href="" class="btn btn-primary mt-2">Load More</a> </div> -->
+            <div class='col-lg-2 float-right'>
+                <nav aria-label="Page navigation example" class="float-right mr-1">
+                    <ul class="pagination">
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()"
+                                id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()"
+                                id='nextButton' style='color:#007dc6;'>Next</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+    $('select').selectpicker();
+</script>
+
+<script src="{% static 'adminModule\js\admin-js\customJS\admin-examManagement\examAjaxSearch.js' %}"></script>

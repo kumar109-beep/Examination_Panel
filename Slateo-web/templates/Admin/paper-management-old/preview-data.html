@@ -1,0 +1,235 @@
+{% load static %}
+{% load custom_tags %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             
+             <div class="col-lg-12 col-md-12 col-sm-12  ">
+               <h4 class="head mb-2  ">Preview Paper Details<a class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'create_paper_4' %}">Back</a></h4>
+                <div class="card form paper_det">
+                    <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12 mt-1  ">
+                             <h4 class="title-1">Basic Details <a><i class="fa fa-edit float-right" onclick="editPaperBasicDetail()" id='editBasicDetailBtn'></i></a></h4>
+                           </div>
+                           
+                                
+                                    <div class="col-lg-3 mt-1  form-group">
+                                      <label>Unique Paper ID</label>
+                                      <div>
+                                       <p id='paperUniqueID' class="value" >{{userUniqueId}}</p>
+                                      </div>
+                                   </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label >Unique Paper Name </label>
+                                       <p id="paperUniqueName" class="value">{{userUniqueName}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Associated Course</label>
+                                       <p id="paperAssociatedCourse" class="value">{{associatedCourse}}</p>
+                                   </div>
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Total Marks</label>
+                                      <p id="paperTotalMarks" class="value">{{totalMarks}}</p>
+                                   </div> 
+                                   <div class="col-lg-2 mt-1   form-group">
+                                      <label>Passing Marks</label>
+                                       <p id="paperPassingMarks" class="value">{{passingMarks}}</p>
+                                   </div>
+                                   <div class="col-lg-12 mt-1 form-group" id='basicDetailOkBtn' style='display:none;'>
+                                      <button class='btn btn-primary btn-sm float-right' onclick="donePaperBasicDetail()">ok</button>
+                                   </div>
+
+
+                                   <div class="col-lg-12 mt-1  ">
+                                   <h4 class="title-1">Paper Sections Details <a><i class="fa fa-edit float-right" onclick="editPaperSectionDetail()" id='editSectionDetailBtn'></i></a></h4>
+                                 </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>Paper Credit  </label>
+                                      <p id="paperCredit" class="value">{{paperCredit}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total No. of Sections </label>
+                                      <p id="paperSection" class="value">{{sectionCount}}</p>
+                                    </div>
+                                    <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Question  </label>
+                                      <p id="paperTotQuestion" class="value">{{totalQuestions}}</p>
+                                   </div>
+                                   <div class="col-lg-3 mt-1  form-group">
+                                      <label>Total Marks </label>
+                                      <p id="paperTotMarks" class="value">{{totalMarks}}</p>
+                                    </div>
+                                    <div class="col-lg-12 mt-1 form-group" id='donePaperSectionDetail' style='display:none;'>
+                                      <button class='btn btn-primary btn-sm float-right' onclick="donePaperSectionDetail()" >ok</button>
+                                   </div>
+
+                                    <div class="col-lg-12 mt-1  form-group">
+                                        <div class="sec_det">
+                                         <div class="row">
+                                                 <div class="col-lg-2    form-group">
+                                                  <label>Section </label>
+                                                </div>
+                                                 <div class="col-lg-2   form-group">
+                                                  <label>No. of Questions </label>
+                                                </div>
+                                                 <div class="col-lg-2  form-group">
+                                                  <label>Marks Per Question </label>
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                  <label>Is time limit on this section </label>
+                                                </div>
+                                                <div class="col-lg-3   form-group">
+                                                  <label>Total Marks Per Section </label>
+                                                </div> 
+                                            </div>
+                                            <div class="row" id='sectionDetails'>
+                                                 <div class="col-lg-2    form-group" >
+                                                    {% for i in context.sno %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                    {% for i in context.nOQ %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                 <div class="col-lg-2    form-group">
+                                                    {% for i in context.mPQ %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div> 
+                                                <div class="col-lg-3    form-group">
+                                                    {% for i in context.tL %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="col-lg-3    form-group">
+                                                    {% for i in context.mPS %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                                </div> 
+                                            </div>                                             
+                                        </div>
+                                    </div>
+                                        <div class="col-lg-12 mt-1  ">
+                                         {% comment %} <h4 class="title-1">Question Type Details<a><i class="fa fa-edit float-right" onclick="editQuestionTypeDetail()"></i></a></h4> {% endcomment %}
+                                         <h4 class="title-1">Question Type Details</h4>
+
+                                       </div>
+                                        <div class="col-lg-3 mt-1  form-group">
+                                            <label>Section </label>
+                                          </div>
+                                         <div class="col-lg-3 mt-1  form-group">
+                                            <label>Questions </label>
+                                          </div>
+                                          <div class="col-lg-6 mt-1  form-group">
+                                            <label> Question Type  </label>
+                                         </div>
+
+                                          <div class="col-lg-3   form-group">
+                                            {% for i in context.section %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                          </div>
+                                         <div class="col-lg-3   form-group">
+                                            {% for i in context.questionNumer %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                          </div>
+                                          <div class="col-lg-6    form-group">
+                                            {% for i in context.questionType %}
+                                                        <p class="value">{{ i }}</p>
+                                                    {% endfor %}
+                                         </div>
+
+                                          <div class="col-lg-12 mt-3  ">
+                                            <h4 class="title-1">Paper Set Options <a><i class="fa fa-edit float-right" onclick="editPaperSetOption()" id='editPaperSetDetailBtn'></i></a></h4>
+                                         </div>
+                                          <div class="col-lg-3 mt-1  form-group">
+                                            <label>Is automated Set Creation Allowed? </label>
+                                            <p class="value" id='automatedSet'>Yes</p>
+                                          </div>
+                                          <div class="col-lg-9 mt-1  form-group">
+                                              <div class="row">
+                                                   <div class="col-lg-3  form-group">
+                                                     <label>Maximum Possible Sets</label>
+                                                       <p id="paperPossibleSets" class="value">{{possibleSets}}</p>
+                                                   </div>
+                                                    <div class="col-lg-4 form-group">
+                                                     <label>Languages</label>
+                                                       <p id="paperLanguages" class="value">{{languages}}</p>
+                                                   </div>
+                                                   <div class="col-lg-4 form-group">
+                                                     <label>Allowed Option</label>
+                                                       <p id="paperAllowedOptions" class="value">{{allowedOptions}}</p>
+                                                   </div>
+                                                   <div class="col-lg-12 mt-1 form-group" id='donePaperSetDetail' style='display:none;'>
+                                      <button class='btn btn-primary btn-sm float-right' onclick="donePaperSetDetail()" >ok</button>
+                                   </div>
+                                              </div>
+                                          </div>
+                                  </div>
+
+                         </div>
+                       </div>
+                     </div>
+             </div>
+                 
+             </div>
+            
+           <div class="text-right  pt-2 bottom-btn">
+                   <button  class="btn btn-primary pl-5 pr-5" id='paperSubmitBtn' onclick="submitPaperData()">Submit</button>
+               </div>
+      </div>
+     </div>
+   </div>
+
+     <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want to create exam paper <strong>(Maths-Algebra)</strong>.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p> Exam paper has been created successsfully.  </p>
+           
+            
+           <a href="{% url 'paper_list' %}" class="btn btn-primary btn-sm"   >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+  <p style='display:none;' id='hiddenSectionDetailPara'>{{sectionDetails}}</p>
+  <p style='display:none;' id='hiddenQuestionDetailPara'>{{questionTypeDetail}}</p>
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\examPaperJS\previewPaperDetails.js' %}"></script>

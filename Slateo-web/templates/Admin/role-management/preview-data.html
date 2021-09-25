@@ -1,0 +1,152 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+             
+             <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h4 class="head mb-2  ">  Designation ID: <strong>DID001</strong> |  Designation Name: <strong>Teacher</strong> 
+                  
+                  <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'select_authorities' %}" >Back </a>
+                </h4>
+             </div>
+
+             <div class="col-lg-12 col-md-12 col-sm-12  "> <h4>Selected Resources</h4> </div>
+
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                             <th>S.No.</th>
+                             <th>Resource ID</th>
+                             <th>Resource Name</th>
+                              
+                              <th>Department</th>
+                              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  >
+                            <td>1</td>
+                            <td>AM454555</td>
+                            <td> Amit singh</td>
+                            
+                            <td>Maths</td>
+                           
+
+                        </tr>
+                        
+                        <tr  >
+                              <td>2</td>
+                              <td>RK454555</td>
+                            <td> Ram Kumar</td>
+                            
+                            <td>English</td>
+                             
+
+                        </tr>
+                         <tr  >
+                            <td>3</td>
+                             <td>KS454555</td>
+                            <td> Kamlesh singh</td>
+                           
+                             
+                            <td>Science</td>
+                             
+
+                        </tr>
+                        
+                    </tbody>
+                </table>
+             
+            </div>
+             {% comment %} <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> {% endcomment %}
+
+             <div class="col-lg-12 col-md-12 col-sm-12 mt-2 "> <h4>Selected Authorities</h4> </div>
+
+             <div class="table-responsive  ">
+                <table id="example2"  class="display table data-table">
+                    <thead>
+                        <tr>
+                             <th>S.No.</th>
+                             <th>Authority ID</th>
+                             <th>Authority Name</th>
+                              
+                              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  >
+                            <td>1</td>
+                            <td>AU001</td>
+                            <td>Batch Management</td>
+                            
+                            
+
+                        </tr>
+                        
+                        <tr  >
+                              <td>2</td>
+                              <td>AU001</td>
+                            <td>Role Management</td>
+                            
+                            
+
+                        </tr>
+                          
+                        
+                    </tbody>
+                </table>
+             
+            </div>
+           
+           <div class="text-right  pt-2 bottom-btn">
+                   <a  class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#success" href="javascript:;">Submit</a>
+               </div>
+      </div>
+     </div>
+   </div>
+
+    <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want to add 55 new student to   <br>Batch ID <strong>BID001</strong>.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Designation has been successsfully added.  </p>
+           
+            
+           <a href="{% url 'role_list' %}" class="btn btn-primary btn-sm"   >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}

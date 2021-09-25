@@ -1,0 +1,127 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                    <div class="col-lg-5  mb-1 form-group ico  ">
+                      <i class="fa fa-search"></i>
+                      <select class="select2 form-control select2-placeholder" id="default-select">
+                          
+                          <option value="1" selected="">Group A</option>
+                              <option value="2">Group B</option>
+                               <option value="3">Group C</option>
+                              <option value="4">Group D</option>
+                               <option value="5">Group E</option>
+                              <option value="6">Group F</option>
+                     </select>
+                   </div>
+                
+                    <div class="col-md-7 text-right pr-2  ">
+                      {% if authority.batch_list == 'True' or authority.admin == '18pixels@admin' %}
+                        <a  class="btn btn-default   float-right btn-sm  ml-1" href="{% url 'batch_list' %}" >Back to list</a>
+                        {% endif %}
+                    </div>
+               </div>
+           </div>
+             
+             <div class="detail_block">
+                 <div class="card form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                         <div class="row ">
+                           <div class="col-lg-12  mt-1  ">
+                              <div class="head">
+                                <div class="row ">
+                                   <div class="col-lg-3  pt-1 ">
+                                    <label>Group ID  </label>
+                                    <p class="value">BID001</p>
+                                   </div>
+                                   <div class="col-lg-3  pt-1 ">
+                                    <label>Group Name  </label>
+                                    <p class="value">B. tech. (CS) 1st Year</p>
+                                   </div>
+                                   <div class="col-lg-3  pt-1 ">
+                                    <label>Group Roll No.  </label>
+                                    <input type="text" class="form-control input-sm  " name="">
+                                   </div>
+                                    <div class="col-lg-3  pt-1 ">
+                                    <label>Group House  </label>
+                                    <input type="text" class="form-control input-sm" name="">
+                                   </div>
+                                 
+                                  
+                                 
+                                </div>
+                                 <div class="text-right col-md-12 pr-0"><a href="javascript:;" data-toggle="modal" data-target="#success" class="btn btn-primary mt-2">Update Batch Detail</a> </div>
+
+                              </div>
+                           </div>
+                         </div>
+
+                          <div class="row mt-2">
+                             <div class="col-lg-12  pt-1   mb-2 "><h4 class="title-1">Student Details</h4></div>
+                              <div class="col-lg-2  ">
+                                    <img src="../app-assets/images/avatar.jpg">
+                              </div>
+                           <div class="col-lg-3   ">
+                                <label>Registration No.</label>
+                                <p class="value">ST01254855</p>
+                                <label>Name</label>
+                                <p class="value">Amit Singh</p>
+                                <label>Gender  </label>
+                                <p class="value">Male</p>
+                             </div>
+                              <div class="col-lg-3   ">
+                                 <label>Date of birth  </label>
+                                 <p class="value">01/06/1988</p>
+                                 <label>Parent Name</label>
+                                 <p class="value">Akash Singh</p>
+                                  <label>Relation with parent  </label>
+                              <p class="value">Fahter</p>
+                             </div>
+                              <div class="col-lg-3    ">
+                                <label>Email ID</label>
+                              <p class="value">amit@gmail.com</p>
+                               <label>Mobile No.</label>
+                                 <p class="value">8574586655</p>
+                                  <label>Parent's Mobile no.  </label>
+                              <p class="value">8574585566</p>
+                           </div>
+                           
+                           
+                               
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+
+             </div>
+      </div>
+     </div>
+   </div>
+
+    <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p> Group detail has been updated successsfully.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+  {% include 'Admin/dashboard/footer.html' %}

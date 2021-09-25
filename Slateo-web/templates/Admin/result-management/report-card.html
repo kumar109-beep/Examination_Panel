@@ -1,0 +1,102 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  report-card">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+ 
+                      <div class="col-lg-12 mb-1 form-group no-ico pt-1  ">
+                            <h3>Report Card</h3>
+                      </div>
+
+                     
+                      {% comment %} <div class="col-lg-2 mb-1 form-group no-ico pl-0  ">
+                            <select class="  form-control select2" id='reportCardSemesterFilter'>
+                              <option value="">Semester</option>
+                              <option value="1">SEM I</option>
+                              <option value="2">SEM II </option>
+                              <option value="3">SEM III</option>
+                              <option value="3">SEM IV</option>
+                           </select>
+                      </div> {% endcomment %}
+                      <div class="col-lg-5 mb-1 form-group no-ico pl-0  ">
+                            <select class="form-control select2"  name='courseName' id='courseTypeId' >
+                              <option value="" class="d-none">Select CourseType</option>
+                              {% for i in CourseTypeData %}
+                              <option value={{i.id}}>{{i.courseTypeName}}</option>
+                              {% endfor %}
+                           </select>
+                      </div>
+                      <div class="col-lg-5 mb-1 form-group no-ico pl-0  ">
+                            <select class="form-control select2" name='subjectName' id='coursenameId'>
+                            <option id='baseSelectOption' value='' class="d-none"> Select Course</option>
+                           </select>
+                      </div>
+                        {% comment %} <div class="col-lg-3 mb-1 form-group no-ico pl-0">
+                            <select class="  form-control select2-placeholder9" id="year" >
+                              <option> </option>
+                              <option value="2021" selected=''>2021</option>
+                              <option value="2020">2020 </option>
+                              <option value="2019">2019</option>
+                           </select>
+                      </div> {% endcomment %}
+                      {% comment %} <div class="col-lg-2 mb-1 form-group no-ico pl-0  ">
+                            <select class="  form-control select2" id='reportCardStatusFilter'>
+                              <option value="" >Report Card Status</option>
+                              <option value="1">Generated</option>
+                              <option value="2">Evaluated </option>
+                           </select>
+                      </div> {% endcomment %}
+                      <div class="col-lg-2 mb-1 form-group no-ico pl-0">
+                        <button class="btn btn-sm" style="color:white;background-color:#6f42c1" id='completedPapersSearchButton' onclick="reportCardFilterAjax()">Filter</button>
+                      </div>
+
+                       <div class="col-lg-12 mb-1 form-group no-ico  ">
+                           <div class="remarks">
+                               <span class="done">Report generated </span>
+                               {% comment %} <span class="process">Under Evaluation </span> {% endcomment %}
+                               {% comment %} <span class="evaluated">Report Evaluated </span> {% endcomment %}
+                             </div>
+                      </div>
+ 
+               </div>
+           </div>
+
+          
+      </div>
+
+      <div class="row  ">
+      {% for i in course_data %}
+            <div class="col-md-3">
+              <div class="box done">
+                  {{i.courseName}}
+                  <div class="overlay">
+                      Report Card  Generated
+                      <a href="{% url 'courseWise_exam' %}" id="{{i.id}}" data="{{i.courseName}}" onclick='getCourseData(this)'>View Details</a>
+                  </div>
+              </div>
+            </div>
+      {% endfor %}
+        </div>
+     </div>
+   </div>
+ 
+   {% include 'Admin/dashboard/footer.html' %}
+{% comment %} <script src="{% static 'adminModule/js/admin-js/customJS/admin_resultManagement_JS/report-card.js' %}"></script> {% endcomment %}
+<script src="{% static 'adminModule\js\admin-js\customJS\admin_resultManagement_JS\add-coursetype.js' %}"></script>
+
+
+<script>
+function reportCardFilterAjax(){
+  alert('API under-development!');
+}
+
+function getCourseData(thisTxt){
+  var c_ID = $(thisTxt).attr('id');
+  var c_value = $(thisTxt).attr('data');
+
+  localStorage.setItem('c_ID',c_ID);
+  localStorage.setItem('c_value',c_value);
+}
+</script>

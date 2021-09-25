@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon"
+        href="https://themeselection.com/demo/chameleon-admin-template/app-assets/images/ico/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" />
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/style.css' %}" />
+
+        <script type="text/javascript">
+            function preventBack() { window.history.forward(); }
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { return false };
+        </script>
+        
+    </head>
+  <body class="dashboard">
+  	     <div class="wrapper">
+          <header>
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-2  ">
+                      <a href="{% url 'dashboard' %}">
+                      <img class="logo" src="{% static 'Student-Exam-Panel/images/logo.png' %}">
+                    </a>  
+                  </div>
+                 
+                   <div class="col-md-10 last">
+                      <a href="{% url 'logout' %}"><img src="{% static 'Student-Exam-Panel/images/logout.png' %}"></a>
+                  </div>
+              </div>
+            </div>
+          </header>
+            <div class="cont mt-5 pt-4 pb-5">
+             <div class="card info ins">
+               <div class="container cc ">
+                 <div class="row">
+                   
+                    <div class="col-md-6 det">
+                      <h4>Exam Guidelines & Rules</h4> 
+                   </div>
+
+                    <div class="col-md-6 det d1">
+                       <div class="timer new">
+                           <div class="hours"></div>
+                            <div class="minutes"></div>
+                            <div class="seconds"></div>
+
+                       </div>  
+                   </div>
+                      
+                 </div> 
+               </div>
+              </div>
+             <div class="container cc   ">
+              <div class="row">
+              <div class="col-lg-12 mt-3">&nbsp;
+                        <span style='border:1px solid #0dcaf0;background-color:#0dcaf0;color:white;font-weight:500;padding:3px 7px;border-radius:;'>Subject : {{subjectData.subjectName}}</span>&nbsp;&nbsp;&nbsp;
+                        <span style='border:1px solid #0dcaf0;background-color:#0dcaf0;color:white;font-weight:500;padding:3px 7px;border-radius:;'>Paper : {{paperData.paperName}}</span>&nbsp;&nbsp;&nbsp;
+                        <span style='border:1px solid #0dcaf0;background-color:#0dcaf0;color:white;font-weight:500;padding:3px 7px;border-radius:;'>Total time : {{paperData.totalPaperTime}} hrs</span>&nbsp;&nbsp;&nbsp;
+                        <span style='border:1px solid #0dcaf0;background-color:#0dcaf0;color:white;font-weight:500;padding:3px 7px;border-radius:;'>Total Marks : {{paperData.paperTotalMarks}}</span>&nbsp;&nbsp;&nbsp;
+                        <span style='border:1px solid #0dcaf0;background-color:#0dcaf0;color:white;font-weight:500;padding:3px 7px;border-radius:;'>Passing Marks : {{paperData.paperPassingMark}}</span>&nbsp;&nbsp;&nbsp;
+                      </div>
+              
+                 <div class="col-md-12 mt-4">
+                        <ul class="instt">
+                           <li>{{paperData.paperGuideLines}}</li>
+                        </ul>
+
+                        <div class="mt-5 read-ins">
+                          <label><input type="checkbox" name=""> Mark if you read the instruction.</label>
+                          <a href="{% url 'exam' %}" class="btn disable">Continue</a>
+                        </div>
+                 </div>
+
+                 
+
+                
+
+             </div>
+
+
+           </div>
+
+        </div>
+
+    </div>
+
+  </body>
+
+<script src="{% static 'Student-Exam-Panel/js/custom.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.2.0/dist/jquery.countdown.min.js"></script>
+ 
+ 
+<script type="text/javascript">
+  function makeTimer() {
+
+  //    var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");  
+    var endTime = new Date("14 April 2021 10:56:00 GMT+01:00");      
+      endTime = (Date.parse(endTime) / 1000);
+
+      var now = new Date();
+      now = (Date.parse(now) / 1000);
+
+      var timeLeft = endTime - now;
+
+      var days = Math.floor(timeLeft / 86400); 
+      var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+      var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+      var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+  
+      if (hours < "10") { hours = "0" + hours; }
+      if (minutes < "10") { minutes = "0" + minutes; }
+      if (seconds < "10") { seconds = "0" + seconds; }
+
+      $(".days").html(days + "<span>Days</span>");
+      $(".hours").html(hours + " <span>hrs</span>:");
+      $(".minutes").html(minutes + " <span>min</span>:");
+      $(".seconds").html(seconds + " <span>sec</span> <em>remaining</em>");   
+
+  }
+
+  setInterval(function() { makeTimer(); }, 1000);
+
+  $('.read-ins input').click(function(){
+    if ($(this).prop('checked')==true){ 
+         $('.read-ins .btn').removeClass('disable');
+    }
+    else{
+       $('.read-ins .btn').addClass('disable');
+    }
+  })
+</script>
+
+  </html>

@@ -1,0 +1,95 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper report-card  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-3 mb-1 form-group no-ico pt-1  ">
+                      <h3>Evaluators List</h3>
+                  </div>
+
+                <div class="col-lg-9 mb-1 form-group no-ico  ">
+                     <div class="rep_info">
+                        <span>Class: 9</span><span>Year: 2021</span>
+                     </div> 
+                </div>
+                 
+
+               </div>
+           </div>
+             <div class="table-responsive">
+                <table id="example1"  class="display table data-table  schedule-exam">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Resource ID</th>
+                            <th>Resource Name</th>
+ 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  >
+                            <td>1</td>
+                            <td>0212415454</td>
+                             <td>Amit singh</td>
+                        </tr>
+                         <tr  >
+                            <td>2</td>
+                            <td>0212415454</td>
+                             <td>Rahul Kumar</td>
+                        </tr>
+                          <tr  >
+                            <td>3</td>
+                            <td>0212415454</td>
+                             <td>Rohit Kumar</td>
+                        </tr>
+                          <tr  >
+                            <td>4</td>
+                            <td>0212415454</td>
+                             <td>Amar Singh</td>
+                        </tr>
+                          <tr  >
+                            <td>5</td>
+                            <td>0212415454</td>
+                             <td>Kishore Kumar</td>
+                        </tr>
+ 
+                    </tbody>
+                     
+                </table>
+            </div>
+            <div  class="mt-1 pl-2 pr-2">
+
+              <a href="{% url 'report_card' %}" class="btn btn-sm btn-secondary mt-2">Back</a> 
+
+              
+            </div>
+      </div>
+     </div>
+   </div>
+
+
+
+    <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p>Report card   has been published successfully.</p>
+           <p class="text-center">
+             <a href="{% url 'report_card' %}" class="btn btn-primary  "> OK</a>
+           </p>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+
+  {% include 'Admin/dashboard/footer.html' %}

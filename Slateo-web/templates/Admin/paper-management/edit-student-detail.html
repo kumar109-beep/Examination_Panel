@@ -1,0 +1,183 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12  ">
+             <h4 class="head mb-2  ">Edit Student Details <a   class="btn btn-default   float-right btn-sm  mt--1 " href="#" >Back to list</a> </h4>
+                <div class="card form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                             <div class="row ">
+                               <div class="col-lg-12 mt-1  ">
+                                 <h4 class="title-1">Personal Detail</h4>
+                               </div>
+                                <div class="col-lg-3 mt-1  form-group">
+                                      <label>Registration No. </label>
+                                      <input type="text" value="ST0121515415" class="form-control" placeholder="Enter registration no." value="" />
+                                   </div>
+                                  <div class="col-lg-3 mt-1  form-group">
+                                      <label>First Name </label>
+                                      <input type="text" value="Amit" class="form-control" placeholder="Enter first name" value="" />
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Last Name</label>
+                                      <input type="text"   class="form-control" placeholder="Enter last name" value="Singh" />
+                                   </div>
+                                   <div class="col-lg-3 mt-1   form-group">
+                                      <label>Date of Birth</label>
+                                      <input type="text" value="01/05/1988" class="form-control datepicker" placeholder="dd/MM/yyyy" value="" />
+                                   </div>
+                                    <div class="col-lg-3    form-group">
+                                     <label>Gender</label>
+                                     <select class="form-control"><option class="d-none">Select</option>
+                                      <option selected="">Male</option> <option>Female</option>
+                                     </select>
+                                   </div>
+                                   <div class="col-lg-3   form-group">
+                                      <label>Parent Name</label>
+                                      <input type="text" class="form-control" placeholder="Enter parent name" value="Akash Singh" />
+                                   </div>
+                                   <div class="col-lg-3   form-group">
+                                     <label>Relation with parent</label>
+                                     <select class="form-control"><option class="d-none">Select</option>
+                                      <option selected="">Father</option> <option>Mother</option>
+                                      <option>Brother</option> <option>Sister</option>
+                                     </select>
+                                   </div>
+                                   <div class="col-lg-3   form-group full-width">
+                                     <label>Hobbies</label>
+                                        <select  title="Select hobbies" class="selectpicker d-block" multiple data-live-search="true"> 
+                                            <option selected="">Drawing</option>
+                                            <option>Singing</option>
+                                            <option>Dancing</option>
+                                            <option>Sketching</option>
+                                          </select>
+                                        </div>
+
+                                   <div class="col-lg-12 mt-1  ">
+                                     <h4 class="title-1">Contact Detail</h4>
+                                   </div>
+                                  <div class="col-lg-4 mt-1  form-group">
+                                      <label>Email ID   </label>
+                                      <input type="text" class="form-control" placeholder="Enter email id" value="amit@gmail.com" />
+                                   </div>
+                                   <div class="col-lg-4 mt-1   form-group">
+                                      <label>Mobile Number</label>
+                                      <input type="text" class="form-control" placeholder="Enter mobile number" value="78788878788" />
+                                   </div>
+                                    <div class="col-lg-4 mt-1   form-group">
+                                      <label>Parent's Mobile Number</label>
+                                      <input type="text" class="form-control" placeholder="Enter parent's mobile number" value="44454548787" />
+                                   </div>
+                                   
+                                   <div class="col-lg-12 mt-0 mb-1   form-group">
+                                      <label>Address</label>
+                                      <textarea class="form-control" placeholder="Enter student address">asd, fsf, sdfs,f sdfsd,f ,fsfsdf</textarea>
+                                   </div>
+                                     <div class="col-lg-4   form-group">
+                                     <label>City</label>
+                                     <select class="form-control"><option class="d-none">Select</option>
+                                      <option selected="">Lucknow</option> <option>Noida</option>
+                                     </select>
+                                   </div>
+                                   <div class="col-lg-4   form-group">
+                                     <label>State</label>
+                                     <select class="form-control"><option class="d-none">Select</option>
+                                      <option>Delhi</option> <option selected="">Uttar Pradesh</option>
+                                     </select>
+                                   </div>
+                                 
+                                   <div class="col-lg-4 form-group">
+                                     <label>Pin Code</label>
+                                     <input type="text" class="form-control" placeholder="Enter pin code" value="226001" />
+                                   </div>
+
+                                     <div class="col-lg-12 mt-1  ">
+                                     <h4 class="title-1">Course Detail</h4>
+                                   </div>
+
+                                   <div class="col-lg-4 mt-1 form-group">
+                                     <label>Course Applied for</label>
+                                     <select class="form-control"><option class="d-none">Select</option>
+                                      <option selected="">B.Tech(CS)</option> <option>B.Com.</option>
+                                     </select>
+                                   </div>
+
+                                   <div class="col-lg-4 mt-1   form-group">
+                                     <label>Batch</label>
+                                      <select class="form-control"><option class="d-none">Select</option>
+                                      <option selected="">1st year</option> <option>2nd Year</option>
+                                     </select>
+                                   </div>
+
+                                   <div class="col-lg-12 mt-1  ">
+                                     <h4 class="title-1">Upload</h4>
+                                   </div>
+
+                                   <div class="col-lg-3 mt-1 form-group">
+                                    <label>Upload Student Photograph</label>
+                                      <label class="upl_photo">
+                                          <input type="file" name="" id="stu_photo">
+                                          <img src="../app-assets/images/avatar.jpg" id="imgphoto">
+                                          <span  class="btn btn-info btn-sm">Change Photo</span>
+                                      </label>
+
+                                   </div>
+
+                                    <div class="col-lg-3 mt-1 form-group">
+                                    <label>Upload Student Signature</label>
+                                      <label class="upl_photo">
+                                          <input type="file" name="" id="stu_sign">
+                                          <div class="media">
+                                           <img src="" id="imgsign">
+                                          </div>
+                                          <span  class="btn btn-info btn-sm">Change Signature</span>
+                                      </label>
+
+                                   </div>
+
+
+
+
+                                      
+                               </div>
+                             
+                      </div>
+                  </div>
+              </div>
+
+                 <div class="text-right  pt-1">
+                     <a  class="btn btn-primary pl-5 pr-5" href="javascript:;" data-toggle="modal" data-target="#success" >Update</a>
+                 </div>
+            </div>
+      </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+  <div class="modal fade small" id=success tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="../app-assets/images/success-icon-10.png">
+           <p>Student has been updated successfully.</p>
+           <a href="#" class="btn btn-info" >OK</a>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    b {
+        font-size: 20px;
+        color: rgb(44, 43, 43);
+    }
+
+    p {
+        font-size: medium;
+    }
+
+    table {
+        width: 90%;
+
+    }
+
+    table,th,td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,td {
+        padding: 6px;
+        text-align: left;
+        background-color: #DCDCDC;	
+
+    }
+
+    #t01 th {
+        background-color: #808080;	
+        color: white;
+        font-size:13px;
+        font-weight:900;
+    }
+
+    span{
+        font-size:13px;
+    }
+
+    .subName{
+        color: black;
+        font-size:12px;
+        font-weight:900;
+    }
+</style>
+
+<body style='font-family: "Gill Sans", sans-serif;max-width: 75%;'>
+
+    <center>
+    {% comment %} https://www.agencyjet.com/hs-fs/hubfs/10%20years%20badge%20-%20white%20(1).png?width=1200&name=10%20years%20badge%20-%20white%20(1).png {% endcomment %}
+        <h2 style="color:#00afaf;font-size:20px;text-decoration: underline;"><img src="https://media.istockphoto.com/vectors/heraldic-sign-of-university-with-book-on-shield-vector-id543220364?b=1&k=6&m=543220364&s=612x612&w=0&h=SySxO7HLoHu6L1w5jE6JpdktQwC24QZ3phGqf7xbA9s=" style="height:70px;width:100px;"><br><br>{{institute_name}}<span><h3 style='text-decoration: underline;color:black;'>Report Card</h3></span></h2>
+        
+    </center>
+
+    {% comment %} <div style="display: flex;"> {% endcomment %}
+        <div><img style="height: 125px;width: 125px;"
+                src="https://www.w3schools.com/w3images/avatar6.png" alt="hello"><br>
+                <span><small><strong>S.No. :</strong> {{SNO}}</small></span><hr>
+            <span><strong>Student Name :</strong> {{student_name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Registration No. :</strong> {{student_registration_number}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Course :</strong> {{course}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% comment %} <span><strong>Semester :</strong> 03</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> {% endcomment %}
+            <span><strong>Session :</strong> {{session}}</span><hr>
+            <span><strong>Percentage :</strong> {{percentage}} </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Rank :</strong> {{rank}}/56 </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Passing Status :</strong> <span>{{passing_status}}</span> </span>
+
+        </div>
+        {% comment %} <div style="padding-left: 50%;"><img
+                style="height: 150px;width: 150px;border-radius: 70%;border:5px solid #28afd0;"
+                src="https://www.w3schools.com/w3images/avatar6.png" alt="hello"></div> {% endcomment %}
+
+    {% comment %} </div> {% endcomment %}
+
+    <div style="padding-left: 200px;margin-top: 20px;">
+        <table id="t01">
+            <tr>
+                <th>Subject</th>
+                <th>Total Marks</th>
+                <th>Passing Marks</th>
+                <th>Marks Obtained</th>
+                <th>Grade Obtained</th>
+            </tr>
+            {% for item in SubjectArray %}
+            <tr>
+                <td class='subName'>{{item.subject_name}}</td>
+                <td>{{item.total_marks}}</td>
+                <td>{{item.passing_marks}}</td>
+                <td>{{item.marks_obtained}}</td>
+                <td>{{item.obtained_grade}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div><br>
+        <span><strong>Date :</strong> {{today_date}}</span><hr>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+            <label for="Proctor Signature"><strong>Proctor Signature</strong></label>
+            <img style="height: 75px;width: 120px;padding-left: 10px;" src="https://static.cdn.wisestamp.com/wp-content/uploads/2020/08/Michael-Jordan-personal-autograph-1024x637.png" alt="proctor signature">
+            <label for="Director Signature"><strong>Director Signature</strong></label>
+            <img style="height: 75px;width: 120px;padding-left: 10px;" src="https://www.cognidox.com/hubfs/Digital%20Signature%20MHRA%20Remote%20Working.jpg" alt="director signature">
+        </span>
+
+    </div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><strong style="color:green;">- SLATEO WEB APPLICATION - </strong></small></span>
+
+
+</body>
+
+</html>

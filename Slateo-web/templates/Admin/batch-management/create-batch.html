@@ -1,0 +1,381 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}    
+
+<div class="app-content content position-relative" style="display: ;"  id="createBatch">
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12  ">
+             <h4 class="head mb-2  ">Create Batch 
+              {% if authority.batch_list == 'True' or authority.admin == '18pixels@admin' %}
+               <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'batch_list' %}" >Back to list</a>
+               {% endif %}
+              </h4>
+                <div class="card  form">
+                  <div class="card-content ">
+                      <div class="card-body"  >
+                             <div class="row ">
+                                  <div class="col-lg-4 mt-1  form-group">
+                                      <label>Batch ID *</label>
+                                      <input type="text" class="form-control" placeholder="Enter batch id" id="batchID" value="" onkeypress="return /[a-zA-Z0-9]/i.test(event.key)" onkeyup="validateBatchId()"/>
+                                   </div>
+                                   <div class="col-lg-8 mt-1   form-group">
+                                      <label>Batch Name *</label>
+                                      <input type="text" class="form-control" placeholder="Enter batch name" id="batchName" value="" />
+                                   </div>
+                                   <div class="col-lg-12 mt-0 mb-1 form-group">
+                                      <label>Batch Description</label>
+                                     <textarea class="form-control" placeholder="Enter batch description" id="batchDescription"></textarea>
+                                   </div>
+                                   <div class="col-lg-3   form-group">
+                                     <label>Course Type</label>
+                                     <select class="form-control" name='courseType' id='courseTypeId'>
+                                         <option value='' class="d-none"> Select</option>
+                                         {% for i in courseType %}
+                                         <option value='{{i.id}}'>{{i.courseTypeName}}</option>
+                                         {% endfor %}
+                                     </select>
+
+                                   </div>
+                                   <div class="col-lg-3   form-group">
+                                     <label>Course</label>
+                                     <select class="form-control" name='courseName' id='coursenameId'>
+                                        <option id='baseSelectOption' value='' class="d-none"> Select Course Type First</option>                                         
+                                    </select>
+                                   </div>
+                                   {% comment %} <div class="col-lg-3    form-group">
+                                     <label>Batch Supervisor ID</label>
+                                     <input type="text" class="form-control" placeholder="Enter supervisor id" id="batchSupervisorID" value="" />
+                                   </div>
+                                    <div class="col-lg-3    form-group">
+                                     <label>Batch Supervisor Name</label>
+                                     <input type="text" class="form-control" placeholder="Enter supervisor name" id="batchSupervisorName" value="" />
+                                   </div> {% endcomment %}
+          
+                                      
+                               </div>
+                             
+                      </div>
+                  </div>
+              </div>
+
+               <div class="text-right    pt-1">
+                    <!-- <a  class="btn btn-primary pl-5 pr-5  " href="{% url 'select_batch_student' %}" >Next</a> -->
+                    <button class="btn btn-primary pl-5 pr-5" id="nextBatchButton" onclick="batchStudentSelection()" disabled >Next</button>
+                   
+                 </div>
+            </div>
+      </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <p>Exam ID/Name already exists. Enter the Exam ID/Name which has not been  used before. </p>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+  <!-- {% include 'Admin/dashboard/footer.html' %} -->
+
+  <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+
+  <div class="app-content content position-relative " style="display:none;" id="studentSelection">
+         
+    <div class="content-wrapper">
+      <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+         <div class="col-lg-12 col-md-12 col-sm-12 mt-1  ">
+          {% comment %} {% if authority.create_batch == 'True' or authority.admin == '18pixels@admin' %} {% endcomment %}
+           <h4 class="head mb-2  ">Select Batch Students | Batch ID: <strong id="newBatchId"></strong> <a   class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'batch_list' %}" >Back to List</a>
+            {% comment %} {% endif % {% endcomment %}
+          </h4>
+              <div class="card  form pt-0 pl-0 pr-0">
+                <div class="card-content pt-0">
+                    <div class="card-body pt-0 pl-0 pr-0"  >
+                       <div class="top-options mx-auto  mb-2  text-center col-md-12  ">
+                           {% comment %} <div class="  form-group radios radios1 pl-2 " >
+                             <label><span>Select Method</span> </label>
+                              <label>
+                                  <input type="radio" checked="" name="b_type" id="manual"><span>Manual Entry</span>
+                              </label>
+                              <label>
+                                  <input type="radio" name="b_type" id="uploadF"><span>Upload Excel/CSV File</span>
+                              </label>
+                               
+                           </div> {% endcomment %}
+                          </div>
+
+                          <div class="manual-entry ">
+                           <div class="row ">
+                           {% comment %} ================================================================================= {% endcomment %}
+                              {% comment %} <div class="col-lg-2   mb-2 form-group ico  pr-0  "><p class="pt-1">Select/Enter Student </p> </div>
+                                <div class="col-lg-8   mb-2 form-group ico pl-2">
+                                 <i class="fa fa-search"></i>
+                                    <select class="form-control" id="default-select">
+                                       <option  > </option>
+                                       {% for item in data %}
+                                        <option value="{{item.id}}">{{item.fullName}}</option>
+                                       {% endfor %}
+                                  </select>
+                                 </div>
+                                  <div class="col-lg-2   mb-2 form-group ico pl-2 text-center">
+                                    <a href="javascript:;" class="btn btn-primary" onclick='addStudent()'>+ Add</a>
+                                  </div> {% endcomment %}
+                           {% comment %} ================================================================================= {% endcomment %}
+                           <div class="col-lg-12   mb-2 form-group ico  pr-0  "></div>
+                                <div class="col-lg-3   mb-2 form-group ico pl-2">
+                                     <label>Course Type</label>
+                                    <input type="text" class="form-control" placeholder="" id="CourseTypeIdFilter" value="" readonly />
+                                 </div>
+                                 <div class="col-lg-3   mb-2 form-group ico pl-2">
+                                     <label>Course</label>
+                                    <input type="text" class="form-control" placeholder="" id="CourseIDFilter" value="" readonly />
+                                 </div>
+                                 <div class="col-lg-3   mb-2 form-group ico pl-2">
+                                     <label>Year</label>
+                                    <select class="form-control" id="yearFilter">
+                                       <option value='2021' >2021</option>
+                                       <option value='2020' >2020</option>
+                                       <option value='2019' >2019</option>
+                                       <option value='2018' >2018</option>
+                                  </select>
+                                 </div>
+                                  <div class="col-lg-3   mb-2 form-group ico pl-2 text-left">
+                                    <button class="btn btn-primary mt-2" onclick='filterStudents()'>Filter</button>
+                                    {% comment %} <a href="javascript:;" class="btn btn-primary" onclick='addStudent()'>Filter</a> {% endcomment %}
+                                  </div>
+
+                           {% comment %} ================================================================================= {% endcomment %}
+                                    <div class="col-lg-12">
+                                       <div class="table-responsive  ">
+                                          <table id="students" class="display table  html-table table-striped">
+                                              <thead>
+                                                  <tr><th><input type="checkbox" id="select-all"></th>
+                                                      <th>Student Name</th>
+                                                      <th>Registration ID</th>
+                                                      <th>Mail ID</th>
+                                                      <th>Contact No.</th>
+                                                      <th> Gender</th>
+                                                      {% comment %} <th></th> {% endcomment %}
+                                                  </tr>
+                                              </thead>
+                                              <tbody id='studentData'>
+                                                  <tr class="not-added" id='noStudentData'><td colspan="6" class="text-center">No student added</td></tr>
+                                              </tbody>
+                                          </table>
+                                       
+                                      </div>
+                                       <div class="text-center"><button style='display:none;' onclick='studentLoadMoreBtn()' id='studentLoadMoreBtn' class="btn btn-dark mt-2 btn-sm">Load More</button><button style='display:none;' onclick='studentLoadMoreBtn()' id='studentLoadMoreBtn1' class="btn btn-dark mt-2 btn-sm">Loading...</button> </div>
+
+                                    </div>  
+                           </div>
+                                    <div class="text-right  pt-0 bottom-btn">
+                 <!-- <a  class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#alert" href="javascript:;">Submit</a> -->
+                 <button class="btn btn-secondary pl-5 pr-5 float-left" onclick="showpage1()" >Back</button>
+
+                 <a class="btn btn-default pl-5 pr-5" href="{% url 'create_batch' %}" >Cancel</a>
+                 <button type="button" class="btn btn-primary pl-5 pr-5" onclick="createBatch()">Submit</button>
+             </div>
+                         </div>
+
+                          <div class="upload-csv">
+                           <div class="row ">
+                              <div class="col-lg-7  "> 
+                                  <div class="table-responsive  ">
+                                        <table  id="sel_val_tbl" class="display table  html-table sel_val_tbl  ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Student Name <div><select><option>A</option><option>B</option><option>C</option></select></div></th>
+                                                    <th>Registration ID<div><select><option>A</option><option>B</option><option>C</option></select></div></th>
+                                                    <th>Mail ID<div><select><option>A</option><option>B</option><option>C</option></select></div></th>
+                                                    <th>Contact No.<div><select><option>A</option><option>B</option><option>C</option></select></div></th>
+                                                    <th> Gender<div><select><option>A</option><option>B</option><option>C</option></select></div></th>
+                                                    
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr ><td > No student added </td><td  >  </td><td  >  </td><td ></td><td  >  </td> </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                              </div>
+
+                               <div class="col-lg-5  "> 
+                                   <div class="upload  " >
+                                      <h3>  Upload Sheet</h3>
+                                      <label>
+                                         <input type="file"  name="" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                          Choose File
+                                         <span>Browse</span>
+                                      </label>
+                                      <div class="clearfix  "></div>
+                                      <span id="file" class="file"></span>
+
+                                      <button class="btn btn-info btn-upload ">Upload <i class="fa fa-upload"></i></button>
+
+                                  </div> 
+
+                                   <div class="upload   col-assign">
+                                       <h5>Uploaded Sheet Preview</h5>
+                                        <div class="table-res mt-0">
+                                          <table class="display table  html-table">
+                                             <thead>
+                                              <tr class="text-left  ">
+                                               <th>Registration No <br>G</th> 
+                                                <th> Name<br>  A</th>
+                                                <th>Contact<br> B </th>
+                                                
+                                                <th>Email <br>D</th>
+                                                 
+                                                <th>Gender<br> F</th>
+                                              </tr>
+                                              </thead>
+                                             <tbody>
+                                              <tr>
+                                               <td  >  </td>
+                                               <td>    </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+
+                                              </tr>
+                                               <tr>
+                                               <td  >  </td>
+                                               <td>    </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+
+                                              </tr>
+                                               <tr>
+                                               <td  >  </td>
+                                               <td>    </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+                                               <td>  </td>
+
+                                              </tr>
+                                               
+                                            
+                                             </tbody>
+
+                                          </table>
+                                        </div>
+                                  </div>  
+                               </div>
+
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="text-right  pt-0 bottom-btn">
+                 <!-- <a  class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#alert" href="javascript:;">Submit</a> -->
+                 {% comment %} <button type="button" class="btn btn-primary pl-5 pr-5" onclick="createBatch()">Submit</button> {% endcomment %}
+             </div>
+             <div class="text-right  pt-0 bottom-btn1">
+              {% if authority.batch_list == 'True' or authority.admin == '18pixels@admin' %}
+                 <a class="btn btn-primary pl-5 pr-5"  href="{% url 'preview_data' %}">Preview  & Submit</a>
+                 {% endif %}
+             </div>
+        </div>
+    </div>
+   </div>
+ </div>
+
+ <!-- Modal -->
+<div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+         <p>Are you sure want to add 55 new student to   <br>Batch ID <strong>BID001</strong>.  </p>
+         
+          <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+         <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+         
+      </div>
+       
+    </div>
+  </div>
+</div>
+
+ <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+         <img src="../app-assets/images/success-icon-10.png">
+         <p> Students have been successsfully added to   <br>Batch ID <strong>BID001</strong>.  </p>
+         
+          
+         <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+         
+      </div>
+       
+    </div>
+  </div>
+</div>
+
+ 
+{% include 'Admin/dashboard/footer.html' %}
+<script type='module' src="{% static 'adminModule\js\admin-js\customJS\adminBatch_JS\add_courseType_course.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminBatch_JS\batch-management.js' %}"
+    type="text/javascript"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminValidation_JS\batch-management-validation.js' %}" type="text/javascript"></script>
+<script>
+    var i = 0;
+    $("#batchName").on('keypress', function (e) {
+        if ($(this).val().length < 1) {
+            if (e.which == 32) {
+                return false;
+            }
+        }
+        else {
+            if (e.which == 32) {
+                if (i != 0) {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i = 0;
+            }
+        }
+        var regex = /^[a-zA-Z0-9 ]*$/;
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    });
+</script>

@@ -1,0 +1,251 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper  ">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="top-options pl-1 mb-0">
+                <div class="row">
+                    <div class="col-lg-5  mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control ml-3" name="" onkeyup='paperAjaxsearch()'
+                            id="paperAjaxsearch" placeholder="Search for paperID & paperName">
+                    </div>
+                    <div class="col-md-7 text-right pr-2  ">
+                        <div class="btn-group mr-1 mb-1">
+                            <a class="btn btn-primary btn-min-width  " href="{% url 'create_paper' %}">Create Exam Paper
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="example1" class="display table data-table">
+                    <thead>
+                        <tr>
+                            <th>Paper ID</th>
+                            <th>Paper Name</th>
+                            <th>Total Marks</th>
+                            <th>Passing Marks</th>
+                            <th>No. of Sections</th>
+                            <th>Paper Status</th>
+                            <th>Remarks</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="paperData"> 
+                        {% for i in data %}
+                        <tr>
+                            <td> <a href="#" class="link">{{ i.paperID }} <i class="fa fa-caret-right"></i></a></td>
+                            <td>{{ i.paperName }}</td>
+                            <td>{{ i.paperTotalMarks }}</td>
+                            <td>{{ i.paperPassingMark }}</td>
+                            <td>{{ i.totalNoSection }}</td>
+                            {% if i.paperStatus == 'Approved' %}
+                            <td><span class="status" style='border:1px solid green;color:green;'>{{ i.paperStatus}}</span></td>
+                            <td><a class="view" href="#" data-toggle="modal" data-target="#exampleModal"
+                                    style='color:#6f42c1;'><i class="fa fa-info"></i></a></td>
+                            <td class="details-control">
+                                <a cId="{{i.id}}" class="del" onclick="deletePaper(this)"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_paper_detail' i.id %}" class="edit"
+                                    style='color:grey;pointer-events:none;'><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'view_paper_detail' i.id %}" class="view"><i class="fa fa-eye"></i></a>
+                            </td>
+                            {% elif i.paperStatus == 'Completed' %}
+                            <td><span class="status" style='border:1px solid #007dc6;color:#007dc6;'>{{ i.paperStatus}}</span></td>
+                            <td style="color:#fa626b;">Not Evaluated</td>
+                            <td class="details-control">
+                                <a cId="{{i.id}}" class="del" onclick="deletePaper(this)"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_paper_detail' i.id %}" class="edit"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'view_paper_detail' i.id %}" class="view"><i class="fa fa-eye"></i></a>
+                            </td>
+                            {% else %}
+                            <td><span class="status" style='border:1px solid red;color:red;'>{{ i.paperStatus }}</span>
+                            </td>
+                            <td><a class="view" href="#" data-toggle="modal" data-target="#exampleModal1"
+                                    style='color:#6f42c1;' paperremark='{{i.paperRemark}}'
+                                    onclick='renderRejectModal(this)'><i class="fa fa-info"></i></a></td>
+                            <td class="details-control">
+                                <a cId="{{i.id}}" class="del" onclick="deletePaper(this)"><i
+                                        class="fa fa-trash"></i></a>
+                                <a href="{% url 'edit_paper_detail' i.id %}" class="edit"
+                                    style='color:;pointer-events:;'><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'view_paper_detail' i.id %}" class="view"><i class="fa fa-eye"></i></a>
+                            </td>
+                            {% endif %}
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} <div class="text-center"><a href="" class="btn btn-dark mt-2">Load More</a> </div> {% endcomment %}
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example" class="float-right mr-1">
+                        <ul class="pagination">
+                            <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()"
+                                    id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                            <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()"
+                                    id='nextButton' style='color:#007dc6;'>Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 600;">Paper Remark Information</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                {% comment %} <div class="form-group text-center mb-1">
+                    <img style="height:100px;width:100px;border-radius:60%;"
+                        src="{% static 'adminModule/images/avatar.jpg' %}" id="">
+                </div> {% endcomment %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        <h5 style="color:#28afd0;text-decoration:underline;">Remarks</h5>
+                    </label><br>
+                    <strong>Paper Approved!</strong>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        <h5 style="color:#28afd0;text-decoration:underline;">Paper Status</h5>
+                    </label><br>
+                    <strong>Approved</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 600;">Paper Remark Information</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                {% comment %} <div class="form-group text-center mb-1">
+                    <img style="height:100px;width:100px;border-radius:60%;"
+                        src="{% static 'adminModule/images/avatar.jpg' %}" id="">
+                </div> {% endcomment %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        <h5 style="color:#28afd0;text-decoration:underline;">Remarks</h5>
+                    </label><br>
+                    <strong id='paperRemarkId'></strong>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        <h5 style="color:#28afd0;text-decoration:underline;">Paper Status</h5>
+                    </label><br>
+                    <strong>Rejected</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule/js/admin-js/customJS/adminPaper_JS/paperAjaxSearch.js' %}"></script>
+<script>
+    function deletePaper(thisTxt) {
+        var id = $(thisTxt).attr('cId');
+        console.log('value >> ', id);
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to Delete?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    position: 'center',
+                    title: "<b style='font-size:20px;font-weight:500;color:#1eb6e9;'><small>deleting ...</small></b>",
+                    showConfirmButton: false,
+                    onOpen: () => {
+                        Swal.showLoading();
+                    }
+                })
+                $.ajax({
+                    type: 'GET',
+                    url: "deletePaper/" + id,
+                    success: function (response) {
+                        console.log(response['data']['message']);
+                        Swal.close();
+                        if (response['data']['message'] == 'Course  Attched with Someone') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: '<small>Paper Attched with Some other module</small>',
+                                showConfirmButton: true,
+                                // timer: 2000
+                            }).then(function () {
+                                return false;
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '<small>Paper deleted successfully</small>',
+                                showConfirmButton: false,
+                                timer: 2000
+                            }).then(function () {
+                                window.location.href = window.location;
+                            })
+                        }
+
+                    }
+                });
+            }
+        })
+
+
+    }
+</script>
+
+<script>
+    function renderRejectModal(thisTxt) {
+        var paperRemark = $(thisTxt).attr('paperremark');
+        console.log('paper remark >> ', paperRemark);
+        $('#paperRemarkId').html(paperRemark);
+    }
+</script>

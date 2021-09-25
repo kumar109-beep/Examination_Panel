@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon"
+        href="https://themeselection.com/demo/chameleon-admin-template/app-assets/images/ico/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" />
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/style.css' %}" />
+        
+    </head>
+  <body class="dashboard">
+  	     <div class="wrapper">
+          <header>
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-2  ">
+                  <a href="{% url 'dashboard' %}">
+                      <img class="logo" src="{% static 'Student-Exam-Panel/images/logo.png' %}">
+                    </a>
+                  </div>
+                 
+                   <div class="col-md-10 last">
+                      <a href="{% url 'logout' %}"><img src="{% static 'Student-Exam-Panel/images/logout.png' %}"></a>
+                  </div>
+              </div>
+            </div>
+          </header>
+          <div class="cont mt-5 pt-4 pb-5">
+             <div class="card info">
+                 <div class="row">
+                   <div class="col-md-2 offset-md-1">
+                      {% if studentData.images != None %}
+                        <img src="http://13.233.247.133/static/{{studentData.images}}" id="imgphoto">
+                      {% else %}
+                        <img src="https://aseanorlhns-pin2021.org/wp-content/uploads/2018/12/img-avatar-blank.jpg">
+                      {% endif %}
+                   </div>
+                  
+                   {% comment %} studentData >>  {'data': {'id': 12332, 'fullName': 'Rohit-Kumar', 'mobileNumber': '1611621613', 'dateOfBirth': '1997-06-01', 'gender': 'Male', 'handy': 'Right', 'disability': 'No', 'images': '/Upload_Images/studentImages/humen_IYn66Uo.jpg', 'signature': None, 'guardianName': 'Satyanarayn Mandal', 'guardianEmail': 'satya.42@yahoo.co.in', 'relationwithGuardian': 'Father', 'guardianMobile': '7799665599', 'temp_district': 'Lakhisarai', 'temp_address': 'Abhaipur', 'temp_pincode': '811112', 'temp_vs_perm': 'on', 'perm_district': 'Lucknow', 'perm_address': 'Vibhuti khand, Gomti nagar', 'perm_pincode': '206010', 'created_at': '2021-06-28T08:02:18.378613Z', 'updated_at': '2021-07-05T09:45:28.368559Z', 'referUser': {'id': 14860, 'password': 'pbkdf2_sha256$216000$m9JNcZiM2zD2$hm3xhuEoZ4ZJWve4AjpdYV0j/d/CI7mYCHuhtd5OxeE=', 'last_login': '2021-07-07T06:18:08.494393Z', 'is_superuser': False, 'username': '5165465', 'first_name': '', 'last_name': '', 'email': '5146@yahoo.co.in', 'is_staff': False, 'is_active': True, 'date_joined': '2021-06-28T08:02:17.502909Z', 'groups': [], 'user_permissions': []}, 'courseTypeFK': {'id': 1, 'courseTypeID': 'CourseId02UG', 'courseTypeName': 'UG', 'created_at': '2021-06-04T08:44:07.140672Z', 'updated_at': '2021-07-03T05:48:15.814741Z'}, 'courseFK': {'id': 5, 'courseID': 'CourseId01', 'courseName': 'B.TECH', 'created_at': '2021-06-12T08:54:21.854984Z', 'updated_at': '2021-06-29T10:23:45.655233Z', 'courseType': 1}, 'temp_countryfk': {'id': 1, 'country_code': 'in', 'country_name': 'India', 'created_at': '2021-06-04T08:38:30.787881Z', 'updated_at': '2021-06-04T08:38:30.787916Z'}, 'temp_statefk': {'id': 1, 'country_state': 'UP', 'created_at': '2021-06-04T08:38:40.592219Z', 'updated_at': '2021-06-04T08:38:40.592246Z', 'country_fk': 1}, 'perm_countryfk': {'id': 1, 'country_code': 'in', 'country_name': 'India', 'created_at': '2021-06-04T08:38:30.787881Z', 'updated_at': '2021-06-04T08:38:30.787916Z'}, 'perm_statefk': {'id': 1, 'country_state': 'UP', 'created_at': '2021-06-04T08:38:40.592219Z', 'updated_at': '2021-06-04T08:38:40.592246Z', 'country_fk': 1}, 'suject': [{'id': 5, 'subjectID': 'phython001', 'subjectName': 'Python', 'created_at': '2021-06-14T12:47:09.307090Z', 'updated_at': '2021-06-28T06:51:56.378099Z'}, {'id': 6, 'subjectID': 'numpy0123', 'subjectName': 'Numpy', 'created_at': '2021-06-26T11:00:28.362336Z', 'updated_at': '2021-06-26T11:00:28.362363Z'}, {'id': 14, 'subjectID': 'ds01', 'subjectName': 'Data Science', 'created_at': '2021-07-01T08:32:17.006417Z', 'updated_at': '2021-07-01T08:32:17.006443Z'}]}, 'token': '265c88405b8f875507f37b077d013f1761173340e9e1085268a64aac6b700744', 'message': 'success', 'type_of_user': 'student', 'status': True} {% endcomment %}
+                    <div class="col-md-4 det">
+                      <h4>Hello!</h4>
+                      <h3>{{studentName}}</h3>
+                      <p>{{studentData.courseFK.courseName}}</p>
+                   </div>
+
+                    <div class="col-md-4 det d1">
+                       <p><span>Registration No. :</span>{{studentData.referUser.username}}</p>
+                       <p><span>Email Address :</span>{{studentData.referUser.email}}</p>
+                       {% comment %} <p><span>Contact :</span>{{studentData.mobileNumber}}</p> {% endcomment %}
+                       <p><span>D.O.B :</span>{{studentData.dateOfBirth}} </p>
+                       {% comment %} <p><span>Guardian Name :</span>{{studentData.guardianName}} </p> {% endcomment %}
+                   </div>
+                    
+                 </div> 
+              </div>
+             <div class="container cc ">
+              <div class="row">
+                 <div class="mt-4">
+                     <h2 class="title">Scheduled Exam List</h2>
+                     <div class="card exams mt-4">
+                        <div class="head">
+                          Today's Schedule
+                        </div>
+                        {% comment %} <div class="block">
+                            <div class="row">
+                              <div class="col-md-9">
+                                <div class="exam-name">Paper Name</div>
+                              </div>
+                              <div class="col-md-3  ">
+                                <a href="{% url 'instructions' %}"  class="inst"><img src="{% static 'Student-Exam-Panel/images/info.png' %}"> Read Instructions</a> 
+                              </div>
+                              <div class="col-md-3  ">
+                                <label>Subject</label>
+                                <p>Subject Name</p>
+                              </div>
+
+                              <div class="col-md-9">
+                                  <div class="row">
+                                     <div class="col-md-3">
+                                      <label>Start Date</label>
+                                      <p>5<sup>th</sup> March 2021</p>
+                                    </div>
+                                     <div class="col-md-3">
+                                      <label>Start Time</label>
+                                      <p> 10:00 AM</p>
+                                    </div>
+                                    
+                                     <div class="col-md-3">
+                                      <label>Total Marks</label>
+                                      <p> 100</p>
+                                    </div>
+                                     <div class="col-md-3  ">
+                                         <a href="{% url 'instructions' %}" class="btn btn-primary ">Start Now</a>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+                         {% comment %} <div class="block">
+                            <div class="row">
+                              <div class="col-md-9">
+                                <div class="exam-name">Paper Name</div>
+                              </div>
+                              <div class="col-md-3  ">
+                                <a href="{% url 'instructions' %}"  class="inst"><img src="{% static 'Student-Exam-Panel/images/info.png' %}"> Read Instructions</a> 
+                              </div>
+                              <div class="col-md-3  ">
+                                <label>Subject</label>
+                                <p>Subject Name</p>
+                              </div>
+
+                              <div class="col-md-9">
+                                  <div class="row">
+                                     <div class="col-md-3">
+                                      <label>Start Date</label>
+                                      <p>5<sup>th</sup> March 2021</p>
+                                    </div>
+                                     <div class="col-md-3">
+                                      <label>Start Time</label>
+                                      <p> 01:00 PM</p>
+                                    </div>
+                                    
+                                     <div class="col-md-3">
+                                      <label>Total Marks</label>
+                                      <p> 100</p>
+                                    </div>
+                                     <div class="col-md-3">
+                                         <div id="timer" class="timer">
+                                           <img src="{% static 'Student-Exam-Panel/images/timer.png' %}"> <div class="hours"></div>
+                                            <div class="minutes"></div>
+                                            <div class="seconds"></div>
+                                          </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+                        {% if paperData.message == 'No Exam Schedule' %}
+                          <div class="block">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="exam-name">No Scheduled Exam for Today !</div>
+                                </div>
+                              </div>
+                          </div>
+                        {% else %}
+                          <div class="block">
+                              <div class="row">
+                                <div class="col-md-9">
+                                  <div class="exam-name">Paper Name</div>
+                                </div>
+                                <div class="col-md-3  ">
+                                  <a href="{% url 'instructions' %}"  class="inst"><img src="{% static 'Student-Exam-Panel/images/info.png' %}"> Read Instructions</a> 
+                                </div>
+                                <div class="col-md-3  ">
+                                  <label>Subject</label>
+                                  <p>Subject Name</p>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="row">
+                                      <div class="col-md-3">
+                                        <label>Start Date</label>
+                                        <p>5<sup>th</sup> March 2021</p>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <label>Start Time</label>
+                                        <p> 10:00 AM</p>
+                                      </div>
+                                      
+                                      <div class="col-md-3">
+                                        <label>Total Marks</label>
+                                        <p> 100</p>
+                                      </div>
+                                      <div class="col-md-3  ">
+                                          <a href="{% url 'instructions' %}" class="btn btn-primary ">Start Now</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div> 
+
+                          <div class="block">
+                              <div class="row">
+                                <div class="col-md-9">
+                                  <div class="exam-name">Paper Name</div>
+                                </div>
+                                <div class="col-md-3  ">
+                                  <a href="{% url 'instructions' %}"  class="inst"><img src="{% static 'Student-Exam-Panel/images/info.png' %}"> Read Instructions</a> 
+                                </div>
+                                <div class="col-md-3  ">
+                                  <label>Subject</label>
+                                  <p>Subject Name</p>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="row">
+                                      <div class="col-md-3">
+                                        <label>Start Date</label>
+                                        <p>5<sup>th</sup> March 2021</p>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <label>Start Time</label>
+                                        <p> 01:00 PM</p>
+                                      </div>
+                                      
+                                      <div class="col-md-3">
+                                        <label>Total Marks</label>
+                                        <p> 100</p>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <div id="timer" class="timer">
+                                            <img src="{% static 'Student-Exam-Panel/images/timer.png' %}"> <div class="hours"></div>
+                                              <div class="minutes"></div>
+                                              <div class="seconds"></div>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                        {% endif %}
+
+
+
+                     </div>
+                 </div>
+
+                  <div>
+                  
+                    <div class="col-md-7 mt-4">
+                                  <div class="exam-name"></div>
+                                </div>
+                      <h4 class="" style='font-weight:700;'>Upcoming Exam List</h4>
+                    </div>
+                    {% if paperData.message == 'No Exam Schedule' %}
+                    <div class="col-md-12">
+                     <div class="card exams later mt-2">
+                        <div class="block">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="exam-name">No Upcoming Exam Available !</div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% else %}
+                        {% comment %} ------------------ {% endcomment %}
+                 <div class="col-md-6">
+                     <div class="card exams later mt-2">
+                        <div class="block">
+                            <div class="row">
+                              <div class="col-md-7">
+                                <div class="exam-name">Paper Name</div>
+                              </div>
+                              <div class="col-md-5  ">
+                                <a  class="inst"><img src="{% static 'Student-Exam-Panel/images/timer1.png' %}">April 20, 2021</a> 
+                              </div>
+                              <div class="col-md-3  ">
+                                <label>Subject</label>
+                                <p>Subject Name</p>
+                              </div>
+ 
+                                     <div class="col-md-3">
+                                      <label>Start Date</label>
+                                      <p>5<sup>th</sup> March 2021</p>
+                                    </div>
+                                     <div class="col-md-3">
+                                      <label>Start Time</label>
+                                      <p> 10:00 AM</p>
+                                    </div>
+                                    
+                                     <div class="col-md-3">
+                                      <label>Total Marks</label>
+                                      <p> 100</p>
+                                    </div>
+                                     
+                                   
+                            </div>
+                        </div>
+
+                         
+                     </div>
+                 </div>
+                 {% comment %} ------------------ {% endcomment %}
+                  {% endif %}
+             </div>
+
+
+           </div>
+
+        </div>
+
+    </div>
+
+  </body>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+ 
+<script type="text/javascript">
+  function makeTimer() {
+
+  //    var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");  
+    var endTime = new Date("14 April 2021 10:56:00 GMT+01:00");      
+      endTime = (Date.parse(endTime) / 1000);
+
+      var now = new Date();
+      now = (Date.parse(now) / 1000);
+
+      var timeLeft = endTime - now;
+
+      var days = Math.floor(timeLeft / 86400); 
+      var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+      var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+      var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+  
+      if (hours < "10") { hours = "0" + hours; }
+      if (minutes < "10") { minutes = "0" + minutes; }
+      if (seconds < "10") { seconds = "0" + seconds; }
+
+      $(".days").html(days + "<span>Days</span>");
+      $(".hours").html(hours + " <span>hrs</span>:");
+      $(".minutes").html(minutes + " <span>min</span>:");
+      $(".seconds").html(seconds + " <span>sec</span>");   
+
+  }
+
+  setInterval(function() { makeTimer(); }, 1000);
+</script>
+
+  </html>

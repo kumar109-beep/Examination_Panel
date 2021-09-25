@@ -1,0 +1,115 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+    <div class="app-content content position-relative  ">
+         
+      <div class="content-wrapper">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12 mt-1  ">
+             <h4 class="head mb-2  ">Select Resources | Designation ID: <strong>DID001</strong>
+              {% if authority.role_list == 'True' or authority.admin == '18pixels@admin' %} 
+              <a   class="btn btn-default   float-right btn-sm  mt--1" href="{% url 'role_list' %}" >Back </a>
+               {% endif %}
+            </h4>
+                <div class="card  form pt-0 pl-0 pr-0">
+                  <div class="card-content pt-0">
+                      <div class="card-body pt-0 pl-0 pr-0"  >
+                        
+
+                            <div class="manual-entry ">
+                             <div class="row ">
+                                <div class="col-lg-2   mb-2 form-group ico  pr-0  "><p class="pt-1">Select/Enter Resource </p> </div>
+                                  <div class="col-lg-8   mb-2 form-group ico pl-2">
+                                   <i class="fa fa-search"></i>
+                                      <select class="select2 form-control select2-placeholder2" id="default-select">
+                                         <option  > </option>
+                                          <option value="1">Resource 1</option>
+                                          <option value="2">Resource 1</option>
+                                           <option value="3">Resource 3</option>
+                                          <option value="4">Resource 4</option>
+                                           <option value="5">Resource 5</option>
+                                          <option value="6">Resource 6</option>
+                                    </select>
+                                   </div>
+                                    
+
+                                      <div class="col-lg-12">
+                                         <div class="table-responsive  ">
+                                            <table id="students" class="display table  html-table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Resource ID</th>
+                                                        <th>Resource Name</th>
+                                                        <th>Department</th>
+                                                         
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="not-added"><td colspan="6" class="text-center">No resource added</td></tr>
+                                                </tbody>
+                                            </table>
+                                         
+                                        </div>
+                                      </div>  
+                             </div>
+                           </div>
+
+                             
+                      </div>
+                  </div>
+              </div>
+
+               <div class="text-right  pt-0 bottom-btn">
+                   <a  class="btn btn-primary pl-5 pr-5"   href="{% url 'select_authorities' %}">Next</a>
+               </div>
+              <!--  <div class="text-right  pt-0 bottom-btn1">
+                   <a class="btn btn-primary pl-5 pr-5"  href="preview-data.php">Preview  & Submit</a>
+               </div> -->
+          </div>
+      </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+  <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <p>Are you sure want to add 55 resources to   <br>Designation ID <strong>DID001</strong>.  </p>
+           
+            <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#success">Yes</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+           <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+           <p> Students have been successsfully added to   <br>Batch ID <strong>BID001</strong>.  </p>
+           
+            
+           <a href="" class="btn btn-primary btn-sm" data-dismiss="modal"  >OK</a>
+           
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}

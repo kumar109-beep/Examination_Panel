@@ -1,0 +1,128 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper pt-0 pl-0 pr-0 ">
+        <div class="content-body   " style="position: relative;"><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options   mb-0 paper">
+            <div class="row">
+                <div class="col-lg-12 mb-1  text-center">
+                    <p style="text-decoration: underline;">Quesion Paper: <strong>Mathematics</strong></p>
+                </div>
+                 <div class="col-lg-4 mb-1  ">
+                    <p>Student Name: <strong>Rahul</strong></p>
+                </div>
+                 <div class="col-lg-4 mb-1  text-center">
+                    <p>Roll No: <strong>454800101</strong></p>
+                </div>
+                 <div class="col-lg-4 mb-1  text-right">
+                    <p>Marks Obtained: <strong><span id="markss">10</span>/50</strong></p>
+                </div>
+           </div>
+       </div>
+
+        <div class="ml-1 mr-1   mb-1 ">
+                <div class="que-ans">
+                    <div class="ques">
+                       <div class="row">
+                          <div class="col-md-8">
+                            <h4>1. What is the least number that must be added to 1056 so the number is divisible by 23?</h4>
+
+                            <div class="opts">
+                              <ul>
+                                 <li><label><input type="radio" name=""> 0 </label></li>
+                                  <li><label><input type="radio" name=""> 3 </label></li>
+                                  <li><label><input type="radio" name="" checked=""> 2 </label></li>
+
+                                 <li><label><input type="radio" name=""> 1 </label></li>
+                              </ul>
+                            </div>
+
+                             <p class="res right">Student Response: <strong>2</strong></p>
+                              <p class="res">Correct Answer: <strong>2</strong></p>
+                          </div>
+
+                          <div class="col-md-4 marks">
+                             <p>Total Marks: <strong>2</strong></p>
+                             <p>Marks Obtained: <input type="text" name="" class="marks_ob" value="2"></p>
+                          </div>
+                       </div>
+                    </div> 
+                    <div class="ques">
+                       <div class="row">
+                          <div class="col-md-8">
+                            <h4>2. Write down the decimal expansions of :  13/ 6250</h4>
+
+                                                          <img src="{% static 'adminModule/images/ans.png' %}">
+
+
+                             
+                          </div>
+
+                          <div class="col-md-4 marks">
+                             <p>Total Marks: <strong>4</strong></p>
+                             <p>Marks Obtained: <input type="text" name="" class="marks_ob" value=""></p>
+                          </div>
+                       </div>
+                    </div> 
+
+                    <div class="ques">
+                       <div class="row">
+                          <div class="col-md-8">
+                            <h4>3. Which one of the following can’t be the square of a natural number?</h4>
+
+                            <div class="opts">
+                              <ul>
+                                 <li><label><input type="radio" name="" checked=""> 42437 </label></li>
+                                  <li><label><input type="radio" name=""> 20164 </label></li>
+                                  <li><label><input type="radio" name="" > 81225</label></li>
+
+                                 <li><label><input type="radio" name=""> 32761 </label></li>
+                              </ul>
+                            </div>
+
+                             <p class="res right">Student Response: <strong>42437</strong></p>
+                              <p class="res">Correct Answer: <strong>42437</strong></p>
+                          </div>
+
+                          <div class="col-md-4 marks">
+                             <p>Total Marks: <strong>2</strong></p>
+                             <p>Marks Obtained: <input type="text" name="" class="marks_ob" value="2"></p>
+                          </div>
+                       </div>
+                    </div> 
+                </div>
+
+                <div class="bottom-btns text-right">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'response' %}">Cancel</a>
+                    <button class="btn btn-primary btn-sm" data-target="#alert" data-toggle="modal">Update</button>
+                </div>
+          </div>
+
+        
+  </div>
+ </div>
+</div>
+
+
+ <div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+            <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+
+           <p>Evaluated Paper has been updated successfully.</p>
+           <p class="text-center">
+             <a href="{% url 'response' %}" class="btn btn-primary  "> OK</a>
+           </p>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+ 
+  {% include 'Admin/dashboard/footer.html' %}

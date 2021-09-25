@@ -1,0 +1,74 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+.btn-purple {
+    color: #fff;
+    background-color: #9c27b0;
+}
+</style>
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-6   mb-2 form-group ico pl-2">
+                         <h3 class="main-title">Topic List</h3>
+                       </div>
+                     
+                     <div class="col-md-6 text-right pr-2 pb-2 mb-1 ">
+                      {% if authority.topic_list == 'True' or authority.admin == '18pixels@admin' %}
+                          <a href="{% url 'add_topic' %}" class="btn btn-primary"  >+ Add Topic  </a>
+                          {% endif %}
+                          {% if authority.topic_list == 'True' or authority.admin == '18pixels@admin' %}
+                          <a href="{% url 'edit_topic' %}" class="btn btn-primary"  ><i class="fa fa-edit"></i>&nbsp;Edit Topic  </a>
+                          {% endif %}
+                      </div>
+
+                      <div class="col-lg-4 offset-md-1  mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i>
+                          <select class="select2 form-control select2-placeholder7" id="courseName">
+                             <option value=''>Select Course</option>
+                             {% for i in data %}
+                              <option value="{{i.id}}">{{i.courseName}}</option>
+                             {% endfor %}
+                        </select>
+                      </div>
+
+                       <div class="col-lg-4 mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i>
+                          <select class="select2 form-control" id="subjectID">
+                             <option id='baseSelectOption' value='' class="d-none"> Select Course First</option>                 
+                        </select>
+                      </div>
+
+                       <div class="col-md-2 text-right pr-2  ">
+                          <button class="btn btn-purple" id='topicListSubmitButton' onclick="searchTopics()">Search</button>
+                      </div>
+
+               </div>
+           </div>
+
+             <div class="table-responsive  ">
+                <table id="example1"  class="display table data-table">
+                    <thead>
+                        <tr>
+                             <th>Topic Name</th>
+                        </tr>
+                    </thead>
+                       <tbody id='topicDataAppend'>
+                        <tr>
+                            <td class="text-center" ><b>Please select course & subject to view topic list</b></td>
+                        </tr>
+                     </tbody>
+                   
+                </table>
+                 
+             
+            </div>
+            <!-- <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> -->
+      </div>
+     </div>
+   </div>
+ 
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule/js/admin-js/customJS/adminCourse_JS/topic-list.js' %}"></script>

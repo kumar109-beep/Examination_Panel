@@ -1,0 +1,203 @@
+{% load static %}
+{% load custom_tags %}
+{% include 'Admin/dashboard/header.html' %}
+
+<!-- ============================================================================================= -->
+<style>
+    .container {
+        max-width: 640px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 10px;
+
+    }
+
+    ul.ks-cboxtags {
+        list-style: none;
+        padding: 20px;
+    }
+
+    ul.ks-cboxtags li {
+        display: inline;
+    }
+
+    ul.ks-cboxtags li label {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, .9);
+        border: 2px solid rgba(139, 139, 139, .3);
+        border-radius : 15px;
+        color: black;
+        /* border-radius: 25px; */
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        margin: 3px 0px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: all .2s;
+    }
+
+    ul.ks-cboxtags li label {
+        padding: 3px 6px;
+        cursor: pointer;
+    }
+
+    ul.ks-cboxtags li label::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 10px;
+        padding: 2px 6px 2px 2px;
+        content: "\f067";
+        transition: transform .3s ease-in-out;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+        content: "\f00c";
+        transform: rotate(-360deg);
+        transition: transform .3s ease-in-out;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+        border: 2px solid #1bdbf8;
+        background-color: #28afd0;
+        color: #fff;
+        transition: all .2s;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+        display: absolute;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+        border: 2px solid #e9a1ff;
+    }
+</style>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminAuthority_JS/authorityList.js' %}"></script>
+<!-- ============================================================================================= -->
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper  ">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="row">
+                <div class="col-lg-4 col-md-8 col-sm-8  mb-2 form-group ico pl-3">
+                    <!-- <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name="" onkeyup='' id=""
+                        placeholder="Search"> -->
+                </div>
+                <div class="col-lg-8 col-md-4 col-sm-4 pt-1 pr-3  ">
+                        {% if authority.role_list == 'True' or authority.admin == '18pixels@admin' %} 
+                    <a class="btn btn-default   float-right btn-sm  mt--1 " href="{% url 'role_list' %}">Back</a>
+                    {% endif %}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12  pl-3  mt-1">
+                    <h4 class="head mb-2  ">Designation Name: <strong id='roleName'>{{authorityRoleName}}</strong> <span
+                            class="pl-2 pr-2">|</span>
+                        Associated Authorities: <strong>{{authorityLen}}</strong> </h4>
+                        <p id='roleID' style="display: none;">{{data_1.data.roleID}}</p>
+                </div>
+
+            </div>
+            <div class="table-responsive  ">
+                <table id="example1" class="display table data-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Authority</th>
+                            <th class="text-center">Sub Authority/Functionality</th>
+                            <!-- <th class="text-center">Action</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <input type="text" id='hiddenTokenKey' value="{{ tokenKey }}" style="display: none;">
+                        {% for i in data2 %}
+                        <tr>
+                            <td class="" style="color:#464855;"><b>{{ i.authorityName }}<b></td>
+                            <td class="container text-center">
+                                <ul class="ks-cboxtags">
+                                    {% for k in  i.functionalityName|chnageInList  %}
+                                    <li><input type="checkbox" value='{{ k  }}'><label
+                                            onclick="SelectAll_Authorities(this)">
+                                            {{ k }}
+                                    </li>
+                                    {% endfor %}</label>
+
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="text-right">
+                    <button style="margin-left: 400px;" onclick="submitAuthority()" class="btn btn-primary pl-5 pr-5"
+                    id="addStudentData">Submit</button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+
+
+<!-- Modal -->
+<div class="modal fade small" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure want remove this authority. </p>
+
+                <a href="" class="btn btn-dark btn-sm mr-1" data-dismiss="modal">No</a>
+                <a href="" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal"
+                    data-target="#success">Yes</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade small with-img" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'adminModule/images/success-icon-10.png' %}">
+                <p> Authority has been successsfully removed. </p>
+
+
+                <a href="" class="btn btn-primary btn-sm" data-dismiss="modal">OK</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% include 'Admin/dashboard/footer.html' %}

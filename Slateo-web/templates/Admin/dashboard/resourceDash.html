@@ -1,0 +1,346 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+    .container {
+        max-width: 640px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 10px;
+
+    }
+
+    ul.ks-cboxtags {
+        list-style: none;
+        padding: 20px;
+    }
+
+    ul.ks-cboxtags li {
+        display: inline;
+    }
+
+    ul.ks-cboxtags li label {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, .9);
+        border: 2px solid rgba(71, 35, 157, 0.3);
+        border-radius : 15px;
+        color: black;
+        /* border-radius: 25px; */
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        margin: 3px 0px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: all .2s;
+    }
+
+    ul.ks-cboxtags li label {
+        padding: 3px 6px;
+        cursor: pointer;
+    }
+
+    ul.ks-cboxtags li label::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 10px;
+        padding: 2px 6px 2px 2px;
+        content: "\f067";
+        transition: transform .3s ease-in-out;
+    }
+
+    /* ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+        content: "\f00c";
+        transform: rotate(-360deg);
+        transition: transform .3s ease-in-out;
+    } */
+
+    /* ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+        border: 2px solid #1bdbf8;
+        background-color: #28afd0;
+        color: #fff;
+        transition: all .2s;
+    } */
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+        display: absolute;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+        border: 2px solid #e9a1ff;
+    }
+</style>
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper">
+        <!-- ================================================================================ -->
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="col-lg-12 col-md-12 col-sm-12  ">
+                <h2 class="head mb-2  ">Resource Dashboard
+                   <!-- <a class="btn btn-warning   float-right btn-sm" style="color:white;" href="#" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">Update Password</a> -->
+                </h2>
+                <div class="card form">
+                    <div class="card-content ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <h4>Basic Detail</h4>
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                <img style="height: 170px;;width:170height: 170px;;border-radius:70%;" src='https://www.w3schools.com/howto/img_avatar.png'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                <br><br>
+                                                <!-- <p><b style='color: black;font-size: 15px;'>Resource Id : </b>&nbsp; <strong>RS002</strong></p>
+                                                <p><b style='color: black;font-size: 15px;'>Resource Name : </b>&nbsp; <strong>Kanak Saxena</strong></p>
+                                                <p><b style='color: black;font-size: 15px;'>Resource Contact : </b>&nbsp; <strong>6398202828</strong></p>
+                                                <p><b style='color: black;font-size: 15px;'>Resource Email : </b>&nbsp; <strong>kanak.saxena@18pixels.in</strong></p>
+                                                <p><b style='color: black;font-size: 15px;'>Resource DOB : </b>&nbsp; <strong>02-August-1988</strong></p>
+                                                <p><b style='color: black;font-size: 15px;'>Resource Subject Speciality : </b>&nbsp; <span style='border: 1px solid white;color:white;background-color: grey;padding:5px;'><strong>Mathematics</strong></span></p> -->
+                                                <table class="table table-borderless">
+                                                    <tbody style='border:1px solid white;'>
+                                                      <tr>
+                                                        <th scope="row">Resource Id </th>
+                                                        <td><input style='pointer-events:none;border: 1px solid white;width:300px;' class='edit_resource_input' type='text' value='RS002'></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">Resource Name </th>
+                                                        <td><input style='pointer-events:none;border: 1px solid white;width:300px;' class='edit_resource_input' type='text' value='Kanak Saxena'></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">Resource Contact</th>
+                                                        <td><input style='pointer-events:none;border: 1px solid white;width:300px;' class='edit_resource_input' type='text' value='6398202828'></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">Resource Email</th>
+                                                        <td><input style='pointer-events:none;border: 1px solid white;width:300px;' class='edit_resource_input' type='text' value='kanak.saxena@18pixels.in'></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">Resource DOB</th>
+                                                        <td><input id="resDob" style='pointer-events:none;border: 1px solid white;width:300px;' class='edit_resource_input' type='text' value='02-August-1988'></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">Resource Subject Speciality</th>
+                                                        <td><span style='border: 1px solid white;color:white;background-color: grey;padding:5px;font-weight: 500;'>Advance & Applied Mathematics</span></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-right">
+                                    <button class='btn btn-sm btn-primary' data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">Update Password</button>
+                                    <button class='btn btn-sm btn-secondary ml-1' onclick='changeInputfileds()' id="resourceEditInfoBtn">Edit</button>
+                                    <button class='btn btn-sm btn-warning ml-1' style="display: none;" onclick='changeInputfiledsbyCancel()' id="resourceEditCancelBtn">Cancel</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card form">
+                    <div class="card-content ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>Assigned Authorities</h4>
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                <ul class="ks-cboxtags">
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 1
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 2
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 3
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 4
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 5
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 6
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 7
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 8
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 9
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 10
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 11
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 12
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 13
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 14
+                                                    </li>
+                                                    <li><input type="checkbox" value='# assigned authority 1'><label>
+                                                        # assigned authority 15
+                                                    </li>
+                                                </label>               
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-6">
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                # Data 04
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="card form">
+                    <div class="card-content ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                # Data 05
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card form">
+                                        <div class="card-content ">
+                                            <div class="card-body">
+                                                # Data 06
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div> -->
+
+                
+            </div>
+        </div>
+
+        <!-- ================================================================================ -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 600;">Update Resource Password
+                </h5>
+                <span id='data' ></span>
+
+                {% comment %} <button id='dismissBtn' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> {% endcomment %}
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Current Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword"  onkeyup="checkOldPassword()" aria-describedby="Enter current password"
+                        placeholder="Enter Current Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">New Password</label><br><small style="color:#28afd0;">*Password must contain 1 Capital,1 small alphabets 1 numeric and 1 special character</small>
+                    <input type="password" class="form-control" id="exampleInputPassword1" onkeyup="checkNewPassword()" placeholder="Enter new password" readonly style="cursor:not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Re-enter New Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" onkeyup="checkNewPassword()" placeholder="Re-enter new password" readonly style="cursor:not-allowed;">
+                </div>
+            <input style="height:10px;width:10px;" class="" id="togglePassword" type='checkbox' onclick="showPassword()">&nbsp;&nbsp;Show Password
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id='cancelBtn' onclick="CancelBtn()">Cancel</button>
+                <button class="btn btn-primary" id='updateBtn' onclick='updatePassword()' disabled style="cursor:not-allowed;">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\resource_dashoboard_JS\edit_resource.js' %}"></script>
+<script type='module' src="{% static 'adminModule\js\admin-js\customJS\adminDashboard_JS\dashboardData.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminProfile_JS\updatePassword.js' %}"></script>
+
+
+   <script>
+      function updateNotificationStatus(thisTxt) {
+          var requestID = $(thisTxt).attr('requestID');
+          var authorName = $(thisTxt).attr('authorName');
+          var notifyID = $(thisTxt).attr('notifyID');
+          var request_view_status = "True";
+
+          console.log('requestID > ',requestID);
+          console.log('authorName > ',authorName);
+          console.log('notifyID > ',notifyID);
+          console.log('request_view_status > ',request_view_status);
+
+          $.ajax({
+                 type: 'GET',
+                 url: "/updateNotificationStatus",
+                 data: {
+                     'requestID': requestID,
+                     'authorName':authorName,
+                     'notifyID':notifyID,
+                     'request_view_status':request_view_status
+                    },
+            success: function (response) {
+                     console.log('responseresponse',response);
+                    }
+                });
+            }  
+    </script>

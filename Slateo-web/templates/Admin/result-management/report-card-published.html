@@ -1,0 +1,97 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}  
+    <div class="app-content content position-relative  ">
+      <div class="content-wrapper report-card ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+                 <div class="col-lg-12 mb-1 form-group no-ico    ">
+                      <h3>Report Card</h3>
+                  </div>
+
+                <div class="col-lg-4 mb-1 form-group no-ico  ">
+                     <input placeholder="Search Sudent.." type="text" class="form-control" name="">
+                </div>
+                {% comment %} <div class="col-lg-2 mb-1 form-group no-ico  ">
+                <select class="  form-control select2" >
+                              <option value="">Year</option>
+                              <option value="1">2021</option>
+                              <option value="2">2020 </option>
+                              <option value="3">2019</option>
+                           </select>
+                </div> {% endcomment %}
+                <div class="col-lg-4 mb-1 form-group no-ico  ">
+                    {% comment %} <button class="btn btn-sm" style="color:white;background-color:#6f42c1" id='completedPapersSearchButton' onclick="">Filter</button> {% endcomment %}
+                </div>
+
+                 <div class="col-lg-4 text-right mb-1 form-group no-ico  ">
+                        <a href="" class="btn btn-primary btn-sm">Notify All Students <i class="fa fa-paper-plane"></i> </a>
+                        <a class="btn btn-secondary btn-sm float-right ml-1" href="{% url 'report_card' %}" >Back</a>
+                </div>
+                 
+
+               </div>
+           </div>
+             <div class="table-responsive">
+                <table id="example1"  class="display table data-table  schedule-exam">
+                    <thead>
+                        <tr>
+                            <th  width="400">Student Regstration No.</th>
+                            <th width="400">Student Name</th>
+                            <th width="400">Student Email</th>
+                            <th width="400">Student Contact</th>
+                            <th   width="400">Report Card</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>  
+                            <td>ST1545454</td>
+                            <td>Sunil Singh</td>
+                            <td>Sunil.Singh12345@gmail.com</td>
+                            <td>7854125896</td>
+                             <td><a href="{% url 'student_report_card' %}" class="select"   >View Report Card</a></td>
+                        </tr>
+                        <tr>  
+                            <td>ST1545454</td>
+                            <td>Sunil Singh</td>
+                            <td>Sunil.Singh12345@gmail.com</td>
+                            <td>7854125896</td>
+                             <td><a href="{% url 'student_report_card' %}" class="select"   >View Report Card</a></td>
+                        </tr>
+                        <tr>  
+                            <td>ST1545454</td>
+                            <td>Sunil Singh</td>
+                            <td>Sunil.Singh12345@gmail.com</td>
+                            <td>7854125896</td>
+                             <td><a href="{% url 'student_report_card' %}" class="select"   >View Report Card</a></td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div  class="   text-center">
+
+              {% comment %} <a href="#" class="btn btn-sm btn-secondary mt-2">Load More</a>  {% endcomment %}
+              <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)" maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example"  class="float-right mr-1">
+                    <ul class="pagination">
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+
+              
+            </div>
+      </div>
+     </div>
+   </div>
+ 
+   {% include 'Admin/dashboard/footer.html' %}

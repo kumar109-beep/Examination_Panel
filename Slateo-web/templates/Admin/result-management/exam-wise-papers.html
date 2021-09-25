@@ -1,0 +1,269 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}    
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<div class="app-content content position-relative  ">
+      <div class="content-wrapper  ">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="top-options pl-1 mb-0">
+            <div class="row">
+            
+                      <div class="col-lg-6 mb-1"><h3>Papers Detail</h3></div>
+                      <div class="col-lg-6 mb-1 text-right"><button class='btn btn-sm btn-secondary'>Back</button></div>
+                      <div class="col-lg-6 mb-1 form-group no-ico  ">
+                      <label>Exam Name</label>
+                      <input type='text' class="form-control" value="" id="examname" name='examname' readonly>
+                      <input type='text' class="form-control" style="display:none;" value="" id="examnameID" name='courseName' readonly>
+                            {% comment %} <select class="  form-control select2-placeholder10"  name='courseName' id='coursenameId' >
+                              <option> </option>
+                              {% for i in courseList %}
+                              <option value={{i.id}}>{{i.courseName}}</option>
+                              {% endfor %}
+                           </select> {% endcomment %}
+                      </div>
+
+                      <div class="col-lg-6 mb-1 form-group no-ico  ">
+                      <label>Subject Name</label>
+                            <select class="  form-control select2-placeholder11" name='subjectName' id='subjectnameId'>
+                            <option id='baseSelectOption' value='' class="d-none"> Select Course First</option>
+                           </select>
+                      </div>
+
+                        {% comment %} <div class="col-lg-3 mb-1 form-group no-ico pl-0  ">
+                            <select class="  form-control select2-placeholder9" name='year' id='year'>
+                              <option> </option>
+                              <option value="2021">2021</option>
+                              <option value="2020">2020 </option>
+                              <option value="2019">2019</option>
+                           </select>
+                      </div> {% endcomment %}
+
+                       
+
+
+                       <div class="col-md-1 text-right    ">
+                          {% comment %} <a href="#" class="btn btn-purple"  ><i class="fa fa-search"></i></a> {% endcomment %}
+                          {% comment %} <button class="btn btn-sm" style="color:white;background-color:#6f42c1" id='completedPapersSearchButton' onclick="searchCompletedPapers()">Search</button> {% endcomment %}
+                      </div>
+
+               </div>
+           </div>
+             <div class="table-responsive">
+                <table id="example1"  class="display table data-table  schedule-exam">
+                    <thead>
+                        <tr>
+                            <th>Paper ID</th>
+                            <th>Paper Name</th>
+                            <th>Subject</th>
+                            <th>Year</th>
+                            {% comment %} <th>Start Date</th>
+                            <th>End Date</th> {% endcomment %}
+                            <th>Paper Status</th>
+                            <th class="text-right"></th>
+                             
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in CompletedExamData %}
+                        <tr>
+                            <td><a class="link">{{i.examPapers.paperID}}</a></td>
+                            <td>{{i.examPapers.paperName}}</td>
+                            {% comment %} <td>{{i.examPapers.paperAssociateSubject.subjectName}}</td> {% endcomment %}
+                            <td>Math</td>
+                            <td>{{i.paper_year}}</td>
+                             {% comment %} <td> {% endcomment %}
+                             {% comment %} {% if i.editStatus == 'Saved' %} {% endcomment %}
+                             {% comment %} <input type="text" class="" id='startDateText_{{i.id}}' style="border:1px solid white;" placeholder="Select date" name="" value="{{i.start_date}}" readonly> {% endcomment %}
+                             {% comment %} {% else %} {% endcomment %}
+                             {% comment %} <input type="date" class="date" id='startDate_{{i.id}}' placeholder="Select date" name="" value=""> {% endcomment %}
+                             {% comment %} {% endif %} {% endcomment %}
+                             {% comment %} </td> {% endcomment %}
+                             {% comment %} <td> {% endcomment %}
+                             {% comment %} {% if i.editStatus == 'Saved' %} {% endcomment %}
+                             {% comment %} <input type="text" class="" id='endDateText_{{i.id}}' style="border:1px solid white;" placeholder="Select date" name="" value="{{i.end_date}}" readonly> {% endcomment %}
+                             {% comment %} {% else %} {% endcomment %}
+                             {% comment %} <input type="date" class="date" id='endDate_{{i.id}}' placeholder="Select date" name="" value=""> {% endcomment %}
+                             {% comment %} {% endif %} {% endcomment %}
+                             {% comment %} </td> {% endcomment %}
+                            <td style="font-size:18px;color:green;font-weight:500;">Finished &nbsp;<i class="far fa-check-circle"></i></td>
+
+                             <td class="details-control">
+                             {% comment %} {% if i.editStatus == 'Saved' %} {% endcomment %}
+                                  <a id="btn_{{i.id}}" completedExamID="{{i.id}}" class="btn btn-secondary btn-sm ml-1" onclick="allocateEvaluator(this)" style='display:;color:white;' data-toggle="modal" data-target="#exampleModalCenter">View Resources</a>
+                              {% comment %} {% else %} {% endcomment %}
+                              <a href="{% url 'report_card_published' %}" id="btn_{{i.id}}" completedExamID="{{i.id}}" class="btn btn-primary btn-sm" onclick="allocateEvaluator(this)" style='display:;'>View Students</a>
+                             {% comment %} {% endif %} {% endcomment %}
+                                    <span class="spinner-border spinner-border-sm text-primary" id="sending_{{i.id}}" style='display:none;'></span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} <div class="text-center"><a href="" class="btn btn-dark mt-2">Load More</a> </div> {% endcomment %}
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)" maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example"  class="float-right mr-1">
+                    <ul class="pagination">
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+      </div>
+     </div>
+   </div>
+ 
+
+
+
+
+
+  <div class="modal fade big " id="assign-evaluator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           <div class="row">
+            <div class="col-md-12"> 
+               <h4> Select Resource </h4>
+            </div>
+          
+             
+         </div>
+       </div>
+        <div class="modal-body  pt-0">
+            
+                <div class="form">
+                  <div class="card-content  ">
+                      <div class="card-body">
+                        <div id="assign-roles"  >
+                         <div class="row ">
+                             <div class="col-lg-12 pr-0 ">
+                                 
+                                   <div class="table-responsive mt--2 ">
+                                      <table   class="display assign-eva table table-striped table-bordered  ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Resource Name</th>
+                                                    <th>Role</th>
+                                                    <th>Subject</th>
+                                                    <th width="180">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id='appendResourceList'>
+                                                {% comment %} <tr>
+                                                    <td>Suraj Singh</td>
+                                                    <td>Teacher</td>
+                                                    <td>Maths</td>
+                                                    <td><a href="#"  class="addEva btn btn-secondary btn-sm">Select +</a></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>Manoj Singh</td>
+                                                    <td>Teacher</td>
+                                                    <td>Maths</td>
+                                                     <td><a href="#" class=" addEva btn btn-secondary btn-sm">Select +</a></td>
+                                                </tr> {% endcomment %}
+                                            </tbody>
+                                        </table>
+                                   </div>
+                                        <div class='text-center mt-2' style="display:;" id="selectEvaluatorSpinner">
+                                          <div class="spinner-border" style="color:#28afd0;"></div>
+                                          <h3 class="p-1" style="color:#28afd0;">Loading Resources</h3>
+                                        </div>
+                                        <div class='text-center mt-2'  style="display:none;" id="resourceNoContentAvailable">
+                                        <h3>No record available!</h3>
+                                        </div>
+
+                                
+                               </div>
+
+                                
+
+                               
+
+                                <div class="col-lg-12 text-right pt-4   ">
+                                   <a href="#" data-dismiss="modal" class="btn btn-gray mr-1" onclick=''>Cancel</a>
+                                  <a href="javascript:;"  data-dismiss="modal" class="save btn btn-primary" onclick='saveResourceArray()'>Save  </a>
+                                  
+                                </div>
+                            
+      
+                           </div>
+                             
+                        </div>
+
+                        
+                      </div>
+
+                  </div>
+              </div>
+        </div>
+         
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style='font-weight:600;text-decoration:underline;'>Allocated Resources</h5>
+        {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close"> {% endcomment %}
+          {% comment %} <span aria-hidden="true">&times;</span> {% endcomment %}
+        {% comment %} </button> {% endcomment %}
+      </div>
+      <div class="modal-body">
+        <table class="table" style="cursor:not-allowed;">
+          <thead class="thead-dark">
+            <tr>
+              <th>Resource Name</th>
+              <th>Subject</th>
+              <th>Role/Designation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td>R1</td>
+              <td>Math</td>
+              <td><span style='border:1px solid white;color:white;background-color:grey;' class='px-1'>Teacher</span></td>
+            </tr>
+            <tr >
+              <td>R2</td>
+              <td>Math</td>
+              <td><span style='border:1px solid white;color:white;background-color:grey;' class='px-1'>Teacher</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  {% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule\js\admin-js\customJS\admin_resultManagement_JS\assignEvaluator.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\admin_resultManagement_JS\assignEvaluatorAjaxSearch.js' %}"
+    type="text/javascript"></script>
+<script>
+  var e_ID = localStorage.getItem('e_ID');
+  var e_value = localStorage.getItem('e_value');
+    $('#examnameID').val(e_ID);
+    $('#examname').val(e_value);
+
+$(function(){
+    $('[type="date"]').prop('min', function(){
+        return new Date().toJSON().split('T')[0];
+    });
+});
+</script>

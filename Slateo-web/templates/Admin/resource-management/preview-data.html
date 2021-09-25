@@ -1,0 +1,142 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div class="app-content content position-relative  ">
+  <div class="content-wrapper  ">
+    <div class="content-body ">
+      <!-- Revenue, Hit Rate & Deals -->
+      <div class="top-options pl-1 mb-0">
+        <div class="row">
+          <div class="col-lg-5  mb-1 form-group ico  ">
+          </div>
+
+          <div class="col-md-7 text-right pr-2  ">
+            <a class="btn btn-primary btn-min-width btn-sm " href="{% url 'edit_resource_detail' resource_Data.id %}">Edit Detail </a>
+            <a class="btn btn-default   float-right btn-sm  ml-1" href="{% url 'resource_list' %}">Back to list</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail_block">
+        <div class="card form">
+          <div class="card-content ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-lg-4 mx-auto mt-1  ">
+                  <div class="head">
+                    <div class="row ">
+                      <div class="col-lg-6   ">
+                        <label>Resource Photo </label>
+                        {% if resource_Data.images != None %}
+                        <img src="http://13.233.247.133/static{{resource_Data.images}}" id="imgphoto">
+                        {% else %}
+                        <img src="{% static 'adminModule/images/avatar.jpg' %}" id="imgphoto">
+                        {% endif %}
+                      </div>
+
+                      <div class="col-lg-6  ">
+                        <label>Resource Signature </label>
+                        {% if resource_Data.signature != None %}
+                        <img src="http://13.233.247.133/static{{resource_Data.signature}}" id="imgsign">
+                        {% else %}
+                        <img src="{% static 'adminModule/images/sign.jpg' %}" id="imgsign">
+                        {% endif %}
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-lg-12  pt-1 ">
+                  <h4 class="title-1">Personal Details</h4>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Employee Code</label>
+                  <p class="value">{{resource_Data.referUser.username}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Name</label>
+                  <p class="value">{{resource_Data.fullname}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Gender </label>
+                  <p class="value">{{resource_Data.gender}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Date of birth </label>
+                  <p class="value">{{resource_Data.dateOfBirth}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Role/Designation</label>
+                  {% for j in resource_Data.role_designation %}
+                  <p class="value">{{ j.roleName }}</p>
+                  {% endfor %}
+                </div>
+                <!-- <div class="col-lg-3  pt-1 ">
+                  <label>Department</label>
+                  <p class="value">{{resource_Data.department}}</p>
+                </div> -->
+                <div class="col-lg-3  pt-1 ">
+                  <label>Subject Speciality</label>
+                  <p class="value">{{resource_Data.subject_speciality.subjectName}}</p>
+                </div>
+
+                <div class="col-lg-12  pt-3 ">
+                  <h4 class="title-1">Contact Details</h4>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Email ID</label>
+                  <p class="value">{{resource_Data.referUser.email}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Mobile No.</label>
+                  <p class="value">{{resource_Data.mobileNumber}}</p>
+                </div>
+                <div class="col-lg-6  pt-1 ">
+                  <label> Current Address</label>
+                  <p class="value">{{resource_Data.address}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Country</label>
+                  <p class="value">{{resource_Data.country.country_name}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>State </label>
+                  <p class="value">{{resource_Data.state.country_state}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>District</label>
+                  <p class="value">{{resource_Data.district}}</p>
+                </div>
+                <div class="col-lg-3  pt-1 ">
+                  <label>Pin code </label>
+                  <p class="value">{{resource_Data.pincode}}</p>
+                </div>
+                
+                
+
+                <div class="col-lg-12  pt-3 ">
+                  <h4 class="title-1">Education & Experience Detail</h4>
+                </div>
+                <div class="col-lg-6  pt-1 ">
+                  <label>Education</label>
+                  <p class="value">{{resource_Data.education}}</p>
+                </div>
+                <div class="col-lg-6  pt-1 ">
+                  <label>Experience</label>
+                  <p class="value">{{resource_Data.experience}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}

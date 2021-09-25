@@ -1,0 +1,235 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper  ">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="top-options pl-1 mb-0">
+                <div class="row">
+
+
+                    <div class="col-lg-3  mb-1 form-group ico pl-2">
+                        <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name=""
+                            onkeyup='resourceAjaxSearch()' id="resourceajaxSearch" placeholder="Search">
+                        <br>
+                        {% if success %}
+                        <span style='color:green;'>{{success}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-3 mb-1 ml-2 form-group no-ico  ">
+                        <select class="  form-control select2-placeholder17">
+                            <option> </option>
+                            <option value="1">Not Evaluated</option>
+                            <option value="2">Evaluated </option>
+                            <option value="3">Not Available</option>
+                            <option value="3">Ongoing</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-5  text-right pt-1  ">
+
+                        <span class="">Total Response: <strong>59/60</strong></span>
+                        <a class="btn btn-secondary btn-sm ml-3 float-right" href="{% url 'evaluate_answers' %}" >Back</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="example1" class="display table data-table  view_response">
+                    <thead>
+                        <tr>
+
+                            <th>Student Name</th>
+                            <th>Registration No.</th>
+                            <th>Attendance</th>
+                            <th>Marks Obtained</th>
+
+
+                            <th width="150">Evaluation Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td> <a class="link">Rahul Vatysa</a></td>
+                            <td>454800101</td>
+                            <td><span>Present</span></td>
+                            <td>Not Evaluated</td>
+
+                            <td><a href="{% url 'evaluate' %}" class="btn btn-primary btn-sm">Evaluate</a></td>
+                            <td>-</td>
+
+                        </tr>
+
+                        <tr class="">
+                            <td> <a class="link">Sameer Singh</a></td>
+                            <td>454800102</td>
+                            <td><span>Present</span></td>
+                            <td>Not Evaluated</td>
+
+                            <td><a class="select" style="color:green;">Evaluated</a></td>
+                            <td>
+                                {% comment %} <a href="#" class="view"><i class="fa fa-eye"></i></a> {% endcomment %}
+                                <a href="{% url 'edit_evaluate' %}" class="edit"><i class="fa fa-edit"></i></a>
+                                <a class="view" href="#" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="absent">
+                            <td> <a class="link">kashish Praajapati </a></td>
+                            <td>454800103</td>
+                            <td><span>Absent</span></td>
+                            <td>-</td>
+
+                            <td><a class="select" style="color:red;">Not Available</a></td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="">
+                            <td> <a class="link">Anand Kumar</a></td>
+                            <td>454800144</td>
+                            <td><span>Present</span></td>
+                            <td>Not Evaluated</td>
+
+                            <td><a href="{% url 'evaluate' %}" class="btn btn-warning btn-sm" style="color:white;">Ongoing</a></td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="">
+                            <td> <a class="link">Kashyap Prasad</a></td>
+                            <td>454800145</td>
+                            <td><span>Present</span></td>
+                            <td>Not Evaluated</td>
+
+                            <td><a class="select" style="color:green;">Evaluated</a></td>
+                            <td>
+                                {% comment %} <a href="#" class="view"><i class="fa fa-eye"></i></a> {% endcomment %}
+                                <a href="{% url 'edit_evaluate' %}" class="edit"><i class="fa fa-edit"></i></a>
+                                <a class="view" href="#" data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                    <!-- <input type="text" class="form-control ml-2" placeholder="Goto Page..." onkeypress="return onlyNumberKey(event)" maxlength="8" readonly> -->
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example" class="float-right mr-1">
+                        <ul class="pagination">
+                            <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()"
+                                    id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                            <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()"
+                                    id='nextButton' style='color:#007dc6;'>Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 600;text-decoration: underline;">Student Paper Information</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group text-center mb-1">
+                    <img style="height:100px;width:100px;border-radius:60%;border:3px solid rgb(223, 49, 49);" src="{% static 'adminModule/images/avatar.jpg' %}" id="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Student Name : </h5></label>
+                    <strong>Sameer Singh</strong>
+                    {% comment %} <input type="password" class="form-control" id="exampleInputPassword" aria-describedby="Enter current password"
+                        placeholder="Enter Current Password" readonly> {% endcomment %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Student Registration No. : </h5></label>
+                    <strong>454800102</strong>
+                </div>
+                {% comment %} <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Total Paper Marks : </h5></label>
+                    <strong>50</strong>
+                </div> {% endcomment %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Total Obtained Marks : </h5></label>
+                    <strong>12/50</strong>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Status : </h5></label>
+                    <strong style="color:red;">Failed</strong>
+                </div>
+            </div>
+            {% comment %} <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" disabled>Cancel</button>
+                <button type="button" class="btn btn-primary" disabled>Update</button>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 600;text-decoration: underline;">Student Paper Information</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+            <div class="form-group text-center mb-1">
+                    <img style="height:100px;width:100px;border-radius:60%;border:3px solid rgb(50, 206, 50);" src="{% static 'adminModule/images/avatar.jpg' %}" id="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Student Name : </h5></label>
+                    <strong>Kashyap Prasad</strong>
+                    {% comment %} <input type="password" class="form-control" id="exampleInputPassword" aria-describedby="Enter current password"
+                        placeholder="Enter Current Password" readonly> {% endcomment %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Student Registration No. : </h5></label>
+                    <strong>454800145</strong>
+                </div>
+                {% comment %} <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Total Paper Marks : </h5></label>
+                    <strong>50</strong>
+                </div> {% endcomment %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Total Obtained Marks : </h5></label>
+                    <strong>42/50</strong>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><h5 style="color:#28afd0;">Status : </h5></label>
+                    <strong style="color:green;">Passed</strong>
+                </div>
+            </div>
+            {% comment %} <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" disabled>Cancel</button>
+                <button type="button" class="btn btn-primary" disabled>Update</button>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+{% include 'Admin/dashboard/footer.html' %}

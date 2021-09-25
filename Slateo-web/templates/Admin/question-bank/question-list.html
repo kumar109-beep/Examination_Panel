@@ -1,0 +1,571 @@
+{% load static %}
+{% include 'Admin/dashboard/header.html' %}
+<style>
+    .donate-now {
+        list-style-type: none;
+        margin: 25px 0 0 0;
+        padding: 0;
+    }
+
+    .donate-now li {
+        float: left;
+        margin: 0 5px 0 0;
+        width: 100px;
+        height: 40px;
+        position: relative;
+    }
+
+    .donate-now label,
+    .donate-now input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .donate-now input[type="radio"] {
+        opacity: 0.01;
+        z-index: 100;
+    }
+
+    .donate-now input[type="radio"]:checked+label,
+    .Checked+label {
+        background: #28afd0;
+        color: beige;
+        text-align: center;
+    }
+
+    .donate-now label {
+        padding: 5px;
+        border: 1px solid #CCC;
+        cursor: pointer;
+        z-index: 90;
+    }
+
+    .donate-now label:hover {
+        background: #DDD;
+    }
+</style>
+<style>
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #444444;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>
+<script src="{% static 'adminModule/editor/editor.js' %}"></script>
+<link href="{% static 'adminModule/editor/editor.css' %}" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<div class="app-content content position-relative  ">
+    <div class="content-wrapper" id="hideQuestionOnClickEdit">
+        <div class="content-body ">
+            <!-- Revenue, Hit Rate & Deals -->
+            <div class="top-options pl-1 mb-0">
+                <div class="row">
+                    <div class="col-lg-12   mb-2 form-group ico  pl-0">
+                        <h3 class="main-title">Question List</h3>
+                    </div>
+                    <div class="col-lg-5 col-11 mb-1 form-group ico">
+
+                        <i class="fa fa-search"></i><input type="text" class="form-control ml-3" name="" onkeyup='questionAjaxsearch()' id="questionAjaxsearch"
+                                                    placeholder="Search for question">
+
+                        <br>
+                        {% if success %}
+                        <span style='color:green;'>{{success}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 text-right pr-2 pb-2 mb-1 ">
+                    </div>
+                    <div class="col-md-12 text-right pr-2 pb-2 mb-1 ">
+                        {% if authority.add_question == 'True' or authority.admin == '18pixels@admin' %}
+                        <a href="{% url 'add_questions' %}" class="btn btn-primary">Add Questions </a>
+                        {% endif %}
+                    </div>
+
+
+
+                    <div class="col-lg-3 mb-1 form-group no-ico pl-0  ">
+                        <select class="  form-control" id='questionYear' onchange="onChangeGetFilteredData()">
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021" selected=''>2021</option>
+                            <option value="2020">2020 </option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 mb-1 form-group no-ico  ">
+                        <select class="  form-control select2" id="courseName">
+                            <option value=''>Select Course</option>
+                            {% for i in data1 %}
+                            <option value="{{i.id}}">{{i.courseName}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-1 form-group no-ico  ">
+                        <select class="  form-control select2" id="subjectID" onchange="available_TOPIC()">
+                            <option value=''>Select Subject</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 mb-1 form-group no-ico  ">
+                        <select class="  form-control select2" id='topicID' onchange="onChangeGetFilteredData()">
+                            <option value=''>Select Topic</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3  ">
+                    <div class="card ques_sidebar">
+                        <div class="card-content  ">
+                            <div class="card-body pt-1 pl-1 pr-1" id='resetCard'>
+                                <div
+                                    style='display:inline;padding: 0px 0 5px; font-size: 18px; font-weight: 600; color: #333;margin-bottom: 25px;'>
+                                    Filter<a
+                                        style='float: right; font-size: 12px;  background: #007dc6; color: #fff; font-weight: 500; padding: 2px 10px 3px;'
+                                        onclick='resetFilter()' class='check' title='Reset filter'><i id='resetFilter'
+                                            class="fas fa-sync-alt"></i></a>
+                                </div>
+                                <hr>
+                                <div id='filterDiv'>
+                                    <div class="filter mt-2">
+                                        <h5>By Difficulty</h5>
+                                        <div class="options">
+                                        {% for c in questionLevel %}
+                                            <label><input type="checkbox" name='Difficulty' onclick='filterSelect(this)'
+                                                    value="{{ c.id }}" labelName={{ c.questio_level_type_name }} >{{ c.questio_level_type_name }}</label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="filter">
+                                        <h5>By Question Type</h5>
+                                        <div class="options">
+                                        {% for a in questionType %}
+                                            <label><input type="checkbox" name='questionType'
+                                                    onclick='filterSelect(this)' value="{{ a.id }}" labelName={{ a.questio_type_name }} >{{ a.questio_type_name }}</label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="filter">
+                                        <h5>By Language</h5>
+                                        <div class="options">
+                                        {% for j in language %}
+                                            <label><input type="checkbox" name='language' onclick='filterSelect(this)'
+                                                    value="{{ j.id }}" labelName={{ j.languageName }} >{{ j.languageName }}</label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="filter">
+                                        <h5>By Marks</h5>
+                                        <div class="options">
+                                            <label><input type="checkbox" name='marks' onclick='filterSelect(this)'
+                                                    labelName="1" value="1"> 1</label>
+                                            <label><input type="checkbox" name='marks' onclick='filterSelect(this)'
+                                                    labelName="2" value="2"> 2</label>
+                                            <label><input type="checkbox" name='marks' onclick='filterSelect(this)'
+                                                    labelName="3" value="3">3</label>
+                                            <label><input type="checkbox" name='marks' onclick='filterSelect(this)'
+                                                    labelName=">3" value=">3">>3</label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="Ques-top-opt" id='filtersOption'>
+                        Applied filters :
+                        <a id='allFilter' href="javascript:;"
+                            style='background: #fff; padding: 3px 10px; border:solid 1px #ccc;  font-size: 13px; font-weight: 600;'>All</a>
+                        <div class="sel_filters">
+                            {% comment %}
+                            <a href="javascript:;">Objectives <i class="fa fa-times"></i></a>
+                            <a href="javascript:;">2 <i class="fa fa-times"></i></a> {% endcomment %}
+                        </div>
+
+                        <span class="total_ques">Total Count : <strong id='totalCount'>{{len}}</strong></span>
+                    </div>
+                    <div id="loader" class="center" style='display:none;'></div>
+                    <div class="table-responsive " style='opacity:1;' id='tableDiv'>
+                        <table id="example1" class="display one-col table data-table">
+
+                            <tbody id='questionListBody'>
+                                {% for i in questionData %}
+                                <tr>
+                                {% comment %} [{'id': 12, 'question': 'lnlkjnknkl', 'optionList': "[['False', 'True'], [',mmm', 'klmlk;m']]", 'sameQuestionrefrence': '', 'created_at': '2021-05-16T19:16:45.644736Z', 'refrence_Questions_Type_Detail': {'id': 18, 'Topic': 'Calculus', 'selectNoOption': '2', 'correctMarks': '5', 'created_at': '2021-05-16T19:13:55.182288Z', 'selectCourse': {'id': 1, 'courseID': 'bsc021', 'courseName': 'B.Sc', 'created_at': '2021-05-16T16:52:48.327981Z', 'courseType': 1}, 'selectSubject': {'id': 1, 'subjectID': 'eng021', 'subjectName': 'English', 'created_at': '2021-05-16T16:53:34.312611Z'}, 'questionType': {'id': 1, 'questio_type_id': 'obj021', 'questio_type_name': 'Objective', 'created_at': '2021-05-16T16:59:18.293517Z'}, 'subQuestionType': {'id': 1, 'questio_sub_type_id': 'fil0215', 'questio_sub_type_name': 'Fill in the Blanks', 'created_at': '2021-05-16T16:57:28.413438Z'}, 'difficultyLevel': {'id': 2, 'questio_level_type_id': 'easy021', 'questio_level_type_name': 'Easy', 'created_at': '2021-05-16T16:56:58.899560Z'}}, 'selectLanguage': {'id': 1, 'languageCode': 'hind021', 'languageName': 'Hindi', 'created_at': '2021-05-16T17:00:08.419115Z'}, 'year': '2021'}, {'id': 13, 'question': 'mlm;m;m', 'optionList': "[['False', 'True'], ['mlm;', 'l;ml;']]", 'sameQuestionrefrence': '', 'created_at': '2021-05-16T19:16:45.939439Z', 'refrence_Questions_Type_Detail': {'id': 18, 'Topic': 'Calculus', 'selectNoOption': '2', 'correctMarks': '5', 'created_at': '2021-05-16T19:13:55.182288Z', 'selectCourse': {'id': 1, 'courseID': 'bsc021', 'courseName': 'B.Sc', 'created_at': '2021-05-16T16:52:48.327981Z', 'courseType': 1}, 'selectSubject': {'id': 1, 'subjectID': 'eng021', 'subjectName': 'English', 'created_at': '2021-05-16T16:53:34.312611Z'}, 'questionType': {'id': 1, 'questio_type_id': 'obj021', 'questio_type_name': 'Objective', 'created_at': '2021-05-16T16:59:18.293517Z'}, 'subQuestionType': {'id': 1, 'questio_sub_type_id': 'fil0215', 'questio_sub_type_name': 'Fill in the Blanks', 'created_at': '2021-05-16T16:57:28.413438Z'}, 'difficultyLevel': {'id': 2, 'questio_level_type_id': 'easy021', 'questio_level_type_name': 'Easy', 'created_at': '2021-05-16T16:56:58.899560Z'}}, 'selectLanguage': {'id': 2, 'languageCode': 'eng021', 'languageName': 'English', 'created_at': '2021-05-16T17:00:23.070752Z'}, 'year': '2021'}, {'id': 25, 'question': 'mk;lm;lknm;l', 'optionList': "[['False', 'True'], ['.,mknm', ',mlnmkl']]", 'sameQuestionrefrence': '', 'created_at': '2021-05-16T19:44:48.844066Z', 'refrence_Questions_Type_Detail': {'id': 18, 'Topic': 'Calculus', 'selectNoOption': '2', 'correctMarks': '5', 'created_at': '2021-05-16T19:13:55.182288Z', 'selectCourse': {'id': 1, 'courseID': 'bsc021', 'courseName': 'B.Sc', 'created_at': '2021-05-16T16:52:48.327981Z', 'courseType': 1}, 'selectSubject': {'id': 1, 'subjectID': 'eng021', 'subjectName': 'English', 'created_at': '2021-05-16T16:53:34.312611Z'}, 'questionType': {'id': 1, 'questio_type_id': 'obj021', 'questio_type_name': 'Objective', 'created_at': '2021-05-16T16:59:18.293517Z'}, 'subQuestionType': {'id': 1, 'questio_sub_type_id': 'fil0215', 'questio_sub_type_name': 'Fill in the Blanks', 'created_at': '2021-05-16T16:57:28.413438Z'}, 'difficultyLevel': {'id': 2, 'questio_level_type_id': 'easy021', 'questio_level_type_name': 'Easy', 'created_at': '2021-05-16T16:56:58.899560Z'}}, 'selectLanguage': {'id': 1, 'languageCode': 'hind021', 'languageName': 'Hindi', 'created_at': '2021-05-16T17:00:08.419115Z'}, 'year': '2021'}] {% endcomment %}
+                                    <td>
+                                        {% comment %} <p><span style='color:#1eb6e9;'>Question.{{forloop.counter}}</span> {{i.question|safe}} {% endcomment %}
+                                        <p><span style='color:#1eb6e9;'>Question. </span> {{i.question|safe}}
+
+                                            {% comment %} {% if authority.edit_question == 'True' or authority.admin == '18pixels@admin' %}
+                                            <!-- href="{% url 'edit_question' i.id %}" -->
+                                            <a onclick="onClickEditQuestion(this)" href="#" questionID="{{i.id}}" class="edit float-right ml-1"
+                                                title="View/Edit question"><i class="fa fa-edit"></i></a>
+                                                {% endif %} {% endcomment %}
+                                                {% if authority.edit_question == 'True' or authority.admin == '18pixels@admin' %}
+                                            <a href="{% url 'edit_question' i.id %}" class="edit float-right ml-1"
+                                                title="View/Edit question"><i class="fa fa-edit"></i></a>
+                                                {% endif %} 
+                                                <a class='edit float-right ml-1' id='{{i.id}}'
+                                                onclick='customer_detailed_info(this)'><i class="fas fa-eye"></i></a>
+                                            </p>
+
+                                        <div class="q_info">
+                                            <ul>
+                                                <li><span>QType</span>{{i.refrence_Questions_Type_Detail.questionType.questio_type_name}}</li>
+                                                <li><span>Difficulty</span>{{i.refrence_Questions_Type_Detail.difficultyLevel.questio_level_type_name}}</li>
+                                                <li><span>Marks</span>{{i.refrence_Questions_Type_Detail.correctMarks}}</li>
+                                                <li class=""><span>Subject</span>{{i.refrence_Questions_Type_Detail.selectSubject.subjectName}}</li>
+                                                <li class=""><span>Topic</span>{{i.refrence_Questions_Type_Detail.Topic}}</li>
+                                                <li><span>Language</span>{{i.selectLanguage.languageName}}</li>
+                                                <li><span>Year</span> {{i.year}}</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    {% endfor %}
+                            </tbody>
+
+                        </table>
+                        <h3 class="text-center m-2 p-2" id='noQuestionData'
+                            style='display:none;border:0px solid grey;background-color:white;'>No Record available!</h3>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="text-center"><a href="" class="btn btn-dark btn-sm mt-2">Load More</a> </div> -->
+            <div class='row'>
+                <div class='col-lg-2 mt-1'>
+                </div>
+                <div class='col-lg-8 mt-1'>
+                </div>
+                <div class='col-lg-2 float-right'>
+                    <nav aria-label="Page navigation example" class="float-right mr-1">
+                        <ul class="pagination">
+                            <li class="page-item"><button class="page-link" onclick="studentpaginatorPreviousButton()" id='prevButton' style='color:#007dc6;'>Previous</button></li>&nbsp;&nbsp;
+                        <li class="page-item"><button class="page-link" onclick="studentpaginatorNextButton()" id='nextButton' style='color:#007dc6;'>Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- ################################################################### -->
+<!-- ########################   Question Edit ############################-->
+<!-- ################################################################### -->
+
+  <div class="content-wrapper" id="editQuestionShow" style="display: none;">
+        <div class="content-body "><!-- Revenue, Hit Rate & Deals -->
+           <div class="col-lg-12 col-md-12 col-sm-12">
+             <h4 class="head mb-2  ">Edit Question
+              {% comment %} {% if authority.edit_question == 'True' or authority.admin == '18pixels@admin' %}
+                                            <a href="{% url 'edit_question' i.id %}" class="edit float-right ml-1"
+                                                title="View/Edit question"><i class="fa fa-edit"></i></a>
+                                                {% endif %} {% endcomment %}
+            </h4>
+                <div class="card  pt-0 pl-0 pr-0 form">
+                  <div class="card-content">
+                      <div class="card-body pt-0   pl-0 pr-0"  >
+                         <div class="tops_add_ques">
+                                         {% comment %} specific question detail >>  {'id': 12, 'question': 'jjghjgjhvhjvjhvjh', 'optionList': "[['False', 'True'], ['False', 'klmlk;m']]", 'sameQuestionrefrence': '', 'created_at': '2021-05-16T19:16:45.644736Z', 'refrence_Questions_Type_Detail': {'id': 18, 'Topic': 'Calculus', 'selectNoOption': '2', 'correctMarks': '5', 'created_at': '2021-05-16T19:13:55.182288Z', 'selectCourse': {'id': 1, 'courseID': 'bsc021', 'courseName': 'B.SC', 'created_at': '2021-05-16T16:52:48.327981Z', 'courseType': 1}, 'selectSubject': {'id': 1, 'subjectID': 'eng021', 'subjectName': 'English', 'created_at': '2021-05-16T16:53:34.312611Z'}, 'questionType': {'id': 1, 'questio_type_id': 'obj021', 'questio_type_name': 'Objective', 'created_at': '2021-05-16T16:59:18.293517Z'}, 'subQuestionType': {'id': 1, 'questio_sub_type_id': 'fil0215', 'questio_sub_type_name': 'Fill in the Blanks', 'created_at': '2021-05-16T16:57:28.413438Z'}, 'difficultyLevel': {'id': 2, 'questio_level_type_id': 'easy021', 'questio_level_type_name': 'Easy', 'created_at': '2021-05-16T16:56:58.899560Z'}}, 'selectLanguage': {'id': 1, 'languageCode': 'hind021', 'languageName': 'Hindi', 'created_at': '2021-05-16T17:00:08.419115Z'}} {% endcomment %}
+                             <div class="row" style='pointer-events: none;'>
+                                <div class="col-lg-4 mb-1 form-group no-ico pl-2">
+                                <label style='font-weight:600;'>Course</label>
+                                    <input type="text" class="form-control" placeholder="Course"  readonly id='questionCourse' />
+                                </div>
+
+                                 <div class="col-lg-4  mb-1 form-group no-ico pl-2">
+                                <label style='font-weight:600;'>Subject</label>
+                                    <input type="text" class="form-control" placeholder="Subject"  readonly id='questionSubject'/>
+                                </div>
+
+                                <div class="col-lg-4 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Topic</label>
+                                    <input type="text" class="form-control" placeholder="Topic" readonly id='questionTopic' />
+                                </div>
+
+                                
+                              </div>
+                            </div>
+                            <div class="contt pt-2 pl-2 pr-2"  id='questionDetailDiv'>
+                              <div class="row">
+
+                              <div class="col-lg-4 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Language</label>
+                                        <select class="selectpicker form-control" data-live-search="true"
+                                            id='editQuestionLanguage' multiple disabled>
+                                        </select>
+                                   
+                                </div>
+                                 <div class="col-lg-2 mb-1 form-group no-ico  ">
+                                <label style='font-weight:600;'>Question Type</label>
+                                   <input type="text" class="form-control" id='editquestionType' placeholder="Question Type" value="{{specificQuestionData.refrence_Questions_Type_Detail.questionType.questio_type_name}}" readonly id=''/>
+                                </div>
+                                <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Question Sub-Type</label>
+                                    <input type="text" class="form-control" placeholder="Question Sub Type"  readonly id='editsubQuestionType'/>
+                                </div>
+                                <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Difficulty level</label>
+                                    <input type="text" class="form-control" placeholder="Difficulty level"  readonly id='editQuestionDifficultyLevel'/>
+                                </div>
+                                   <div class="col-lg-2 mb-1 form-group no-ico  pl-2">
+                                <label style='font-weight:600;'>Correct marks</label>
+                                      <input type="text" class="form-control" placeholder="Correct Marks"  readonly id='editQuestionCorrectMarks'/>
+                                   </div>
+
+                                  <hr>
+                            <div class="contt pl-2 pr-2" id=''>
+                                <div class="row">
+                                    <div class="col-lg-12   mt-0  form-group">
+                                        <div id='labelForLangugae'></div>
+
+                                    </div>
+                                    <div class="col-lg-12   mt-0  form-group" id="renderEditor">
+
+                                    </div>
+                                    <div class="col-lg-8 mt-1 no-ico  form-group">&nbsp;</div>
+                                </div>
+
+                                <div id="options" style="display: none;">
+                                </div>
+                            </div>
+
+                                {% if specificQuestionData.refrence_Questions_Type_Detail.questionType.questio_type_name == 'Objective' %}
+                                    <div class="col-lg-4 mt-1 no-ico  form-group" style='pointer-events:none;' id='objectiveOptions'>
+                                      <select class=" form-control" id="optionCount" onchange="renderOptions()">
+                                        <option>Select No. of Options </option>
+                                        <option value="2">2 </option>
+                                         <option value="3">3</option>
+                                          <option value="4">4</option>
+                                           <option value="5">5</option>
+                                           <option value="6">6</option>
+
+                                          
+                                       </select>
+                                   <p style='display:none;' id='optionList'>{{specificQuestionData.optionList}}</p>
+                                   <p style='display:none;' id='optionCurrentCount'>{{optionCountData}}</p>
+                                   </div>
+                                    <div class="col-lg-8 mt-1 no-ico  form-group">&nbsp;</div>
+                                    </div>
+
+                                    <div id="options" style="display: none">
+                                {% endif %}
+                                    </div>
+                                 </div>
+
+                                    <div class="row">
+                                      <div class="text-center col-lg-12 mt-2 pt-2 pr-3" id='questionButtons'>
+                                        {% if authority.question_list == 'True' or authority.admin == '18pixels@admin' %}
+                                          <a  class="btn btn-danger btn-lg mr-2 " href="{% url 'question_list' %}" >Discard</a>
+                                          {% endif %}
+                                           <button  class="btn btn-info btn-lg  mr-2 " onclick='editSpecificQuestion()' >Update</button>
+                                       </div>
+                                   </div>
+
+
+ 
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+      </div>
+     </div>
+
+</div>
+<!-- ====================================================================== -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered  modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">Customer History</h4> -->
+                
+                <!-- <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                  </button> -->
+            </div>
+            <div class="modal-body pt-0  mb-2">
+                <form class="form">
+                    <div class="card-body pt-0 pb-0 pl-1 pr-1">
+                        <div class="row ml-3 mr-3">
+                            <div class="col-lg-12">
+                                <h3 class="mb-1" style="color:#1eb6e9;display: inline;font-weight: 600;">Question Details</h3>
+                                <!-- <span><a href="#" class="btn btn-sm btn-primary float-right">Edit Questions </a></span> -->
+                                <hr>
+                                <div class="form-group row mt-2">
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Course</label>
+                                        <p id='CousreModal'>-</p>
+                                    </div>
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Subject</label>
+                                        <p id='SubjectModal'>-</p>
+                                    </div>
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Topic<span></span></label>
+                                        <p id='TopicModal'>-</p>
+                                    </div><hr>
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Language<span></span></label>
+                                        <p id='LanguageModal'>-</p>
+                                    </div><div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Question Type<span></span></label>
+                                        <p id='QuestionTypeMod'>-</p>
+                                    </div><div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Question Sub-Type<span></span></label>
+                                        <p id='QuestionSubTypeModal'>-</p>
+                                    </div>
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Difficulty Level<span></span></label>
+                                        <p id='DifficultyModal'>-</p>
+                                    </div>
+                                    <div class="col-lg-2 mt-1 mb-1">
+                                        <label style='font-size:15px;font-weight: 700;'>Correct Marks<span></span></label>
+                                        <p id='CorrectMarkModal'>-</p>
+                                    </div><hr>
+                                    <div class="col-lg-12 mt-3 mb-1" style="border-bottom: 0.5px solid #1eb6e9;padding-bottom:25px;">
+                                        <label style='font-size:15px;font-weight: 700;margin-top:10px;'>Question<span></span></label>
+                                        <p id='QuestionModal'>-</p>
+                                    </div>
+                                    <div class="col-lg-12 mt-1" id='OptionModal' style='display: none;'>
+                                        <label class="mb-1" style='font-size:15px;font-weight: 700;' id="optionModalAppend" >Options</label>
+                                        <!-- <p class="ml-1"><i style="color: red;font-size: large;font-weight: 600;" class="far fa-circle"></i>&nbsp;&nbsp;Lorem, ipsum.</p>
+                                        <p class="ml-1"><i style="color: green;font-size: large;font-weight: 600;" class="far fa-check-circle"></i>&nbsp;&nbsp;Lorem, ipsum.</p>
+                                        <p class="ml-1"><i style="color: red;font-size: large;font-weight: 600;" class="far fa-circle"></i>&nbsp;&nbsp;Lorem, ipsum.</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mt-5 pt-4 text-right">
+                                <!-- {% comment %} <button class="btn btn-secondary btn-lg">Cancel</button> {% endcomment %} -->
+                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal"
+                                    aria-label="Close">Cancel</button>
+                                <!-- <button class="btn btn-primary btn-lg ml-4">Update</button> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ======================================================================= -->
+{% include 'Admin/dashboard/footer.html' %}
+<script src="{% static 'adminModule/js/admin-js/customJS/adminQuestionBank_JS/question-list.js' %}"></script>
+<script src="{% static 'adminModule/js/admin-js/customJS/adminQuestionBank_JS/filter-question.js' %}"></script>
+<script src="{% static 'adminModule\js\admin-js\customJS\adminQuestionBank_JS\questionAjaxSearch.js' %}"></script>
+
+<script>
+    function customer_detailed_info(thisTxt) {
+        var id = thisTxt['id'].toString();
+
+        $.ajax({
+        type: 'GET',
+        url: "show_question/"+id,
+        success: function (response) {
+            console.log(response);
+
+            $('#CousreModal').html('');
+            $('#CousreModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['selectCourse']['courseName']);
+
+            $('#SubjectModal').html('');
+            $('#SubjectModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['selectSubject']['subjectName']);
+
+            $('#TopicModal').html('');
+            $('#TopicModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['Topic']);
+
+            $('#LanguageModal').html('');
+            $('#LanguageModal').html(response['specificQuestionData']['selectLanguage']['languageName']);
+
+            $('#QuestionTypeMod').html('');
+            var questionTypeData = response['specificQuestionData']['refrence_Questions_Type_Detail']['questionType']['questio_type_name'];
+            $('#QuestionTypeMod').html(questionTypeData);
+
+            $('#QuestionSubTypeModal').html('');
+            $('#QuestionSubTypeModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['subQuestionType']['questio_sub_type_name']);
+
+            $('#DifficultyModal').html('');
+            $('#DifficultyModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['difficultyLevel']['questio_level_type_name']);
+
+            $('#CorrectMarkModal').html('');
+            $('#CorrectMarkModal').html(response['specificQuestionData']['refrence_Questions_Type_Detail']['correctMarks']);
+
+            $('#QuestionModal').html('');
+            $('#QuestionModal').html('<i style="color: #1eb6e9;font-weight:800;font-size:16px;" class="fas fa-angle-double-right"></i>&nbsp;&nbsp;'+response['specificQuestionData']['question']);
+
+            if(response['optionCountData'] >= 0){
+                $('#OptionModal').css('display','');
+
+                var optionString = '';
+
+                    for(var i=0;i<response['optionListData'].length;i++){
+                        for(var j=0;j<response['optionListData'][i].length;j++){
+                        console.log('=======================================================');
+                        console.log(response['optionListData'][i][j]);
+
+                        console.log(response['optionListData']);
+                        console.log('=======================================================');
+                        console.log("response['optionListData'][i][j] >>>  ",response['optionListData'][i][j]);
+                        console.log("response['optionListData'][i][j] >>>  ",response['optionListData'][i][j]);
+
+
+                        if(response['optionListData'][i][j] == 'True'){
+                            var data = '<p class="ml-1 mt-1"><i style="color: green;font-size: 20px;font-weight: 800;" class="far fa-check-circle"></i>&nbsp;&nbsp;'+response['optionListData'][1][j]+'</p>';
+                            optionString = optionString + data;
+                        }else if(response['optionListData'][i][j] == 'False'){
+                            var data = '<p class="ml-1 mt-1"><i style="color: red;font-size: 20px;font-weight: 800;" class="far fa-times-circle"></i>&nbsp;&nbsp;'+response['optionListData'][1][j]+'</p>';
+                            optionString = optionString + data;
+                        }
+                    }
+                    }
+                $('#optionModalAppend').html('');
+                $('#optionModalAppend').append('Options<br>'+optionString);
+            }else{
+                $('#OptionModal').css('display', 'none');
+            }
+        }
+    });
+        $('#myModal').modal('show');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+

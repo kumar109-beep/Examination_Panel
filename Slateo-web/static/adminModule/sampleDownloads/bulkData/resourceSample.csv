@@ -1,0 +1,236 @@
+EmployeeID,EmployeeName,DOB,Gender,RoleID,Email,Contact,CountryID,StateID,Address,District,Pincode,Education,Experience,Subject_SpecialityID
+SIDD10020,Dr. AZAD KUMAR,08-07-1988,Male,2,kumarazad20@gmail.com,8887685212,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10023,Dr.Veena Singh,19-07-1971,Female,2,veenasingh1907@gmail.com,9415200733,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10025,SAURABH SINGH PARIHAR,29-04-1984,Male,2,saurabh29484@yahoo.com,9452555018,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10033,DR PREM PRAKASH MISHRA,01-07-1981,Male,2,premprakash55@gmail.com,9451521053,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10045,Dr Archana Dikshit ,02-05-1972,Female,2,charu05062002@gmail.com ,9450682418,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10055,Dr. Anil Kumar Upadhyay,08-10-1969,Male,2,dranilupadhyay@gmail.com,7376212625,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10057,Dr. Umashankar Shukla,01-10-1973,Male,2,drumashankarshukla@gmail.com,9415378199,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10077,Dr KEDAR NATH GUPTA,01-08-1980,Male,2,kedarallahabad@reedifmail.com,9451125557,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10087,DR GANESH SHARMA,03-07-1985,Male,2,sharmaganesh62@gmail.com,9919233068,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10101,Dr Avneesh Mishra,11-03-1985,Male,2,avneeshmishra85@gmail.com,8299392785,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10106,JEETENDRA BAHADUR SINGH,25-12-1981,Male,2,JEETANDRASINGH829@GMAIL.COM,7500044298,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10110,??0 ???? ???????,02-01-1965,Male,2,pandeydrumesh340@gmail.com,9919574117,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10114,Dr. RAM KISHOR SINGH,25-07-1986,Male,2,ram007kishor@gmail.com,9718631250,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10143,"Dr, Mahesh Kumar Dubey",11-09-1974,Male,2,dubeymahesh1976@gmail.com,7379951369,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10159,DHARMENDRA KUMAR SONKER,02-05-1981,Male,2,dharmendra.sonker.2@gmail.com,9889231090,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10173,ASHWINEE KUMAR,20-01-1981,Male,2,ashwineekumar1981@gmail.com,8005455631,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10177,DR. GHANSHYAM PATHAK,20-04-1951,Male,2,drravindrakpandey@gmail.com,9450539920,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10207,Dr Gopal Ji Kushwaha,21-06-1972,Male,2,gopalbot@gmail.com,9415670013,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10219,AMIT KUMAR MISHRA,06-07-1981,Male,2,8rajmishra@gmail.com,9795011796,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10252,DR ANUPAM PATI TRIPATHI,29-12-1986,Male,2,anupam.p.tripathi@gmail.com,9506464698,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10266,DR. AJAI KUMAR SHARMA,31-12-1972,Male,2,sharmajai22@gmail.com,9415355723,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10269,DR. ANIL KUMAR MISHRA,12-07-1964,Male,2,dranilmishralbspg@gmail.com,9450234987,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10274,MARKANDAY DHAR DUBEY,08-07-1981,Male,2,markandaydhardubey181@gmail.com,9956561918,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10282,Dr Jitendra Kumar ,30-06-1982,Male,2,jitendra.iit@gmail.com ,9981366770,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10312,DR PRITHVI NATH PATHAK,08-11-1972,Male,2,pnpathak.blp@gmail.com,8004258189,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10345,DR RAJESH KUMAR TIWARI,15-01-1981,Male,2,drrajeshtiwari753@gmail.com ,7376201440,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10347,Dr. Ram Pandey,26-01-1973,Male,2,drrampandey85@gmail.com,9415641183,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10352,DR SHREEKRISHNA TRIPATHI,08-07-1978,Male,2,sktripathimlk@gmail.com,9415848321,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10354,DR. PRAVEEN KUMAR MISHRA,30-06-1976,Male,2,praveen9415384472@gmail.com,9415384472,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10371,Dr. Vijay Kumar Shukla,17-03-1989,Male,2,vshukla1100@gmail.com,9984787714,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10387,Dr. Basant Kumar,15-07-1985,Male,2,hellobasant@gmail.com,7651827765,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10395,MANINDRA KUMAR TIWARI,10-07-1986,Male,2,manindratiwari786@gmail.com,9415009787,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10425,AVINASH SINGH,03-03-1985,Male,2,proavisingh85@gmail.com,8858115834,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10439,DR KIRTI PRAKASH MISHRA,01-07-1973,Male,2,kpmmlk2015@gmail.com,9452427677,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10459,DR SAURABH MISHRA,14-11-1978,Male,2,cycloazide@gmail.com,9453271752,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10517,ASHOK KUMAR PANDEY,01-01-1971,Male,2,dr.akpandey.and@gmail.com,9918765308,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10540,ASHOK KUMAR PANDEY,01-01-1971,Male,2,DR.AKPANDEY.AND@GMAIL.COM,8318198696,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10565,DR DEVENDRA KUMAR CHAUBEY,20-11-1969,Male,2,devendrakumarchaubey786@gmail.com,9450553502,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10585,Dr. Jai Narayan Tripathi ,25-07-1976,Male,2,jainarayant4@gmail.com ,7704974129,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10596,BAJARANG PRATAP MISHRA,20-07-1981,Male,2,bajaranjpratap@gmail.com,8756967065,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10606,DR. RAKESH CHANDRA TRIPATHI,05-11-1978,Male,2,tripathirak@gmail.com,9839540755,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10639,MANOJ KUMAR JAISWAL,10-09-1981,Male,2,mkjaiswal22145@rediffmail.com,9984377221,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10643,DR MUKESH KUMAR,02-01-1984,Male,2,drmukeshmrj@gmail.com,9839108069,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10646,GAJENDER UBARAN GIRI,22-10-1986,Male,2,giri.ubaran@gmail.com,8601808773,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10659,DR. SUNEETA TRIPATHI,05-05-1980,Female,2,tripathisunita@gmail.com,8960113374,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10669,RAM BABU,10-07-1979,Male,2,rambabupal94@gmail.com,7017997625,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10671,RAJEEV SINGH,05-07-1987,Male,2,rajeevsinghgautam8@gmail.com,9456016646,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10672,HANS RAJ,04-04-1989,Male,2,hansrajsingh.bhu@gmail.com,8948539745,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10697,Vinod Kumar Singh,01-06-1979,Male,2,vinod.ap81@yahoo.in,8604329359,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10699,Mukesh Kumar,14-09-1972,Male,2,mukeshkumarhod149@gmail.com,9554151378,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10702,DR SUDHAKAR VERMA,10-05-1983,Male,2,sudhakarapn353@gmail.com,9451950540,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10704,Dr ASHA MISHRA,15-07-1974,Female,2,asha.mishra.pandey@gmail.com,9415875717,1,1,Lucknow,Lucknow,226001,NA,NA,2
+SIDD10705,Dr. VINOD KUMAR SINGH,05-07-1974,Male,2,vksinghapnpg@gmail.com,9452188325,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10708,SAUMYA PAL,15-07-1980,Female,2,saumyapal1004@gmail.com,9918011770,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10714,DR.KANCHAN TRIPATHI,01-07-1970,Female,2,dr.kanchan.tripathi@gmail.com,9628788858,1,1,Lucknow,Lucknow,226001,NA,NA,5
+SIDD10722,DR.KANCHAN TRIPATHI,01-07-1970,Female,2,dr.kanchan.tripathii@gmail.com,9450354538,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10772,Dr RAJESH KUMAR GUPTA,11-06-1978,Male,2,rajeshhrpg78@gmail.com,6388257418,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10773,Dr RAJESH KUMAR GUPTA,11-06-1978,Male,2,rajeshhrpg78@gmail.com,9936064375,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10778,Dr DINESHWAR CHAND,01-01-1969,Male,2,asha.mishra.pandey@gmail.com,9026556881,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10796,DR RAJKUMARI OJHA,01-01-1971,Female,2,drojharajkumari@gmail.com,9415326936,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10827,Sunil Kumar Singh,05-11-1974,Male,2,sunil_shrinet@rediffmail.com,8400259327,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10832,DR HARISHANKER SAHAI CHAUDHERY,01-07-1972,Male,2,barlampur.sds@gmail.com,8765198497,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10837,PRAKASH NARAYAN SHUKLA,25-07-1972,Male,2,prakashshukla8277@gmail.com,8004321047,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10851,Dr MANOJ KUMAR BHARTIYA,15-10-1969,Male,2,mkb151069@gmail.com,9335853340,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10855,CHHATHU YADAV,10-04-1986,Male,2,chhathuyadav86@gmail.com,9424746340,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10860,Dr Devendra Kumar Chauhan,05-01-1978,Male,2,devendra.mlk@gmail.com,9839753879,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10874,Dr. Mahendra Kumar Sultaniya,02-01-1979,Male,2,mahendra.kld@gmail.com,7800778201,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10892,KHEDOORAM YADAV,09-11-1975,Male,2,khedooramyadav@gmail.com,8858444083,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10893,DEVENDRA KUMAR PATHAK,10-03-1975,Male,2,pathakdevendrakumar1975@gmail.com,9838736879,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10902,Dr. AJAY KUMAR MISHRA,02-01-1976,Male,2,ajay00mishra@gmail.com,9454332373,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10905,Dr Akashy Kumar,01-04-1981,Male,2,akshayyadav.kumar65@gmail.com,9456876967,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10944,Dr. MITHLESH KUMAR CHAUDHARI,12-01-1985,Male,2,mithleshchaudhari@gmai.com,9454017251,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10970,SUDHIR KUMAR,02-07-1985,Male,2,sudhirkumar.kumars2@gmail.com,8005340083,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD10985,DR. PANKAJ KUMAR SRIVASTAVA,15-09-1981,Male,2,psrivastava.brh@gmail.com,9451750566,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11073,SANJAY KUMAR PANDEY,04-01-1979,Male,2,sanjaypandey79718@gmail.com,9956758144,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11076,DR VAIBHAV MANI TRIPATHI,15-04-1978,Male,2,vaibhavmanitripathi1@gmail.com,9839505767,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11078,MAHIP KUMAR PANDEY,01-07-1976,Male,2,mahippandey1976@gmail.com,9452451887,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11080,SANJAY KUMAR PANDEY,04-01-1979,Male,2,sanjaypandey79718@gmail.com,8127299263,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11090,DR. R.B. TRIPATHI,03-07-1977,Male,2,drrbtripathi.77@gmail.com,9473703275,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11095,Dr.Dinesh Kumar Gupta,19-03-1975,Male,2,dineshg407@gmail.com,9451427789,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11112,Dr. DINESH KUMAR GUPTA,19-03-1975,Male,2,dineshg407@gmail.com,8090804086,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11124,Brijesh Kumar Verma,22-12-1981,Male,2,vermabrijesh097@gmail.com,9838934794,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11150,Akhilesh Kumar Singh,10-07-1979,Male,2,bbnakhilesh@gmail.com,9628884682,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11182,Ajit Singh,12-08-1985,Male,2,Ajitsingh1490@gmail.com,8318961634,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11190,RASHMI PANDEY,20-04-1971,Female,2,apmbasti01@gmail.com,9450644897,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11249,JITENDRA  KUMAR SINGH,30-04-1996,Male,2,dr.jksingh1966@gmail.com,9721414262,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11252,JITENDRA  KUMAR SINGH,30-04-1966,Male,2,dr.jksingh1966@gmail.com,8808424262,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11257,DR BINDU SINGH,12-01-1966,Female,2,dr.bindusingh1966@gmail.com,6386052230,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11325,DR. ARCHANA MISHRA,01-01-1965,Female,2,archanamishr759@gmail.com,9415762043,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11328,DR. KRISHNA KUMAR SINGH,20-06-1979,Male,2,drkksingh.mlk@gmail.com,9140891982,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11351,DR. MANORAM MISHRA,02-10-1982,Male,2,manoram.mishra@gmail.com,9451011634,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11358,DR. ALOK SHUKLA,07-07-1974,Male,2,dr.alokmlk@gmail.com,8090064786,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11373,DR. ANITA KUMARI,02-01-1983,Female,2,drkumararvind.1975@gmail.com,9415848824,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11393,Dr. Akanksha Tripathi,28-06-1978,Female,2,akt.zoology@gmail.com,8052047111,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11436,Dr. RAM KISHOR MAURYA,15-08-1978,Male,2,drrkmaurya82@gmail.com,9956592793,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11454,DR ASHWINI KUMAR SRIVASTAVA,01-07-1977,Male,2,ashwini.skpg@gmail.com,9415260179,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11463,Dr.Umashanker prasad yadava,05-02-1965,Male,2,drumashankeryadav2017@gmail.com,9838317270,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11467,Vinay kumar singh,02-10-1984,Male,2,Vinays635@gmail.com,9818688325,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11471,SUHASINI SINGH,31-05-1989,Female,2,suhu10188@gmail.com,9532862209,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11477,Shivendra Mohan Pandey,25-11-1977,Male,2,"smpandey1977@gmail,com",9918565700,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11495,PRERANA TIWARI,01-08-1985,Female,2,preranas262@gmail.com,9935191313,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11503,Dr Rishi Ranjan Pandey,05-12-1985,Male,2,prr.panday@gmail.com,9455138967,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11522,DR AMRENDRA KUMAR SINGH,03-08-1975,Male,2,amrendraksing@gmail.com,9415920517,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11556,SHASHI KANT RAO ,12-05-1982,Male,2,r.shashikant.net@gmail.com,7007994704,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11570,Dharm Veer,01-02-1982,Male,2,dharam 1282@gmail.com,9627669001,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11574,Dr. Praveen Kumar Srivastava,25-07-1975,Male,2,praveen.mhg@gmail.com,9415852304,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11580,Dr. Vijay Anand Mishra,31-03-1977,Male,2,dr.vijayanandmishragkp@gmail.com,9415423382,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11582,Dr. Rana Pratap Tiwari,25-01-1974,Male,2,tiwariranapratap@gmail.com,9450422663,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11604,Dr. ASHOK KUMAR,15-05-1976,Male,2,abmlk1515@gmail.com,9456087215,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11614,Shiv pratap singh,08-04-1989,Male,2,shiv474465@rediffmail.com,9451474465,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11640,BIPIN YADAV,12-08-1989,Male,2,bipinyadav12aug89@gmail.com,9452869780,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11641,Dr. Prashant Kumar Pandey,21-10-1981,Male,2,prasantpanday@yahoo.com,9450365892,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11646,Dr Akhilesh Kumar Mishra,13-07-1976,Male,2,akhileshkumarmishra374@gmail.com,9415713801,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11648,Dr. Shailendra Kumar Upadhyay,05-01-1982,Male,2,dr.shailendraraipur@gmail.com,8707880491,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11649,Gopal Singh,28-05-1978,Male,2,gopalsingh.srinet@gmail.com,9795638481,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11664,Dr. AJAY KUMAR MISHRA,02-01-1976,Male,2,ajay00mishra@ gmail.com,7355383016,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11692,ARJUN SINGH,15-07-1983,Male,2,arjunsinghsocio@gmail.com,9452984304,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11696,Rahul Kumar Singh,15-01-1981,Male,2,rahulsingh.sariyawan@gmail.com,7408707474,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11717,Dr. R. B. Srivastava,01-01-1957,Male,2,rambux@gmail.com,9415036245,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11725,Dr Bishwmbhar Kumar Malviya,15-11-1971,Male,2,sameermalvivya166@gmail.com,9532599715,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11731,Dr RAVINDRA KUMAR,15-12-1967,Male,2,ravindrabalrampur@gmail.com,9415407164,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11746,Dr. KHEDOORAM YADAV,09-11-1975,Male,2,khedooramyadav@gmail.com,9839513104,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11748,DEVENDRA KUMAR PATHAK,10-03-1975,Male,2,pathakdevendrakumar1975@gmail.com,8601975450,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11753,Dr. Ashok Kumar verma,28-08-1984,Male,2,ashok2avanish@gmail.com,9455296896,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11768,Brajesh Kumar Dubey,08-11-1977,Male,2,bkdubeybst@gmail.com,9453994451,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11778,Dr. Mohiuddin Ansari,25-10-1971,Male,2,ansarimlk25@gmail.com,7376606141,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11783,Dr. Rajesh Kumar Singh,01-07-1964,Male,2,rksmlk25@gmail.com,9919954888,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11785,HEMANT GAUTAM,10-04-1976,Male,2,induhemant999@gmail.com,9838221491,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11797,Dr Rekha Vishwakarma,04-07-1969,Female,2,drrekhavishwakarma1969@gmail.com,9415719539,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11798,Dr Dinesh Kumar Maurya,01-05-1974,Male,2,prodkmaurya@gmail.com,9450283615,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11841,DR. ALPANA PARMAR,04-07-1981,Female,2,alpanaparmar406@gmail.com,9919193406,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11846,DR SMITA SINGH,23-07-1980,Female,2,SSMITASINGH@REDIFFMAIL.COM,9453082460,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11919,SHIV PRATAP SINGH,08-04-1989,Male,2,shiv474465@gmail.com,8840746029,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11921,TRIPTI TRIPATHI,05-07-1990,Female,2,tripathitripti25@gmail.com,6393094176,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11962,DR SADGURU PRAKASH,12-04-1972,Male,2,sadguruprakash@gmail.com,9415681514,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11969,DR PAWAN KUMAR SINGH,10-11-1980,Male,2,pawannnm@gmail.com,9307912043,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD11998,Dr. SUNIL KUMAR MISHRA,20-11-1975,Male,2,sunilmishra28875@gmail.com,9839785909,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12019,Dr. P. K. Singh,04-05-1965,Male,2,drpksinghblp@gmail.com ,9415488232,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12051,DR  MOOLCHANDRA PAl,10-07-1973,Male,2,630654231doctermcpal@gmail.com,6306542318,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12075,DR AJAY OJHA,07-01-1974,Male,2,OJHAAJAYKUMAR76@GMAIL.COM,9455828784,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12150,LALIT KUMAR GOYAL,16-09-1978,Male,2,L.KGOYAL78@GMAIL.COM,7571090940,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12161,Dr Mohammad Akmal,20-10-1978,Male,2,akmal729@gmail.com,9716430071,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12172,Dr Arvind Kumar Dwivedi,15-12-1965,Male,2,dr.arvindmlk@gmail.com,9415036048,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12190,DR CHANDRABHAN,01-01-1969,Male,2,drchandrabhan94@gmail.com,9451962681,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12200,Dr. R.B.Tripathi,03-07-1977,Male,2,drrbtripathi.77@gmail.com  ,9453940522,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12210,Dr Narendra Kumar Singh,15-04-1958,Male,2,singh.narendranovember@gmail.com,9450514172,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12214,PRIYANKA JAISWAL,18-07-1990,Female,2,singhcybercafe17@gmail.com,8174928365,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12223,AZAHRUDDIN ,03-01-1990,Male,2,azhar3190mlk@gmail.com,9580458112,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12232,MAMTA KUMARI,06-07-1983,Female,2,mamtasingh00045@gmail.com,7985277956,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12239,DR SUNIL KUMAR SHUKLA,07-12-1985,Male,2,shunilshukla85@gmail.com,8887857245,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12240,Dr. Shiv Mahendra Singh,11-07-1982,Male,2,shivmahendra82@gmail.com,7906597245,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12260,Dr JANARDAN PRASAD PANDEY,04-09-1975,Male,2,jppandeymlk@gmail.com,9450517226,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12276,DR RAJIV RANJAN,04-09-1971,Male,2,ranjanrajiv1001@gmail.com,7007843131,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12299,DR ANAMIKA SINGH,18-07-1976,Female,2,ibsingh12335@gmail.com,9415534345,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12305,DR SHRI PRAKASH MISHRA,01-10-1969,Male,2,spmishrabedmlk@gmail.com,9450516581,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12349,ANIL KUMAR SINGH,10-01-1974,Male,2,dranikumwarsingh5573@gmail.com,9415823626,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12391,DR DIVYA DARSHAN TEWARI,01-06-1969,Male,2,ddtewari1@gmail.com,9415512787,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12426,Dr. Balram Chaudhary,01-07-1974,Male,2,balramch123@gmail.com,9838296085,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12430,DR BHAGIRATH MISHRA,30-07-1972,Male,2,drbhagirath111@gmail.com,9918483240,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12443,SWADESH BHATT,26-09-1981,Male,2,drswadeshbhatt@gmail.com,8839430896,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12502,DR. DINESH KUMAR TIWARI ,01-07-1972,Male,2,drdineshtiwari660@gmail.com,9936563114,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12553,RAM RAHEESH,02-01-1980,Male,2,ramraheesh447@gmail.com,9149158597,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12560,ANIL KUMAR SINGH,10-01-1974,Male,2,dranilkunwarsingh5573@gmail.com,8318382274,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12567,DR AWADHESH KUMAR MISHRA ,01-09-1970,Male,2,AKM112077@GMAIL.COM,8517073609,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12580,DR RAMESH KUMAR SHUKLA,01-07-1974,Male,2,rk119312@gmail.com,9451032296,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12584,DR RAGHVENDRA SINGH,01-06-1969,Male,2,annusingh29122001@gmail.com,9919929293,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12586,Dr Arun Kumar Singh,01-08-1957,Male,2,arunksinghbedmlk@gmail.com,9415778704,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12601,SUNITA TRIPATHI,20-06-1977,Female,2,sunitatripathi786@gmail.com,9415319783,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12644,DR RAGHUNATH CHADHARY,02-02-1965,Male,2,MOBEENAPN@GMAIL.COM,9453119857,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12654,Dr. SHALENDRA KUMAR SAHU,15-07-1985,Male,2,SAHU.SHAILENDRA546@GMAIL.COM,9450986220,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12688,Dr. Balram Chaudhary,01-07-1974,Male,2,balramch123@gmail.com,8299506953,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12692,RAHUL VISEN,15-10-1985,Male,2,rahulvisen@gmail.com,9450709175,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12698,Dr Pramod  kumar Mishra,03-05-1966,Male,2,Pkmishra066@gmail.com,9450884213,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12705,DR AKSHAYBER NATH BHARTI,04-11-1966,Male,2,MOBEENAPN@GMAIL.COM,9450421282,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12715,DR VANDNA SINGH ,12-01-1984,Female,2,vsinghmlk@gmail.com,8004575601,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12817,DWARIKA PRASAD,12-05-1976,Male,2,tiwariamit2051989@gmail.com,7800505981,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12830,DR NEELU SINGH,02-05-1974,Female,2,neelu3327@gmail.com,8808433327,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12834,Dr. ( Smt.) Nirmala Tripathi,01-07-1961,Female,2,nirmalatripathi2012@gmail.com,9450569223,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12835,LAVKUSH PANDEY,25-07-1970,Male,2,lavkushpandey280273@gmail.com,9415514484,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12839,DR PHOOL DEO,15-01-1972,Male,2,DR.PDEV1972@GMAIL.COM,9026638600,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12873,ARVIND KUMAR MAURYA,15-03-1983,Male,2,maurya.arsp5@rediffmail.com,9454539533,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12874,DR SHAILENDRA MISHRA,15-07-1977,Male,2,dr.shailendrami@rediffmail.com,9565908035,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12879,DEWAKER SINGH,22-03-1976,Male,2,dewakergeo20@gmail.com,9336418096,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12894,DR. AMBIKA PRASAD SHUKLA ,02-09-1968,Male,2,apshukla2595@gmail.com,9450565774,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12918,Dr Dinesh Kumar Tiwari,01-07-1972,Male,2,drdineshtiwari660@gmail.com,8840876165,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12919,DR SUDHA TRIPATHI,31-08-1975,Female,2,tripathisudha999@gmail.com,9532064866,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12929,PRAKHAR TRIPATHI,16-04-1991,Male,2,prakhartripathi007@gmail.com,9140095773,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12930,DR.VINOD KUMAR KUSHWAHA,01-07-1970,Male,2,drvinodmrj@gmail.com,9450097418,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12936,SUNEEL PRASAD,01-07-1988,Male,2,connectsahaj@gmail.com,9616406782,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12952,TABASSUM,10-07-1990,Female,2,abshaikh900@gmail.com,9120517600,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD12963,HEMENDRA SHANKER,15-08-1971,Male,2,rajuhrpg@gmail.com,8737079004,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13055,Bhavna Singh,10-07-1992,Female,2,94sadhanasingh@gmail.com,8077349027,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13201,Dr. AJAY KUMAR SINGH ,20-10-1974,Male,2,ajayvns928@gmail.com,9455506519,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13202,DR JYOTSANA SINGH ,20-05-1994,Female,2,ushasingh4772@gmail.com,6392150004,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13317,SANDHYA PANDEY,02-07-1977,Female,2,sandhyapandey_phd@rediffmail.com,8090005464,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13338,SEEMA PATHAK,01-03-1989,Female,2,manojmani89@gmail.com,9838118271,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13374,DR LALU RAM BHARDWAJ,15-01-1953,Male,2,rakesh272001@gmail.com,9984947938,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13436,hbfgnbtbhrtrhg,21-01-2020,Male,2,gbrfgfdg@gmail.com,2454676877,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13447,JAY NATH YADAV,02-10-1977,Male,2,aman60604@gmail.com,9919088237,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13523,Dr. Ram Nagina Tripathi,15-07-1952,Male,2,drrntripathi1952@gmail.com,9125049182,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13543,DR SURENDRA SINGH,01-07-1965,Male,2,MOBEENAPN@GMAIL.COM,9919225121,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13559,DR. AVANINDRA KUMAR DIXIT,20-01-1975,Male,2,drdixitak75@gmail.com,9170970000,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13624,Dr Ghanshyam Dubey,05-07-1975,Male,2,gdubey006@gmail.com,9455886006,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13760,RAM MANI TRIPATHI,01-08-1989,Male,2,rmtripathi1889@gmail.com,9415535595,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13912,DR JAGADISH NARAYAN,05-06-1976,Male,2,jaisawal3@gmail.com,6306435027,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13926,MOHAMMAD HASAN,01-01-1973,Male,2,mohammadhasanjaivijai@gmail.com,7985904399,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD13973,Sumitra Maurya,01-10-1978,Female,2,s_m_maurya@yahoo.com,9453439745,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14108,Ankita Patel,01-09-1990,Female,2,ankitapatel07274@gmail.com,9984822583,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14153,KIRAN DEVI,10-05-1980,Female,2,11kiran111@gmail.com,9454313162,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14157,Smt Shalini Goyal,20-07-1989,Female,2,shalugoyal20@gmail.com,9413820089,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14229,DR. SANTOSH KUMAR SINGH,10-08-1966,Male,2,drsksinghsrinet@yahoo.in,9450231876,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14246,RAJ KUMAR PATHAK,01-07-1953,Male,2,rajkumarpathak1753@gmail.com,8299813654,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14281,Smt Archana Shukla,08-05-1991,Female,2,archanashukla851991@GMAIL.COM,9170825555,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14293,DR ASHISH KUMAR LAL,02-01-1970,Male,2,drashishlal70@gmail.com,9415621059,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14297,DR. SUBHASH CHANDRA CHAUHAN,08-03-1971,Male,2,subhashabr71@gmail.com,9451627275,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14315,Santosh Singh,23-02-1988,Male,2,gsantoshsingh@gmail.com,9621591331,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14320,Shivam Shukla,05-04-1992,Male,2,shivambhu286@rediffmail.com,8840858759,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14322,Pragyesh Nath Tripathi,10-11-1988,Male,2,pragyeshnath@gmail.com,7355356953,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14323,Dr. Deepak Babu,01-07-1977,Male,2,drdeepak_mishra@rediffmail.com,9415572627,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14326,DINESH PRASAD,15-09-1980,Male,2,dinesh15980@gmail.com,8318648553,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14327,Abhishek Singh,11-10-1980,Male,2,aeroabhi1980@gmail.com,9971400436,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14334,Raghuvansh Mani Tripathi,30-06-1988,Male,2,raghuvanshmani@yahoo.co.in,9452850745,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14338,MASUD MURAD KHAN,19-06-1979,Male,2,masoodmurad30@gmail.com,9450512588,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14343,Dr Pradip Kumar,27-09-1968,Male,2,pradip.pks@gmail.com,7007054569,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14344,Dr.Susmita Srivastav,09-12-1974,Female,2,susmita.sus74gmail.com,7355416275,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14359,DR UMESH PRASAD YADAV,05-10-1968,Male,2,jlnspgmrj1966@gmail.com,9415370254,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14366,Dr Akhilesh Sharma,01-05-1981,Male,2,Akhilesh8831@gmail.com,9984127177,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14369,Dr. Rajesh Kumar Yadav ,15-02-1974,Male,2,dr.rajesh0074@gmail.com ,9450422347,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14371,Dr. Mohd Aslam Siddiqui,01-01-1965,Male,2,tajindia65@gmail.com,9795723450,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14372,DR. KIRAN SINGH,23-07-1964,Female,2,kiran9450434851,9450434851,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14374,Dr Rajendra Baudh ,01-07-1973,Male,2,boudhbst@gmail.com ,9532477137,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14381,pramod kumar pandey,01-01-1969,Male,2,toolika516@gmail.com,9369206975,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14397,Dr Sushil Kumar,01-07-1972,Male,2,Sushilksppg@gmail.com,9554148355,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14398,Dr Amit Singh,11-05-1982,Male,2,amitsingh11582@gmail.com,9457446498,1,1,Lucknow,Lucknow,226001,NA,NA,1
+SIDD14418,Geeta Yadav,08-11-1978,Female,2,gitay777@gmail.com,9532667343,1,1,Lucknow,Lucknow,226001,NA,NA,1

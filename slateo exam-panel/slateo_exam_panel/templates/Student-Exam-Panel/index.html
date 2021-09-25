@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+    <head>
+      <title></title>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon"
+        href="https://themeselection.com/demo/chameleon-admin-template/app-assets/images/ico/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" />
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'Student-Exam-Panel/css/style.css' %}" />
+    </head>
+  <body class="login">
+  	     <div class="wrapper">
+          <header>
+            <div class="container">
+              <div class="row">
+                  <div class="col-md-5">
+                    <a href="{% url 'dashboard' %}">
+                      <img class="logo" src="{% static 'Student-Exam-Panel/images/logo.png' %}">
+                    </a>    
+                  </div>
+              </div>
+            </div>
+          </header>
+          <div class="form">
+            <div class="container">
+              <div class="row">
+              <form method='POST' action=''>
+              {% csrf_token %}
+                  <div class="col-md-5">
+                     <h1>Welcome!</h1>
+                     <p>Enter your details to login</p>
+                     {% if msg %}
+                        <p class="text-center" style='font-weight:600;color:red;'>{{ msg }}</p>
+                      {% endif %}
+                     <div class="form-group mb-3 mt-3">
+                        <input type="text" class="form-control" name="student_username" placeholder="UserID" required>
+                     </div>
+                      <div class="form-group">
+                        
+                        <input type="password" class="form-control" name="student_password" placeholder="Password" id='user-password' required>
+                     </div>
+                      <div class="form-group mt-2">
+                         <label style='color:white;font-size:12px;'><input id="togglePassword" type='checkbox' onclick="showPassword()"> Show Password</label>
+                          {% comment %} <a href="" class="right">Need Help?</a> {% endcomment %}
+                      </div>
+                      <button type='submit' class="btn   d-block w-100 mt-4">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+
+
+         </div>
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function showPassword(){
+    const cb = document.getElementById('togglePassword');
+    console.log(cb.checked);
+    if(cb.checked){
+        $('#user-password').attr('type','text');
+    }else{
+        $('#user-password').attr('type','password');
+    }
+}
+</script>
+  </html>
